@@ -7,17 +7,17 @@ import java.util.Collection;
 
 public interface RestuarantRepository {
     // null if updated meal do not belong to userId
-    Restuarant save(Restuarant meal, int userId);
+    Restuarant save(Restuarant restuarant);
 
     // false if meal do not belong to userId
-    boolean delete(int id, int userId);
+    boolean delete(int id);
 
     // null if meal do not belong to userId
-    Restuarant get(int id, int userId);
+    //Restuarant get(int id, int userId);
 
     // ORDERED dateTime
-    Collection<Restuarant> getAll(int userId);
+    Collection<Restuarant> getAll(LocalDateTime dateTime);
 
     // ORDERED dateTime
-    Collection<Restuarant> getBetween(LocalDateTime startDate, LocalDateTime endDate, int userId);
+    //Collection<Restuarant> getBetween(LocalDateTime startDate, LocalDateTime endDate, int userId);
 }

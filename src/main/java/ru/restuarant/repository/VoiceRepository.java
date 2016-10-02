@@ -17,7 +17,7 @@ public interface VoiceRepository {
     //Voice get(int id, int userId);
 
     // ORDERED dateTime
-    Collection<Voice> getAll(LocalDateTime dateTime);
+    Collection<Voice> getAllOnDate(LocalDateTime dateTime);
 
     // ORDERED dateTime
     //Collection<Voice> getBetween(LocalDateTime startDate, LocalDateTime endDate, int userId);
