@@ -1,4 +1,4 @@
-package ru.restuarant.repository.jdbc;
+package ru.restuarant.repository.jpa;
 
 import org.springframework.stereotype.Repository;
 import ru.restuarant.model.Dish;
@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 import java.util.Collection;
 
 @Repository
-public class JdbcDishRepositoryImpl implements DishRepository {
+public class JpaDishRepositoryImpl implements DishRepository {
     @Override
     public Dish save(Dish dish, int userId) {
         return null;

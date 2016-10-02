@@ -1,11 +1,11 @@
-package ru.restuarant.repository.jdbc;
+package ru.restuarant.repository.jpa;
 
 import org.springframework.stereotype.Repository;
 import ru.restuarant.model.User;
 import ru.restuarant.repository.UserRepository;
 
 @Repository
-public class JdbcUserRepositoryImpl implements UserRepository{
+public class JpaUserRepositoryImpl implements UserRepository{
     @Override
     public User save(User user, int userId) {
         return null;

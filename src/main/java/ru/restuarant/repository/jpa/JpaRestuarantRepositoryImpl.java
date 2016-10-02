@@ -1,4 +1,4 @@
-package ru.restuarant.repository.jdbc;
+package ru.restuarant.repository.jpa;
 
 import org.springframework.stereotype.Repository;
 import ru.restuarant.model.Restaurant;
@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 import java.util.Collection;
 
 @Repository
-public class JdbcRestuarantRepositoryImpl implements RestuarantRepository{
+public class JpaRestuarantRepositoryImpl implements RestuarantRepository{
     @Override
     public Restaurant save(Restaurant restaurant) {
         return null;

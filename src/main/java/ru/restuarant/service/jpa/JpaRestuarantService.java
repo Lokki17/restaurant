@@ -1,4 +1,4 @@
-package ru.restuarant.service.jdbc;
+package ru.restuarant.service.jpa;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,7 +10,7 @@ import ru.restuarant.util.exception.NotFoundException;
 import java.util.Collection;
 
 @Service
-public class JdbcRestuarantService implements RestuarantService{
+public class JpaRestuarantService implements RestuarantService{
 
     @Autowired
     RestuarantRepository restuarantRepository;

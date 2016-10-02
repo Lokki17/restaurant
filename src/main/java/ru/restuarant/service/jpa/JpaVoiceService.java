@@ -1,4 +1,4 @@
-package ru.restuarant.service.jdbc;
+package ru.restuarant.service.jpa;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 import java.util.Collection;
 
 @Service
-public class JdbcVoiceService implements VoiceService{
+public class JpaVoiceService implements VoiceService{
 
     @Autowired
     VoiceRepository voiceRepository;

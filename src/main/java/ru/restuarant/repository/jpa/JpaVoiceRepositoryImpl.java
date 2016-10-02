@@ -1,4 +1,4 @@
-package ru.restuarant.repository.jdbc;
+package ru.restuarant.repository.jpa;
 
 import org.springframework.stereotype.Repository;
 import ru.restuarant.model.Voice;
@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 import java.util.Collection;
 
 @Repository
-public class JdbcVoiceRepositoryImpl implements VoiceRepository{
+public class JpaVoiceRepositoryImpl implements VoiceRepository{
     @Override
     public Voice save(Voice meal, LocalDateTime dateTime, int userId) {
         return null;

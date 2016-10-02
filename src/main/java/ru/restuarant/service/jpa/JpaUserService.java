@@ -1,4 +1,4 @@
-package ru.restuarant.service.jdbc;
+package ru.restuarant.service.jpa;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -7,11 +7,10 @@ import ru.restuarant.repository.UserRepository;
 import ru.restuarant.service.UserService;
 import ru.restuarant.util.exception.NotFoundException;
 
-import java.time.LocalDateTime;
 import java.util.Collection;
 
 @Service
-public class JdbcUserService implements UserService{
+public class JpaUserService implements UserService{
 
     @Autowired
     UserRepository userRepository;
