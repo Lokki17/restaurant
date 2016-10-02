@@ -1,9 +1,10 @@
 package ru.restuarant.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
+@NamedQueries({
+
+})
 @Entity
 @Table(name = "voices")
 public class Voice extends DatedEntity {
