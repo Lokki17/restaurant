@@ -1,7 +1,8 @@
 package ru.restuarant.model;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "users")
@@ -14,7 +15,7 @@ public class User extends NamedEntity{
     private Role role;
 
     @Column(name = "password")
-    @NotNull
+    @NotEmpty
     private String password;
 
     public boolean isAdmin(){

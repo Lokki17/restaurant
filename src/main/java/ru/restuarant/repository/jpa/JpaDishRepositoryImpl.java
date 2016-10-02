@@ -4,9 +4,13 @@ import org.springframework.stereotype.Repository;
 import ru.restuarant.model.Dish;
 import ru.restuarant.repository.DishRepository;
 
+import javax.persistence.NamedQueries;
 import java.time.LocalDateTime;
 import java.util.Collection;
 
+@NamedQueries({
+
+})
 @Repository
 public class JpaDishRepositoryImpl implements DishRepository {
     @Override
