@@ -11,7 +11,7 @@ public interface VoiceService {
 
     void delete(int id, int userId) throws NotFoundException;
 
-    Collection<Voice> getAll(LocalDateTime dateTime);
+    Collection<Voice> getAllOnDate(LocalDateTime dateTime);
 
     Voice update(Voice voice, int userId) throws NotFoundException;
 

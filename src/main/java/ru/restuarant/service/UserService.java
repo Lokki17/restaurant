@@ -13,8 +13,6 @@ public interface UserService {
 
     void delete(int id, int userId) throws NotFoundException;
 
-    Collection<User> getBetweenDateTimes(LocalDateTime startDateTime, LocalDateTime endDateTime, int userId);
-
     Collection<User> getAll(int userId);
 
     User update(User user, int userId) throws NotFoundException;
