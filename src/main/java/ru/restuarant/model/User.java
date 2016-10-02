@@ -1,6 +1,6 @@
 package ru.restuarant.model;
 
-public class User extends BaseEntity{
+public class User extends NamedEntity{
 
     private boolean admin;
 

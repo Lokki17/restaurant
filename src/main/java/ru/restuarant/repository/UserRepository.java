@@ -16,8 +16,8 @@ public interface UserRepository {
     User get(int id, int userId);
 
     // ORDERED dateTime
-    Collection<User> getAll(int userId);
+    //Collection<User> getAll(int userId);
 
     // ORDERED dateTime
-    Collection<User> getBetween(LocalDateTime startDate, LocalDateTime endDate, int userId);
+    //Collection<User> getBetween(LocalDateTime startDate, LocalDateTime endDate, int userId);
 }
