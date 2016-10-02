@@ -1,4 +1,4 @@
-package ru.clinic.model;
+package ru.restuarant.model;
 
 public class BaseEntity {
     protected Integer id;

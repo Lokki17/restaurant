@@ -1,4 +1,4 @@
-package ru.clinic.model;
+package ru.restuarant.model;
 
 import java.time.LocalDateTime;
 

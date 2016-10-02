@@ -1,4 +1,4 @@
-package ru.clinic.service;
+package ru.restuarant.service;
 
 public interface UserService {
 }
