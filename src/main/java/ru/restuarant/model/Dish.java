@@ -1,22 +1,37 @@
 package ru.restuarant.model;
 
-import org.hibernate.annotations.CascadeType;
-import org.hibernate.annotations.ManyToAny;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
+import java.util.List;
 
-public class Dish extends DatedEntity {
+@Entity
+@Table(name = "dishes")
+public class Dish {
+
+    @Id
+    @SequenceGenerator(name = "global_seq", sequenceName = "global_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "global_seq")
+    private Integer id;
+
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @JoinColumn(name = "restaurant_id", nullable = false)
+    private Restaurant restaurant;
+
     @Column(name = "price")
     @NotEmpty
     private Double price;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "restaurant_id", nullable = false)
-    private Restaurant restaurant;
+    @OneToMany(mappedBy = "dish")
+    private List<Voice> voice;
 
-    @OneToOne(optional = false, mappedBy = "")
-    private Voice voice;
+    @Column(name = "name")
+    @NotEmpty
+    private String name;
+
+    @Column(name = "date_time")
+    private LocalDateTime dateTime;
 
     public Double getPrice() {
         return price;
@@ -32,5 +47,37 @@ public class Dish extends DatedEntity {
 
     public void setRestaurant(Restaurant restaurant) {
         this.restaurant = restaurant;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public List<Voice> getVoice() {
+        return voice;
+    }
+
+    public void setVoice(List<Voice> voice) {
+        this.voice = voice;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public LocalDateTime getDateTime() {
+        return dateTime;
+    }
+
+    public void setDateTime(LocalDateTime dateTime) {
+        this.dateTime = dateTime;
     }
 }

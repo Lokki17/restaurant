@@ -5,9 +5,9 @@ import org.hibernate.validator.constraints.NotEmpty;
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 
-@MappedSuperclass
+//@MappedSuperclass
 public class NamedEntity extends BaseEntity {
-    @Column(name = "name")
+/*    @Column(name = "name")
     @NotEmpty
     protected String name;
 
@@ -17,5 +17,5 @@ public class NamedEntity extends BaseEntity {
 
     public void setName(String name) {
         this.name = name;
-    }
+    }*/
 }
