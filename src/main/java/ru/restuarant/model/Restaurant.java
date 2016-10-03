@@ -18,7 +18,7 @@ public class Restaurant{
     @Column(name = "name")
     private String name;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "restaurant")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "restaurant", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private List<Dish> dishs;
 
     public Integer getId() {

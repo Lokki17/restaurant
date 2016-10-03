@@ -15,16 +15,16 @@ public class Dish {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "global_seq")
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "restaurant_id", nullable = false)
     private Restaurant restaurant;
+
+    @OneToMany(mappedBy = "dish", cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.EAGER)
+    private List<Voice> voice;
 
     @Column(name = "price")
     @NotEmpty
     private Double price;
-
-    @OneToMany(mappedBy = "dish")
-    private List<Voice> voice;
 
     @Column(name = "name")
     @NotEmpty
