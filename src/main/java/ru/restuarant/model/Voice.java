@@ -8,18 +8,19 @@ import javax.persistence.*;
 @Entity
 @Table(name = "voices")
 public class Voice extends DatedEntity {
-    @Column(name = "restaurant_id")
-    private int restaurantId;
+    @OneToOne(optional = false)
+    @JoinColumn(name = "dishes_id")
+    private Dish dish;
 
     @Column(name = "user_id")
     private int userId;
 
-    public int getRestaurantId() {
-        return restaurantId;
+    public Dish getDish() {
+        return dish;
     }
 
-    public void setRestaurantId(int restaurantId) {
-        this.restaurantId = restaurantId;
+    public void setDish(Dish dish) {
+        this.dish = dish;
     }
 
     public int getUserId() {

@@ -1,16 +1,22 @@
 package ru.restuarant.model;
 
+import org.hibernate.annotations.CascadeType;
+import org.hibernate.annotations.ManyToAny;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.Column;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 public class Dish extends DatedEntity {
     @Column(name = "price")
     @NotEmpty
     private Double price;
 
-    @Column(name = "restaurant_id")
-    private int restaurantId;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "restaurant_id", nullable = false)
+    private Restaurant restaurant;
 
     public Double getPrice() {
         return price;
@@ -20,11 +26,11 @@ public class Dish extends DatedEntity {
         this.price = price;
     }
 
-    public int getRestaurantId() {
-        return restaurantId;
+    public Restaurant getRestaurant() {
+        return restaurant;
     }
 
-    public void setRestaurantId(int restaurantId) {
-        this.restaurantId = restaurantId;
+    public void setRestaurant(Restaurant restaurant) {
+        this.restaurant = restaurant;
     }
 }

@@ -1,6 +1,6 @@
 DROP TABLE IF EXISTS user_roles;
-DROP TABLE IF EXISTS dishes;
 DROP TABLE IF EXISTS voices;
+DROP TABLE IF EXISTS dishes;
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS restaurants;
 DROP SEQUENCE IF EXISTS global_seq;
@@ -41,10 +41,10 @@ CREATE INDEX dishes_unique_datetime ON dishes(date_time);
 
 CREATE TABLE voices (
   id            INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
-  restuarant_id INTEGER NOT NULL,
+  dish_id       INTEGER NOT NULL,
   date_time     TIMESTAMP NOT NULL,
   user_id       INTEGER NOT NULL,
-  FOREIGN KEY (restuarant_id) REFERENCES restaurants (id) ON DELETE CASCADE,
+  FOREIGN KEY (dish_id) REFERENCES dishes (id) ON DELETE CASCADE,
   FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
 );
 CREATE INDEX voices_unique_datetime ON dishes(date_time);
