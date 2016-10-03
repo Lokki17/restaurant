@@ -9,11 +9,12 @@ import javax.persistence.*;
 @Table(name = "voices")
 public class Voice extends DatedEntity {
     @OneToOne(optional = false)
-    @JoinColumn(name = "dishes_id")
+    @JoinColumn(name = "dishes_id", unique = true, nullable = false)
     private Dish dish;
 
-    @Column(name = "user_id")
-    private int userId;
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "user_id")
+    private User user;
 
     public Dish getDish() {
         return dish;
@@ -23,11 +24,11 @@ public class Voice extends DatedEntity {
         this.dish = dish;
     }
 
-    public int getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 }

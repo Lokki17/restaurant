@@ -4,10 +4,7 @@ import org.hibernate.annotations.CascadeType;
 import org.hibernate.annotations.ManyToAny;
 import org.hibernate.validator.constraints.NotEmpty;
 
-import javax.persistence.Column;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 public class Dish extends DatedEntity {
     @Column(name = "price")
@@ -17,6 +14,9 @@ public class Dish extends DatedEntity {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "restaurant_id", nullable = false)
     private Restaurant restaurant;
+
+    @OneToOne(optional = false, mappedBy = "")
+    private Voice voice;
 
     public Double getPrice() {
         return price;
