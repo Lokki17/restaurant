@@ -5,9 +5,13 @@ import org.hibernate.validator.constraints.NotEmpty;
 import javax.persistence.*;
 import java.util.List;
 
+@NamedQueries({
+        @NamedQuery(name = User.GET_ALL, query = "SELECT u FROM User u")
+})
 @Entity
 @Table(name = "users")
 public class User extends NamedEntity{
+    public static final String GET_ALL = "User.getAll";
 
     @Id
     @SequenceGenerator(name = "global_seq", sequenceName = "global_seq", allocationSize = 1)

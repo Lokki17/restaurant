@@ -6,11 +6,13 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @NamedQueries({
-
+    @NamedQuery(name = Voice.GET_ALL, query = "SELECT v FROM Voice v WHERE v.dateTime=:dateTime")
 })
 @Entity
 @Table(name = "voices")
 public class Voice extends DatedEntity {
+    public static final String GET_ALL = "Voice.getAll";
+    //public static final String SAVE = "Voice.save";
 
     @Id
     @SequenceGenerator(name = "global_seq", sequenceName = "global_seq", allocationSize = 1)

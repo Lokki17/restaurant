@@ -6,9 +6,13 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
+@NamedQueries({
+        @NamedQuery(name = Dish.GET_ALL, query = "SELECT d FROM Dish d WHERE d.dateTime=:dateTime")
+})
 @Entity
 @Table(name = "dishes")
 public class Dish {
+    public static final String GET_ALL = "Dish.getAll";
 
     @Id
     @SequenceGenerator(name = "global_seq", sequenceName = "global_seq", allocationSize = 1)

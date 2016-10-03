@@ -4,11 +4,13 @@ import javax.persistence.*;
 import java.util.List;
 
 @NamedQueries({
-
+    @NamedQuery(name = Restaurant.GET_ALL, query = "SELECT r FROM Restaurant r")
 })
 @Entity
 @Table(name = "restaurants")
 public class Restaurant{
+
+    public static final String GET_ALL = "Restaurant.getAll";
 
     @Id
     @SequenceGenerator(name = "global_seq", sequenceName = "global_seq", allocationSize = 1)
