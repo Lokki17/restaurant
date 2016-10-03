@@ -3,6 +3,7 @@ package ru.restuarant.model;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -28,7 +29,7 @@ public class Dish {
 
     @Column(name = "price")
     @NotEmpty
-    private Double price;
+    private BigDecimal price;
 
     @Column(name = "name")
     @NotEmpty
@@ -37,11 +38,11 @@ public class Dish {
     @Column(name = "date_time")
     private LocalDateTime dateTime;
 
-    public Double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 
