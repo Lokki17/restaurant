@@ -24,7 +24,7 @@ INSERT INTO restaurants (name) VALUES
   ('Самый лучший ресторан'),
   ('The Best');
 
-INSERT INTO dishes (restuarant_id, date_time, name, price) VALUES
+INSERT INTO dishes (restaurant_id, date_time, name, price) VALUES
   (100003, '2015-05-30', 'Борщ', '15'),
   (100003, '2015-05-31', 'Суп', '15'),
   (100004, '2015-05-30', 'Котлеты', '15'),

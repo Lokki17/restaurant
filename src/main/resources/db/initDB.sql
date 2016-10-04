@@ -31,11 +31,11 @@ CREATE UNIQUE INDEX restaurants_unique ON restaurants(id);
 
 CREATE TABLE dishes (
   id            INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
-  restuarant_id INTEGER NOT NULL,
+  restaurant_id INTEGER NOT NULL,
   date_time     TIMESTAMP NOT NULL,
   name          TEXT NOT NULL,
   price         FLOAT NOT NULL,
-  FOREIGN KEY (restuarant_id) REFERENCES restaurants (id) ON DELETE CASCADE
+  FOREIGN KEY (restaurant_id) REFERENCES restaurants (id) ON DELETE CASCADE
 );
 CREATE INDEX dishes_unique_datetime ON dishes(date_time);
 
