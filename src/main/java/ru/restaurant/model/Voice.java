@@ -10,14 +10,14 @@ import java.time.LocalDateTime;
 })
 @Entity
 @Table(name = "voices")
-public class Voice extends DatedEntity {
+public class Voice extends DatedEntity{
     public static final String GET_ALL = "Voice.getAll";
     //public static final String SAVE = "Voice.save";
 
-    @Id
+/*    @Id
     @SequenceGenerator(name = "global_seq", sequenceName = "global_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "global_seq")
-    private Integer id;
+    private Integer id;*/
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "dish_id", unique = true, nullable = false)
@@ -27,9 +27,9 @@ public class Voice extends DatedEntity {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @Column(name = "date_time", nullable = false)
+/*    @Column(name = "date_time", nullable = false)
     @NotEmpty
-    private LocalDateTime dateTime;
+    private LocalDateTime dateTime;*/
 
     public Dish getDish() {
         return dish;
@@ -47,7 +47,7 @@ public class Voice extends DatedEntity {
         this.user = user;
     }
 
-    public Integer getId() {
+/*    public Integer getId() {
         return id;
     }
 
@@ -61,5 +61,5 @@ public class Voice extends DatedEntity {
 
     public void setDateTime(LocalDateTime dateTime) {
         this.dateTime = dateTime;
-    }
+    }*/
 }

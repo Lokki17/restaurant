@@ -12,13 +12,13 @@ import java.util.List;
 })
 @Entity
 @Table(name = "dishes")
-public class Dish {
+public class Dish extends DatedEntity{
     public static final String GET_ALL = "Dish.getAll";
 
-    @Id
+/*    @Id
     @SequenceGenerator(name = "global_seq", sequenceName = "global_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "global_seq")
-    private Integer id;
+    private Integer id;*/
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "restaurant_id", nullable = false)
@@ -35,8 +35,8 @@ public class Dish {
     @NotEmpty
     private String name;
 
-    @Column(name = "date_time")
-    private LocalDateTime dateTime;
+/*    @Column(name = "date_time")
+    private LocalDateTime dateTime;*/
 
     public BigDecimal getPrice() {
         return price;

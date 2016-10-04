@@ -16,13 +16,13 @@ public class User extends NamedEntity{
     public static final String GET_ALL = "User.getAll";
     public static final String DELETE = "User.delete";
 
-    @Id
+/*    @Id
     @SequenceGenerator(name = "global_seq", sequenceName = "global_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "global_seq")
-    private Integer id;
-
+    private Integer id;*/
+/*
     @Column(name = "name")
-    private String name;
+    private String name;*/
 
     @Column(name = "password", nullable = false)
     @NotEmpty
@@ -57,7 +57,7 @@ public class User extends NamedEntity{
         this.password = password;
     }
 
-    public Integer getId() {
+/*    public Integer getId() {
         return id;
     }
 
@@ -71,7 +71,7 @@ public class User extends NamedEntity{
 
     public void setName(String name) {
         this.name = name;
-    }
+    }*/
 
     public List<Voice> getVoices() {
         return voices;

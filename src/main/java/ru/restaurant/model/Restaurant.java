@@ -9,37 +9,37 @@ import java.util.List;
 })
 @Entity
 @Table(name = "restaurants")
-public class Restaurant {
+public class Restaurant extends NamedEntity{
 
     public static final String GET_ALL = "Restaurant.getAll";
     public static final String DELETE = "Restaurant.delete";
 
-    @Id
+/*    @Id
     @SequenceGenerator(name = "global_seq", sequenceName = "global_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "global_seq")
     private Integer id;
 
     @Column(name = "name")
-    private String name;
+    private String name;*/
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "restaurant", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private List<Dish> dishs;
 
-    public Integer getId() {
+/*    public Integer getId() {
         return id;
     }
 
     public void setId(Integer id) {
         this.id = id;
-    }
+    }*/
 
-    public String getName() {
+/*    public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
-    }
+    }*/
 
     public List<Dish> getDishs() {
         return dishs;
