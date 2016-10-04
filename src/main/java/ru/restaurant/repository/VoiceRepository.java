@@ -9,7 +9,7 @@ import java.util.Collection;
 
 public interface VoiceRepository {
     // null if updated meal do not belong to userId
-    Voice save(Voice meal, LocalDate localDate, int userId) throws WrongTimeException;
+    Voice save(Voice voice, LocalDate localDate, int userId) throws WrongTimeException;
 
     // false if meal do not belong to userId
     //boolean delete(int id, int userId);

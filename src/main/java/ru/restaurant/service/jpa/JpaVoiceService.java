@@ -9,6 +9,7 @@ import ru.restaurant.util.TimeUtil;
 import ru.restaurant.util.exception.NotFoundException;
 import ru.restaurant.util.exception.WrongTimeException;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Collection;
 
@@ -19,7 +20,7 @@ public class JpaVoiceService implements VoiceService{
     VoiceRepository voiceRepository;
 
     @Override
-    public Voice get(int id, int userId) throws NotFoundException {
+    public Voice get(LocalDate localDate, int userId) throws NotFoundException {
         return null;
     }
 
@@ -37,9 +38,12 @@ public class JpaVoiceService implements VoiceService{
     @Override
     public Voice save(Voice voice, int userId) {
         LocalDateTime dateTimeNow = LocalDateTime.now();
-        if (dateTimeNow.toLocalTime().isAfter(TimeUtil.STOP_TIME)){
-            throw new WrongTimeException();
+        Voice savedVoice = get(dateTimeNow.toLocalDate(), userId);
+        if (savedVoice != null && TimeUtil.checkTime(dateTimeNow.toLocalTime())){
+            throw new WrongTimeException("You have made your choice");
         }
+        // проверка ДО ОБЕДА
+        voiceRepository.save(voice, dateTimeNow.toLocalDate(), userId);
         return null;
     }
 }
