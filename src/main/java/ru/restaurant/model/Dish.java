@@ -9,13 +9,15 @@ import java.util.List;
 
 @NamedQueries({
         @NamedQuery(name = Dish.GET_ALL, query = "SELECT d FROM Dish d WHERE d.dateTime=:dateTime"),
-        @NamedQuery(name = Dish.DELETE, query = "DELETE FROM Dish d WHERE d.id=:dishId")
+        @NamedQuery(name = Dish.DELETE, query = "DELETE FROM Dish d WHERE d.id=:dishId AND d.dateTime=:dateTime"),
+        @NamedQuery(name = Dish.GET, query = "SELECT d FROM Dish d WHERE d.id=:dishId AND d.dateTime=:dateTime")
 })
 @Entity
 @Table(name = "dishes")
 public class Dish extends DatedEntity{
     public static final String GET_ALL = "Dish.getAll";
     public static final String DELETE = "Dish.delete";
+    public static final String GET = "Dish.get";
 
 /*    @Id
     @SequenceGenerator(name = "global_seq", sequenceName = "global_seq", allocationSize = 1)

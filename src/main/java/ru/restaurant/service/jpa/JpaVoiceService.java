@@ -5,7 +5,9 @@ import org.springframework.stereotype.Service;
 import ru.restaurant.model.Voice;
 import ru.restaurant.repository.VoiceRepository;
 import ru.restaurant.service.VoiceService;
+import ru.restaurant.util.TimeUtil;
 import ru.restaurant.util.exception.NotFoundException;
+import ru.restaurant.util.exception.WrongTimeException;
 
 import java.time.LocalDateTime;
 import java.util.Collection;
@@ -31,13 +33,13 @@ public class JpaVoiceService implements VoiceService{
         return null;
     }
 
-    @Override
-    public Voice update(Voice voice, int userId) throws NotFoundException {
-        return null;
-    }
 
     @Override
     public Voice save(Voice voice, int userId) {
+        LocalDateTime dateTimeNow = LocalDateTime.now();
+        if (dateTimeNow.toLocalTime().isAfter(TimeUtil.STOP_TIME)){
+            throw new WrongTimeException();
+        }
         return null;
     }
 }

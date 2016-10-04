@@ -13,7 +13,5 @@ public interface VoiceService {
 
     Collection<Voice> getAllOnDate(LocalDateTime dateTime);
 
-    Voice update(Voice voice, int userId) throws NotFoundException;
-
     Voice save(Voice voice, int userId);
 }

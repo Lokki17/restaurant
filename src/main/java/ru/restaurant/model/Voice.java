@@ -4,13 +4,15 @@ import javax.persistence.*;
 
 @NamedQueries({
         @NamedQuery(name = Voice.GET_ALL, query = "SELECT v FROM Voice v WHERE v.dateTime=:dateTime"),
-        @NamedQuery(name = Voice.DELETE, query = "DELETE FROM Voice v WHERE v.id=:voiceId")
+        @NamedQuery(name = Voice.DELETE, query = "DELETE FROM Voice v WHERE v.id=:voiceId"),
+        @NamedQuery(name = Voice.GET, query = "SELECT v FROM Voice v WHERE v.id=:dishId AND v.dateTime=:dateTime")
 })
 @Entity
 @Table(name = "voices")
 public class Voice extends DatedEntity {
     public static final String GET_ALL = "Voice.getAll";
     public static final String DELETE = "Voice.delete";
+    public static final String GET = "Voice.delete";
 
 /*    @Id
     @SequenceGenerator(name = "global_seq", sequenceName = "global_seq", allocationSize = 1)
