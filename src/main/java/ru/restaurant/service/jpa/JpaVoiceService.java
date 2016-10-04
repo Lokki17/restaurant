@@ -38,6 +38,9 @@ public class JpaVoiceService implements VoiceService{
     @Override
     public Voice save(Voice voice, int userId) {
         LocalDateTime dateTimeNow = LocalDateTime.now();
+        if (TimeUtil.checkLaunchTime(dateTimeNow.toLocalTime())){
+            throw new WrongTimeException("Launch time is gone");
+        }
         Voice savedVoice = get(dateTimeNow.toLocalDate(), userId);
         if (savedVoice != null && TimeUtil.checkTime(dateTimeNow.toLocalTime())){
             throw new WrongTimeException("You have made your choice");
