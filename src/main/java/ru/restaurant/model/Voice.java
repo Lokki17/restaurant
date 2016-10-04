@@ -1,18 +1,16 @@
 package ru.restaurant.model;
 
-import org.hibernate.validator.constraints.NotEmpty;
-
 import javax.persistence.*;
-import java.time.LocalDateTime;
 
 @NamedQueries({
-    @NamedQuery(name = Voice.GET_ALL, query = "SELECT v FROM Voice v WHERE v.dateTime=:dateTime")
+        @NamedQuery(name = Voice.GET_ALL, query = "SELECT v FROM Voice v WHERE v.dateTime=:dateTime"),
+        @NamedQuery(name = Voice.DELETE, query = "DELETE FROM Voice v WHERE v.id=:voiceId")
 })
 @Entity
 @Table(name = "voices")
-public class Voice extends DatedEntity{
+public class Voice extends DatedEntity {
     public static final String GET_ALL = "Voice.getAll";
-    //public static final String SAVE = "Voice.save";
+    public static final String DELETE = "Voice.delete";
 
 /*    @Id
     @SequenceGenerator(name = "global_seq", sequenceName = "global_seq", allocationSize = 1)

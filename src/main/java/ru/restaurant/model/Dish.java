@@ -8,17 +8,21 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @NamedQueries({
-        @NamedQuery(name = Dish.GET_ALL, query = "SELECT d FROM Dish d WHERE d.dateTime=:dateTime")
+        @NamedQuery(name = Dish.GET_ALL, query = "SELECT d FROM Dish d WHERE d.dateTime=:dateTime"),
+        @NamedQuery(name = Dish.DELETE, query = "DELETE FROM Dish d WHERE d.id=:dishId")
 })
 @Entity
 @Table(name = "dishes")
 public class Dish extends DatedEntity{
     public static final String GET_ALL = "Dish.getAll";
+    public static final String DELETE = "Dish.delete";
 
 /*    @Id
     @SequenceGenerator(name = "global_seq", sequenceName = "global_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "global_seq")
     private Integer id;*/
+    /*    @Column(name = "date_time")
+    private LocalDateTime dateTime;*/
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "restaurant_id", nullable = false)
@@ -34,9 +38,6 @@ public class Dish extends DatedEntity{
     @Column(name = "name")
     @NotEmpty
     private String name;
-
-/*    @Column(name = "date_time")
-    private LocalDateTime dateTime;*/
 
     public BigDecimal getPrice() {
         return price;
