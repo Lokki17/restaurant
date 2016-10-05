@@ -3,14 +3,10 @@ package ru.restaurant.repository.jpa;
 import org.springframework.stereotype.Repository;
 import ru.restaurant.model.Voice;
 import ru.restaurant.repository.VoiceRepository;
-import ru.restaurant.util.TimeUtil;
-import ru.restaurant.util.exception.WrongTimeException;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.Collection;
 
 @Repository

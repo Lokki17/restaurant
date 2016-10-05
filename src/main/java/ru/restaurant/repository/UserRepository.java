@@ -7,10 +7,10 @@ public interface UserRepository {
     User save(User user, int userId);
 
     // false if meal do not belong to userId
-    boolean delete(int id, int userId);
+    boolean delete(int id);
 
     // null if meal do not belong to userId
-    User get(int id, int userId);
+    User get(int id);
 
     // ORDERED dateTime
     //Collection<User> getAll(int userId);

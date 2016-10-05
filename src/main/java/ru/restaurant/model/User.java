@@ -8,13 +8,15 @@ import java.util.Set;
 
 @NamedQueries({
         @NamedQuery(name = User.GET_ALL, query = "SELECT u FROM User u"),
-        @NamedQuery(name = User.DELETE, query = "DELETE FROM User u WHERE u.id=:userId")
+        @NamedQuery(name = User.DELETE, query = "DELETE FROM User u WHERE u.id=:userId"),
+        @NamedQuery(name = User.GET, query = "SELECT u FROM User u WHERE u.id=:userId")
 })
 @Entity
 @Table(name = "users")
 public class User extends NamedEntity{
     public static final String GET_ALL = "User.getAll";
     public static final String DELETE = "User.delete";
+    public static final String GET = "User.delete";
 
     @Column(name = "password", nullable = false)
     @NotEmpty

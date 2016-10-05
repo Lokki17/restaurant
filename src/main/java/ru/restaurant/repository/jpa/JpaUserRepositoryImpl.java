@@ -15,16 +15,25 @@ public class JpaUserRepositoryImpl implements UserRepository{
 
     @Override
     public User save(User user, int userId) {
-        return null;
+        User savedDish = em.createNamedQuery(User.GET, User.class)
+                .setParameter("userId", User.class)
+                .getSingleResult();
+        if (savedDish == null) {
+            em.persist(user);
+        } else {
+            user.setId(savedDish.getId());
+            em.merge(user);
+        }
+        return user;
     }
 
     @Override
-    public boolean delete(int id, int userId) {
-        return false;
+    public boolean delete(int id) {
+        return em.createNamedQuery(User.DELETE, User.class).setParameter("id", id).executeUpdate() != 0;
     }
 
     @Override
-    public User get(int id, int userId) {
-        return null;
+    public User get(int id) {
+        return em.createNamedQuery(User.GET, User.class).setParameter("userId", id).getSingleResult();
     }
 }

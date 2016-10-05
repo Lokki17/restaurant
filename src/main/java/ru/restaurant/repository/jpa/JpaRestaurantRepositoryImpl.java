@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 import java.util.Collection;
 
 @Repository
-public class RestaurantRepositoryImpl implements RestaurantRepository {
+public class JpaRestaurantRepositoryImpl implements RestaurantRepository {
     @PersistenceContext
     EntityManager em;
 
