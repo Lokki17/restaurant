@@ -4,19 +4,19 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @MappedSuperclass
 public class DatedEntity extends BaseEntity {
     @Column(name = "date_time")
     @NotEmpty
-    protected LocalDateTime dateTime;
+    protected LocalDate dateTime;
 
-    public LocalDateTime getDateTime() {
+    public LocalDate getDate() {
         return dateTime;
     }
 
-    public void setDateTime(LocalDateTime dateTime) {
+    public void setDateTime(LocalDate dateTime) {
         this.dateTime = dateTime;
     }
 }

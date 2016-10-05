@@ -5,7 +5,7 @@ import ru.restaurant.model.Restaurant;
 import java.time.LocalDateTime;
 import java.util.Collection;
 
-public interface RestuarantRepository {
+public interface RestaurantRepository {
     // null if updated meal do not belong to userId
     Restaurant save(Restaurant restaurant);
 

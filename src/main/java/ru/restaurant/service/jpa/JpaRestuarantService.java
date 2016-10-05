@@ -3,7 +3,7 @@ package ru.restaurant.service.jpa;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.restaurant.model.Restaurant;
-import ru.restaurant.repository.RestuarantRepository;
+import ru.restaurant.repository.RestaurantRepository;
 import ru.restaurant.service.RestuarantService;
 import ru.restaurant.util.exception.NotFoundException;
 
@@ -13,7 +13,7 @@ import java.util.Collection;
 public class JpaRestuarantService implements RestuarantService{
 
     @Autowired
-    RestuarantRepository restuarantRepository;
+    RestaurantRepository restaurantRepository;
 
     @Override
     public void delete(int id, int userId) throws NotFoundException {

@@ -12,7 +12,7 @@ public interface DishRepository {
     Dish save(Dish dish, int userId, LocalDate localDate) throws WrongTimeException;
 
     // false if meal do not belong to userId
-    //boolean delete(int id, int userId);
+    boolean delete(int id);
 
     // null if meal do not belong to userId
     //Dish get(int id, int userId);

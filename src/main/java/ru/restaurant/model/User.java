@@ -16,14 +16,6 @@ public class User extends NamedEntity{
     public static final String GET_ALL = "User.getAll";
     public static final String DELETE = "User.delete";
 
-/*    @Id
-    @SequenceGenerator(name = "global_seq", sequenceName = "global_seq", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "global_seq")
-    private Integer id;*/
-/*
-    @Column(name = "name")
-    private String name;*/
-
     @Column(name = "password", nullable = false)
     @NotEmpty
     private String password;
@@ -31,7 +23,7 @@ public class User extends NamedEntity{
     @Enumerated(EnumType.STRING)
     @CollectionTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"))
     @Column(name = "role")
-    @ElementCollection(fetch = FetchType.EAGER)
+    @ElementCollection(fetch = FetchType.LAZY)
     private Set<Role> role;
 
     @OneToMany(mappedBy = "user")
@@ -56,22 +48,6 @@ public class User extends NamedEntity{
     public void setPassword(String password) {
         this.password = password;
     }
-
-/*    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }*/
 
     public List<Voice> getVoices() {
         return voices;

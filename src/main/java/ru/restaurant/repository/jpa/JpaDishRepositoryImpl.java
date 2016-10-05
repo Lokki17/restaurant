@@ -34,6 +34,11 @@ public class JpaDishRepositoryImpl implements DishRepository {
     }
 
     @Override
+    public boolean delete(int id) {
+        return em.createNamedQuery(Dish.DELETE, Dish.class).setParameter("dishId", id).executeUpdate() != 0;
+    }
+
+    @Override
     public Collection<Dish> getAll(LocalDate localDate) {
         return em.createNamedQuery(Dish.GET_ALL, Dish.class).setParameter("dateTime", localDate).getResultList();
     }

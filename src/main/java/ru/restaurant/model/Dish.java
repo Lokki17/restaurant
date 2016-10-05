@@ -9,7 +9,7 @@ import java.util.List;
 
 @NamedQueries({
         @NamedQuery(name = Dish.GET_ALL, query = "SELECT d FROM Dish d WHERE d.dateTime=:dateTime"),
-        @NamedQuery(name = Dish.DELETE, query = "DELETE FROM Dish d WHERE d.id=:dishId AND d.dateTime=:dateTime"),
+        @NamedQuery(name = Dish.DELETE, query = "DELETE FROM Dish d WHERE d.id=:dishId"),
         @NamedQuery(name = Dish.GET, query = "SELECT d FROM Dish d WHERE d.id=:dishId AND d.dateTime=:dateTime")
 })
 @Entity
@@ -19,18 +19,11 @@ public class Dish extends DatedEntity{
     public static final String DELETE = "Dish.delete";
     public static final String GET = "Dish.get";
 
-/*    @Id
-    @SequenceGenerator(name = "global_seq", sequenceName = "global_seq", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "global_seq")
-    private Integer id;*/
-    /*    @Column(name = "date_time")
-    private LocalDateTime dateTime;*/
-
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "restaurant_id", nullable = false)
     private Restaurant restaurant;
 
-    @OneToMany(mappedBy = "dish", cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "dish", cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.LAZY)
     private List<Voice> voice;
 
     @Column(name = "price")
@@ -57,14 +50,6 @@ public class Dish extends DatedEntity{
         this.restaurant = restaurant;
     }
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
     public List<Voice> getVoice() {
         return voice;
     }
@@ -81,11 +66,4 @@ public class Dish extends DatedEntity{
         this.name = name;
     }
 
-    public LocalDateTime getDateTime() {
-        return dateTime;
-    }
-
-    public void setDateTime(LocalDateTime dateTime) {
-        this.dateTime = dateTime;
-    }
 }
