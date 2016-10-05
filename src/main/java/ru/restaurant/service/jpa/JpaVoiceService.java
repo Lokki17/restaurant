@@ -3,6 +3,7 @@ package ru.restaurant.service.jpa;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.restaurant.model.Voice;
+import ru.restaurant.repository.UserRepository;
 import ru.restaurant.repository.VoiceRepository;
 import ru.restaurant.service.VoiceService;
 import ru.restaurant.util.TimeUtil;
@@ -19,14 +20,17 @@ public class JpaVoiceService implements VoiceService{
     @Autowired
     VoiceRepository voiceRepository;
 
+    @Autowired
+    UserRepository userRepository;
+
     @Override
     public Voice get(LocalDate localDate, int userId) throws NotFoundException {
         return null;
     }
 
     @Override
-    public void delete(int id, int userId) throws NotFoundException {
-
+    public boolean delete(int id, int userId) throws NotFoundException {
+        return false;
     }
 
     @Override

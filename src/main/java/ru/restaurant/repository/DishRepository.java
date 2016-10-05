@@ -9,7 +9,7 @@ import java.util.Collection;
 
 public interface DishRepository {
     // null if updated meal do not belong to userId
-    Dish save(Dish dish, int userId, LocalDate localDate) throws WrongTimeException;
+    Dish save(Dish dish, LocalDate localDate) throws WrongTimeException;
 
     // false if meal do not belong to userId
     boolean delete(int id);

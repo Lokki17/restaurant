@@ -8,7 +8,7 @@ import java.util.Collection;
 public interface UserService {
     User get(int id, int userId) throws NotFoundException;
 
-    void delete(int id, int userId) throws NotFoundException;
+    boolean delete(int id, int userId) throws NotFoundException;
 
     Collection<User> getAll(int userId);
 

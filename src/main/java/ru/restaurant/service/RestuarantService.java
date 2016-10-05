@@ -7,7 +7,7 @@ import java.util.Collection;
 
 public interface RestuarantService {
 
-    void delete(int id, int userId) throws NotFoundException;
+    boolean delete(int id, int userId) throws NotFoundException;
 
     Collection<Restaurant> getAll();
 

@@ -18,14 +18,13 @@ public class JpaVoiceRepositoryImpl implements VoiceRepository{
     @Override
     public Voice save(Voice voice, LocalDate localDate, int userId) {
 
-        Voice savedVoice = em.createNamedQuery(Voice.GET, Voice.class)
-                .setParameter("dishId", voice.getId())
+/*        Voice savedVoice = em.createNamedQuery(Voice.GET, Voice.class)
+                .setParameter("voiceId", voice.getId())
                 .setParameter("dateTime", localDate)
-                .getSingleResult();
-        if (savedVoice == null){
+                .getSingleResult();*/
+        if (voice.isNew()){
             em.persist(voice);
         } else {
-            voice.setId(savedVoice.getId());
             em.merge(voice);
         }
 

@@ -10,7 +10,7 @@ import java.util.Collection;
 public interface VoiceService {
     Voice get(LocalDate localDate, int userId) throws NotFoundException;
 
-    void delete(int id, int userId) throws NotFoundException;
+    boolean delete(int id, int userId) throws NotFoundException;
 
     Collection<Voice> getAllOnDate(LocalDateTime dateTime);
 

@@ -16,7 +16,7 @@ public interface RestaurantRepository {
     //Restaurant get(int id, int userId);
 
     // ORDERED dateTime
-    Collection<Restaurant> getAll(LocalDateTime dateTime);
+    Collection<Restaurant> getAll();
 
     // ORDERED dateTime
     //Collection<Restaurant> getBetween(LocalDateTime startDate, LocalDateTime endDate, int userId);

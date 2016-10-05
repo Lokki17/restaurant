@@ -16,12 +16,12 @@ public class JpaDishRepositoryImpl implements DishRepository {
     EntityManager em;
 
     @Override
-    public Dish save(Dish dish, int userId, LocalDate localDate) {
-        Dish savedDish = em.createNamedQuery(Dish.GET, Dish.class)
-                .setParameter("dishId", dish.getId())
+    public Dish save(Dish dish, LocalDate localDate) {
+/*        Dish savedDish = em.createNamedQuery(Dish.GET, Dish.class)
+                .setParameter("dishId", dish.getId()) //NPE TODO
                 .setParameter("dateTime", localDate)
-                .getSingleResult();
-        if (savedDish == null) {
+                .getSingleResult();*/
+        if (dish.isNew()) {
             em.persist(dish);
         } else {
             em.merge(dish);

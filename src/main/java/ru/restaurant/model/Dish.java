@@ -34,6 +34,10 @@ public class Dish extends DatedEntity{
     @NotEmpty
     private String name;
 
+    public boolean isNew(){
+        return id == null;
+    }
+
     public BigDecimal getPrice() {
         return price;
     }

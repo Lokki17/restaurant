@@ -16,13 +16,12 @@ public class JpaRestaurantRepositoryImpl implements RestaurantRepository {
 
     @Override
     public Restaurant save(Restaurant restaurant) {
-        Restaurant savedRestaurant = em.createNamedQuery(Restaurant.GET, Restaurant.class)
+/*        Restaurant savedRestaurant = em.createNamedQuery(Restaurant.GET, Restaurant.class)
                 .setParameter("restaurantId", restaurant.getId())
-                .getSingleResult();
-        if (savedRestaurant == null) {
+                .getSingleResult();*/
+        if (restaurant.isNew()) {
             em.persist(restaurant);
         } else {
-            restaurant.setId(savedRestaurant.getId());
             em.merge(restaurant);
         }
         return restaurant;
@@ -34,7 +33,7 @@ public class JpaRestaurantRepositoryImpl implements RestaurantRepository {
     }
 
     @Override
-    public Collection<Restaurant> getAll(LocalDateTime dateTime) {
+    public Collection<Restaurant> getAll() {
         return em.createNamedQuery(Restaurant.GET_ALL, Restaurant.class).getResultList();
     }
 }
