@@ -12,10 +12,10 @@ public interface VoiceRepository {
     Voice save(Voice voice, LocalDate localDate, int userId) throws WrongTimeException;
 
     // false if meal do not belong to userId
-    //boolean delete(int id, int userId);
+    boolean delete(int id);
 
     // null if meal do not belong to userId
-    //Voice get(int id, int userId);
+    Voice get(int userId, LocalDate localDate);
 
     // ORDERED dateTime
     Collection<Voice> getAllOnDate(LocalDate localDate);

@@ -2,6 +2,7 @@ package ru.restaurant.service.jpa;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ru.restaurant.model.Role;
 import ru.restaurant.model.User;
 import ru.restaurant.model.Voice;
 import ru.restaurant.repository.UserRepository;
@@ -27,23 +28,26 @@ public class JpaVoiceService implements VoiceService {
 
     @Override
     public Voice get(LocalDate localDate, int userId) throws NotFoundException {
-        return null;
+        return voiceRepository.get(userId, localDate);
     }
 
     @Override
     public boolean delete(int id, int userId) throws NotFoundException {
         User savedUser = userRepository.get(userId);
+        if (savedUser != null && savedUser.getRole().contains(Role.ADMIN)){
+            return voiceRepository.delete(id);
+        }
 
         return false;
     }
 
     @Override
-    public Collection<Voice> getAllOnDate(LocalDateTime dateTime) {
-        return null;
+    public Collection<Voice> getAllOnDate(LocalDate dateTime) {
+        return voiceRepository.getAllOnDate(dateTime);
     }
 
 
-    @Override
+    @Override //TODO проверить!!!
     public Voice save(Voice voice, int userId) {
         LocalDateTime dateTimeNow = LocalDateTime.now();
         if (TimeUtil.checkLaunchTime(dateTimeNow.toLocalTime())) {

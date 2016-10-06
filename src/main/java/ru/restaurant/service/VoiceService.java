@@ -12,7 +12,7 @@ public interface VoiceService {
 
     boolean delete(int id, int userId) throws NotFoundException;
 
-    Collection<Voice> getAllOnDate(LocalDateTime dateTime);
+    Collection<Voice> getAllOnDate(LocalDate dateTime);
 
     Voice save(Voice voice, int userId);
 }

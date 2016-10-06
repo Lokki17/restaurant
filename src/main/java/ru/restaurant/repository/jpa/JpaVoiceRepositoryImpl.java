@@ -27,6 +27,19 @@ public class JpaVoiceRepositoryImpl implements VoiceRepository{
     }
 
     @Override
+    public boolean delete(int id) {
+        return em.createNamedQuery(Voice.DELETE, Voice.class).setParameter("voiceId", id).executeUpdate() != 0;
+    }
+
+    @Override
+    public Voice get(int voiceId, LocalDate localDate) {
+        return em.createNamedQuery(Voice.GET, Voice.class)
+                .setParameter("voiceId", voiceId)
+                .setParameter("dateTime", localDate)
+                .getSingleResult();
+    }
+
+    @Override
     public Collection<Voice> getAllOnDate(LocalDate localDate) {
         return em.createNamedQuery(Voice.GET_ALL, Voice.class).setParameter("dateTime", localDate).getResultList();
     }
