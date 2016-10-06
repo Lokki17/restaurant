@@ -16,9 +16,6 @@ public class JpaRestaurantRepositoryImpl implements RestaurantRepository {
 
     @Override
     public Restaurant save(Restaurant restaurant) {
-/*        Restaurant savedRestaurant = em.createNamedQuery(Restaurant.GET, Restaurant.class)
-                .setParameter("restaurantId", restaurant.getId())
-                .getSingleResult();*/
         if (restaurant.isNew()) {
             em.persist(restaurant);
         } else {

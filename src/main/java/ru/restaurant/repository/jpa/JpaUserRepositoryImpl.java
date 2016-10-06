@@ -16,9 +16,6 @@ public class JpaUserRepositoryImpl implements UserRepository{
 
     @Override
     public User save(User user) {
-/*        User savedDish = em.createNamedQuery(User.GET, User.class)
-                .setParameter("userId", User.class)
-                .getSingleResult();*/
         if (user.isNew()) {
             em.persist(user);
         } else {

@@ -14,6 +14,7 @@ import ru.restaurant.util.exception.NotFoundException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Collection;
+import java.util.Objects;
 
 @Service
 public class JpaDishService implements DishService{
@@ -27,6 +28,7 @@ public class JpaDishService implements DishService{
     @Override
     public boolean delete(int id, int userId) throws NotFoundException {
         User user = userRepository.get(userId);
+        Objects.isNull(user);
         if (user.getRole().contains(Role.ADMIN)){
             return dishRepository.delete(id);
         } else {
@@ -42,8 +44,10 @@ public class JpaDishService implements DishService{
     @Override
     public Dish update(Dish dish, int userId) throws NotFoundException {
         User user = userRepository.get(userId);
+        Objects.isNull(user);
         if (user.getRole().contains(Role.ADMIN)){
-            dishRepository.save(dish, LocalDate.now());
+            dish.setDateTime(LocalDate.now());
+            dishRepository.save(dish);
         } else {
             throw new AccessDeniedException("You can't update dish");
         }
@@ -53,8 +57,10 @@ public class JpaDishService implements DishService{
     @Override
     public Dish save(Dish dish, int userId) {
         User user = userRepository.get(userId);
+        Objects.isNull(user);
         if (user.getRole().contains(Role.ADMIN)){
-            dishRepository.save(dish, LocalDate.now());
+            dish.setDateTime(LocalDate.now());
+            dishRepository.save(dish);
         } else {
             throw new AccessDeniedException("You can't save dish");
         }
