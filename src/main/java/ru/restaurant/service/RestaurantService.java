@@ -5,7 +5,7 @@ import ru.restaurant.util.exception.NotFoundException;
 
 import java.util.Collection;
 
-public interface RestuarantService {
+public interface RestaurantService {
 
     boolean delete(int id, int userId) throws NotFoundException;
 

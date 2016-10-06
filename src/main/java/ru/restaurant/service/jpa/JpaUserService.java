@@ -10,6 +10,7 @@ import ru.restaurant.util.exception.AccessDeniedException;
 import ru.restaurant.util.exception.NotFoundException;
 
 import java.util.Collection;
+import java.util.Objects;
 
 @Service
 public class JpaUserService implements UserService{
@@ -19,13 +20,16 @@ public class JpaUserService implements UserService{
 
     @Override
     public User get(int id, int userId) throws NotFoundException {
-        return userRepository.get(id);
+        User savedUser = userRepository.get(id);
+        Objects.isNull(savedUser);
+        return savedUser;
     }
 
     @Override
     public boolean delete(int id, int userId) throws NotFoundException {
-        User user = userRepository.get(userId);
-        if (user.getRole().contains(Role.ADMIN)){
+        User savedUser = userRepository.get(userId);
+        Objects.isNull(savedUser);
+        if (savedUser.getRole().contains(Role.ADMIN)){
             return userRepository.delete(id);
         } else {
             throw new AccessDeniedException("You can't delete user");
@@ -34,8 +38,9 @@ public class JpaUserService implements UserService{
 
     @Override
     public Collection<User> getAll(int userId) {
-        User user = userRepository.get(userId);
-        if (user.getRole().contains(Role.ADMIN)){
+        User savedUser = userRepository.get(userId);
+        Objects.isNull(savedUser);
+        if (savedUser.getRole().contains(Role.ADMIN)){
             return userRepository.getAll();
         } else {
             throw new AccessDeniedException("You can't delete user");
@@ -45,6 +50,7 @@ public class JpaUserService implements UserService{
     @Override
     public User update(User user, int userId) throws NotFoundException {
         User savedUser = userRepository.get(userId);
+        Objects.isNull(savedUser);
         if (savedUser.getRole().contains(Role.ADMIN)){
             userRepository.save(user);
         } else {
@@ -56,6 +62,7 @@ public class JpaUserService implements UserService{
     @Override
     public User save(User user, int userId) {
         User savedUser = userRepository.get(userId);
+        Objects.isNull(savedUser);
         if (savedUser.getRole().contains(Role.ADMIN)){
             userRepository.save(user);
         } else {

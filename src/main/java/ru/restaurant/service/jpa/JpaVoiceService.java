@@ -27,14 +27,15 @@ public class JpaVoiceService implements VoiceService {
     UserRepository userRepository;
 
     @Override
-    public Voice get(LocalDate localDate, int userId) throws NotFoundException {
-        return voiceRepository.get(userId, localDate);
+    public Voice get(int id) throws NotFoundException {
+        return voiceRepository.get(id, LocalDate.now());
     }
 
     @Override
     public boolean delete(int id, int userId) throws NotFoundException {
         User savedUser = userRepository.get(userId);
-        if (savedUser != null && savedUser.getRole().contains(Role.ADMIN)){
+        Objects.isNull(savedUser);
+        if (savedUser.getRole().contains(Role.ADMIN)){
             return voiceRepository.delete(id);
         }
 
@@ -42,8 +43,8 @@ public class JpaVoiceService implements VoiceService {
     }
 
     @Override
-    public Collection<Voice> getAllOnDate(LocalDate dateTime) {
-        return voiceRepository.getAllOnDate(dateTime);
+    public Collection<Voice> getAllOnDate() {
+        return voiceRepository.getAllOnDate(LocalDate.now());
     }
 
 
@@ -53,13 +54,12 @@ public class JpaVoiceService implements VoiceService {
         if (TimeUtil.checkLaunchTime(dateTimeNow.toLocalTime())) {
             throw new WrongTimeException("Launch time is gone");
         }
-        Voice savedVoice = get(dateTimeNow.toLocalDate(), userId);
+        Voice savedVoice = get(userId);
         if (savedVoice != null) {
             if (TimeUtil.checkTime(dateTimeNow.toLocalTime())) {
                 throw new WrongTimeException("You have made your choice");
             }
         }
-
 
         return voiceRepository.save(voice, dateTimeNow.toLocalDate(), userId);
     }

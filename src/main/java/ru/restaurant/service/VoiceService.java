@@ -8,11 +8,11 @@ import java.time.LocalDateTime;
 import java.util.Collection;
 
 public interface VoiceService {
-    Voice get(LocalDate localDate, int userId) throws NotFoundException;
+    Voice get(int id) throws NotFoundException;
 
     boolean delete(int id, int userId) throws NotFoundException;
 
-    Collection<Voice> getAllOnDate(LocalDate dateTime);
+    Collection<Voice> getAllOnDate();
 
     Voice save(Voice voice, int userId);
 }

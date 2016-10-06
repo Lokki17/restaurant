@@ -7,14 +7,15 @@ import ru.restaurant.model.Role;
 import ru.restaurant.model.User;
 import ru.restaurant.repository.RestaurantRepository;
 import ru.restaurant.repository.UserRepository;
-import ru.restaurant.service.RestuarantService;
+import ru.restaurant.service.RestaurantService;
 import ru.restaurant.util.exception.AccessDeniedException;
 import ru.restaurant.util.exception.NotFoundException;
 
 import java.util.Collection;
+import java.util.Objects;
 
 @Service
-public class JpaRestuarantService implements RestuarantService{
+public class JpaRestaurantService implements RestaurantService {
 
     @Autowired
     RestaurantRepository restaurantRepository;
@@ -24,8 +25,9 @@ public class JpaRestuarantService implements RestuarantService{
 
     @Override
     public boolean delete(int id, int userId) throws NotFoundException {
-        User user = userRepository.get(userId);
-        if (user.getRole().contains(Role.ADMIN)){
+        User savedUser = userRepository.get(userId);
+        Objects.isNull(savedUser);
+        if (savedUser.getRole().contains(Role.ADMIN)){
             return restaurantRepository.delete(id);
         } else {
             throw new AccessDeniedException("You can't delete restaurant");
@@ -39,8 +41,9 @@ public class JpaRestuarantService implements RestuarantService{
 
     @Override
     public Restaurant update(Restaurant restaurant, int userId) throws NotFoundException {
-        User user = userRepository.get(userId);
-        if (user.getRole().contains(Role.ADMIN)){
+        User savedUser = userRepository.get(userId);
+        Objects.isNull(savedUser);
+        if (savedUser.getRole().contains(Role.ADMIN)){
             restaurantRepository.save(restaurant);
         } else {
             throw new AccessDeniedException("You can't update restaurant");
@@ -50,8 +53,9 @@ public class JpaRestuarantService implements RestuarantService{
 
     @Override
     public Restaurant save(Restaurant restaurant, int userId) {
-        User user = userRepository.get(userId);
-        if (user.getRole().contains(Role.ADMIN)){
+        User savedUser = userRepository.get(userId);
+        Objects.isNull(savedUser);
+        if (savedUser.getRole().contains(Role.ADMIN)){
             restaurantRepository.save(restaurant);
         } else {
             throw new AccessDeniedException("You can't save restaurant");

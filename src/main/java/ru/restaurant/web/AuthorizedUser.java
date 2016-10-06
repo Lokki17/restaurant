@@ -3,7 +3,7 @@ package ru.restaurant.web;
 public class AuthorizedUser {
     private static Integer id;
 
-    public Integer getId() {
+    public static Integer getId() {
         return id;
     }
 
