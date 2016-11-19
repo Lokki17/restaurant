@@ -37,7 +37,7 @@ public class JpaDishService implements DishService{
     }
 
     @Override
-    public Collection<Dish> getAllOnDete(LocalDate dateTime) {
+    public Collection<Dish> getAllOnDate(LocalDate dateTime) {
         return dishRepository.getAll(dateTime);
     }
 

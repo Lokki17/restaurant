@@ -12,7 +12,7 @@ public interface DishService {
 
     boolean delete(int id, int userId) throws NotFoundException;
 
-    Collection<Dish> getAllOnDete(LocalDate dateTime);
+    Collection<Dish> getAllOnDate(LocalDate dateTime);
 
     Dish update(Dish dish, int userId) throws NotFoundException;
 

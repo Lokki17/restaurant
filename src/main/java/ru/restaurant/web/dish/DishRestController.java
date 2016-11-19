@@ -15,7 +15,7 @@ public class DishRestController {
     DishService service;
 
     public Collection<Dish> getAll() {
-        return service.getAllOnDete(LocalDate.now());
+        return service.getAllOnDate(LocalDate.now());
     }
 
 
