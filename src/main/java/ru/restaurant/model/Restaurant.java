@@ -17,13 +17,13 @@ public class Restaurant extends NamedEntity{
     public static final String GET = "Restaurant.get";
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "restaurant", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    private List<Dish> dishs;
+    private List<Dish> dishes;
 
     public List<Dish> getDishes() {
-        return dishs;
+        return dishes;
     }
 
     public void setDishes(List<Dish> dishes) {
-        this.dishs = dishes;
+        this.dishes = dishes;
     }
 }
