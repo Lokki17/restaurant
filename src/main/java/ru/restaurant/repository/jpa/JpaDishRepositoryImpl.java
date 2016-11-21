@@ -20,6 +20,9 @@ public class JpaDishRepositoryImpl implements DishRepository {
     @Override
     @Transactional
     public Dish save(Dish dish) {
+        if (!dish.isNew() && get(dish.getId()) == null){
+            return null;
+        }
         if (dish.isNew()) {
             em.persist(dish);
         } else {
@@ -32,6 +35,11 @@ public class JpaDishRepositoryImpl implements DishRepository {
     @Transactional
     public boolean delete(int id) {
         return em.createNamedQuery(Dish.DELETE, Dish.class).setParameter("dishId", id).executeUpdate() != 0;
+    }
+
+    @Override
+    public Dish get(int dishId) {
+        return em.find(Dish.class, dishId);
     }
 
     @Override

@@ -13,7 +13,7 @@ public interface RestaurantRepository {
     boolean delete(int id);
 
     // null if meal do not belong to userId
-    //Restaurant get(int id, int userId);
+    Restaurant get(int id);
 
     // ORDERED dateTime
     Collection<Restaurant> getAll();

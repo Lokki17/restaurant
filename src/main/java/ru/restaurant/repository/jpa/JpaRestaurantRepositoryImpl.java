@@ -19,6 +19,9 @@ public class JpaRestaurantRepositoryImpl implements RestaurantRepository {
     @Override
     @Transactional
     public Restaurant save(Restaurant restaurant) {
+        if (!restaurant.isNew() && get(restaurant.getId()) == null){
+            return null;
+        }
         if (restaurant.isNew()) {
             em.persist(restaurant);
         } else {
@@ -30,6 +33,11 @@ public class JpaRestaurantRepositoryImpl implements RestaurantRepository {
     @Override
     public boolean delete(int id) {
         return em.createNamedQuery(Restaurant.DELETE, Restaurant.class).setParameter("restuarantId", id).executeUpdate() != 0;
+    }
+
+    @Override
+    public Restaurant get(int id) {
+        return em.find(Restaurant.class, id);
     }
 
     @Override

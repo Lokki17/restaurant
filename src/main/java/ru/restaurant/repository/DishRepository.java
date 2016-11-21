@@ -15,7 +15,7 @@ public interface DishRepository {
     boolean delete(int id);
 
     // null if meal do not belong to userId
-    //Dish get(int id, int userId);
+    Dish get(int id);
 
     // ORDERED dateTime
     Collection<Dish> getAll(LocalDate localDate);
