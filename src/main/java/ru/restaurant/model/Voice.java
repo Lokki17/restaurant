@@ -12,7 +12,7 @@ import javax.persistence.*;
 public class Voice extends DatedEntity {
     public static final String GET_ALL = "Voice.getAll";
     public static final String DELETE = "Voice.delete";
-    public static final String GET = "Voice.delete";
+    public static final String GET = "Voice.get";
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "dish_id", unique = true, nullable = false)

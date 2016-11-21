@@ -16,7 +16,7 @@ import java.util.Set;
 public class User extends NamedEntity{
     public static final String GET_ALL = "User.getAll";
     public static final String DELETE = "User.delete";
-    public static final String GET = "User.delete";
+    public static final String GET = "User.get";
 
     @Column(name = "password", nullable = false)
     @NotEmpty
