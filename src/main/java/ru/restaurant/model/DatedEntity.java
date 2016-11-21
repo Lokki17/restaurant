@@ -10,13 +10,13 @@ import java.time.LocalDate;
 public class DatedEntity extends BaseEntity {
     @Column(name = "date_time")
     @NotEmpty
-    protected LocalDate dateTime;
+    protected LocalDate date;
 
     public LocalDate getDate() {
-        return dateTime;
+        return date;
     }
 
-    public void setDateTime(LocalDate dateTime) {
-        this.dateTime = dateTime;
+    public void setDate(LocalDate dateTime) {
+        this.date = dateTime;
     }
 }

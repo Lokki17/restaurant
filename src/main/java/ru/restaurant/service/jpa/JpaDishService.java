@@ -12,7 +12,6 @@ import ru.restaurant.util.exception.AccessDeniedException;
 import ru.restaurant.util.exception.NotFoundException;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.Objects;
 
@@ -37,8 +36,8 @@ public class JpaDishService implements DishService{
     }
 
     @Override
-    public Collection<Dish> getAllOnDate(LocalDate dateTime) {
-        return dishRepository.getAll(dateTime);
+    public Collection<Dish> getAllOnDate(LocalDate date) {
+        return dishRepository.getAll(date);
     }
 
     @Override
@@ -46,7 +45,7 @@ public class JpaDishService implements DishService{
         User savedUser = userRepository.get(userId);
         Objects.isNull(savedUser);
         if (savedUser.getRole().contains(Role.ADMIN)){
-            dish.setDateTime(LocalDate.now());
+            dish.setDate(LocalDate.now());
             dishRepository.save(dish);
         } else {
             throw new AccessDeniedException("You can't update dish");
@@ -59,7 +58,7 @@ public class JpaDishService implements DishService{
         User savedUser = userRepository.get(userId);
         Objects.isNull(savedUser);
         if (savedUser.getRole().contains(Role.ADMIN)){
-            dish.setDateTime(LocalDate.now());
+            dish.setDate(LocalDate.now());
             dishRepository.save(dish);
         } else {
             throw new AccessDeniedException("You can't save dish");

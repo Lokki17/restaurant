@@ -24,7 +24,7 @@ INSERT INTO restaurants (name) VALUES
   ('Самый лучший ресторан'),
   ('The Best');
 
-INSERT INTO dishes (restaurant_id, date_time, name, price) VALUES
+INSERT INTO dishes (restaurant_id, date, name, price) VALUES
   (100003, '2015-05-30', 'Борщ', '15'),
   (100003, '2015-05-31', 'Суп', '15'),
   (100004, '2015-05-30', 'Котлеты', '15'),
@@ -35,7 +35,7 @@ INSERT INTO dishes (restaurant_id, date_time, name, price) VALUES
   (100006, '2015-05-31', 'Колбаса', '15'),
   (100006, '2015-05-30', 'Вареники', '15');
 
-INSERT INTO voices (restaurant_id, date_time, user_id) VALUES
+INSERT INTO voices (restaurant_id, date, user_id) VALUES
   (100003, '2015-05-30 10:00', 100000),
   (100003, '2015-05-30 10:00', 100001),
   (100004, '2015-05-30 10:00', 100001);

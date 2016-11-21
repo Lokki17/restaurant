@@ -32,17 +32,17 @@ CREATE UNIQUE INDEX restaurants_unique ON restaurants(id);
 CREATE TABLE dishes (
   id            INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
   restaurant_id INTEGER NOT NULL,
-  date_time     TIMESTAMP NOT NULL,
+  date     TIMESTAMP NOT NULL,
   name          TEXT NOT NULL,
   price         FLOAT NOT NULL,
   FOREIGN KEY (restaurant_id) REFERENCES restaurants (id) ON DELETE CASCADE
 );
-CREATE INDEX dishes_unique_datetime ON dishes(date_time);
+CREATE INDEX dishes_unique_datetime ON dishes(date);
 
 CREATE TABLE voices (
   id            INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
   restaurant_id       INTEGER NOT NULL,
-  date_time     TIMESTAMP NOT NULL,
+  date          TIMESTAMP NOT NULL,
   user_id       INTEGER NOT NULL,
   FOREIGN KEY (restaurant_id) REFERENCES restaurants (id) ON DELETE CASCADE,
   FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
