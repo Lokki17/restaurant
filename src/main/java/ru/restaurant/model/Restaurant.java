@@ -19,7 +19,7 @@ public class Restaurant extends NamedEntity{
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "restaurant", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private List<Dish> dishes;
 
-    @OneToMany(mappedBy = "dish", cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "restaurant", cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     private List<Voice> voices;
 
     public List<Dish> getDishes() {
