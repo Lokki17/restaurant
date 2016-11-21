@@ -43,7 +43,7 @@ public class JpaUserService implements UserService{
         if (savedUser.getRole().contains(Role.ADMIN)){
             return userRepository.getAll();
         } else {
-            throw new AccessDeniedException("You can't delete user");
+            throw new AccessDeniedException("You can't get users list");
         }
     }
 
