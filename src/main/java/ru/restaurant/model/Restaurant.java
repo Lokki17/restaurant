@@ -20,7 +20,7 @@ public class Restaurant extends NamedEntity{
     private List<Dish> dishes;
 
     @OneToMany(mappedBy = "dish", cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.LAZY)
-    private List<Voice> voice;
+    private List<Voice> voices;
 
     public List<Dish> getDishes() {
         return dishes;
@@ -30,11 +30,11 @@ public class Restaurant extends NamedEntity{
         this.dishes = dishes;
     }
 
-    public List<Voice> getVoice() {
-        return voice;
+    public List<Voice> getVoices() {
+        return voices;
     }
 
-    public void setVoice(List<Voice> voice) {
-        this.voice = voice;
+    public void setVoices(List<Voice> voice) {
+        this.voices = voice;
     }
 }

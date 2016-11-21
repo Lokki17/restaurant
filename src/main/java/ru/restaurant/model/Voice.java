@@ -15,7 +15,7 @@ public class Voice extends DatedEntity {
     public static final String GET = "Voice.get";
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "dish_id", unique = true, nullable = false)
+    @JoinColumn(name = "restaurant_id", unique = true, nullable = false)
     private Dish dish;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
