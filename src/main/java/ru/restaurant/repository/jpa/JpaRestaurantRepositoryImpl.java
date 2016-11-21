@@ -1,6 +1,7 @@
 package ru.restaurant.repository.jpa;
 
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 import ru.restaurant.model.Restaurant;
 import ru.restaurant.repository.RestaurantRepository;
 
@@ -10,11 +11,13 @@ import java.time.LocalDateTime;
 import java.util.Collection;
 
 @Repository
+@Transactional(readOnly = true)
 public class JpaRestaurantRepositoryImpl implements RestaurantRepository {
     @PersistenceContext
     EntityManager em;
 
     @Override
+    @Transactional
     public Restaurant save(Restaurant restaurant) {
         if (restaurant.isNew()) {
             em.persist(restaurant);
