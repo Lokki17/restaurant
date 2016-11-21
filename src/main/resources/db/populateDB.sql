@@ -35,7 +35,7 @@ INSERT INTO dishes (restaurant_id, date_time, name, price) VALUES
   (100006, '2015-05-31', 'Колбаса', '15'),
   (100006, '2015-05-30', 'Вареники', '15');
 
-INSERT INTO voices (dish_id, date_time, user_id) VALUES
-  (100007, '2015-05-30 10:00', 100000),
-  (100008, '2015-05-30 10:00', 100001),
-  (100009, '2015-05-30 10:00', 100001);
+INSERT INTO voices (restaurant_id, date_time, user_id) VALUES
+  (100003, '2015-05-30 10:00', 100000),
+  (100003, '2015-05-30 10:00', 100001),
+  (100004, '2015-05-30 10:00', 100001);

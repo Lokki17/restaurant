@@ -23,8 +23,8 @@ public class Dish extends DatedEntity{
     @JoinColumn(name = "restaurant_id", nullable = false)
     private Restaurant restaurant;
 
-    @OneToMany(mappedBy = "dish", cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.LAZY)
-    private List<Voice> voice;
+/*    @OneToMany(mappedBy = "dish", cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.LAZY)
+    private List<Voice> voice;*/
 
     @Column(name = "price")
     @NotEmpty
@@ -54,13 +54,13 @@ public class Dish extends DatedEntity{
         this.restaurant = restaurant;
     }
 
-    public List<Voice> getVoice() {
+/*    public List<Voice> getVoice() {
         return voice;
     }
 
     public void setVoice(List<Voice> voice) {
         this.voice = voice;
-    }
+    }*/
 
     public String getName() {
         return name;

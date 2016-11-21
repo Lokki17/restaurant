@@ -41,10 +41,10 @@ CREATE INDEX dishes_unique_datetime ON dishes(date_time);
 
 CREATE TABLE voices (
   id            INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
-  dish_id       INTEGER NOT NULL,
+  restaurant_id       INTEGER NOT NULL,
   date_time     TIMESTAMP NOT NULL,
   user_id       INTEGER NOT NULL,
-  FOREIGN KEY (dish_id) REFERENCES dishes (id) ON DELETE CASCADE,
+  FOREIGN KEY (restaurant_id) REFERENCES restaurants (id) ON DELETE CASCADE,
   FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
 );
-CREATE INDEX voices_unique_datetime ON dishes(date_time);
+CREATE INDEX voices_unique_datetime ON restaurants(id);
