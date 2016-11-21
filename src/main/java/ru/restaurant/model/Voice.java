@@ -16,18 +16,18 @@ public class Voice extends DatedEntity {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "restaurant_id", unique = true, nullable = false)
-    private Dish dish;
+    private Restaurant restaurant;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "user_id")
     private User user;
 
-    public Dish getDish() {
-        return dish;
+    public Restaurant getRestaurant() {
+        return restaurant;
     }
 
-    public void setDish(Dish dish) {
-        this.dish = dish;
+    public void setRestaurant(Restaurant dish) {
+        this.restaurant = dish;
     }
 
     public User getUser() {
