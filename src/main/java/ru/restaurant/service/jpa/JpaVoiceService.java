@@ -11,6 +11,7 @@ import ru.restaurant.service.VoiceService;
 import ru.restaurant.util.TimeUtil;
 import ru.restaurant.util.exception.NotFoundException;
 import ru.restaurant.util.exception.WrongTimeException;
+import ru.restaurant.web.AuthorizedUser;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -28,7 +29,7 @@ public class JpaVoiceService implements VoiceService {
 
     @Override
     public Voice get(int id) throws NotFoundException {
-        return voiceRepository.get(id, LocalDate.now());
+        return voiceRepository.get(id, AuthorizedUser.getId(), LocalDate.now());
     }
 
     @Override
