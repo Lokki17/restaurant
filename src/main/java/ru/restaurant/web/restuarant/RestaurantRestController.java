@@ -1,31 +1,43 @@
 package ru.restaurant.web.restuarant;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
 import ru.restaurant.model.Restaurant;
 import ru.restaurant.service.RestaurantService;
 import ru.restaurant.web.AuthorizedUser;
 
 import java.util.Collection;
 
-@Controller
+@RestController
+@RequestMapping("/restaurant")
 public class RestaurantRestController {
     @Autowired
     RestaurantService service;
 
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public Collection<Restaurant> getAll() {
         return service.getAll();
     }
 
-    public Restaurant create(Restaurant restaurant) {
+    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public Restaurant get(@PathVariable("id") int id) {
+        return service.get(id);
+    }
+
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    public Restaurant create(@RequestBody Restaurant restaurant) {
         return service.save(restaurant, AuthorizedUser.getId());
     }
 
-    public void delete(int id) {
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable("id") int id) {
         service.delete(id, AuthorizedUser.getId());
     }
 
-    public void update(Restaurant restaurant, int id) {
+    @PutMapping("/{id}")
+    public void update(@RequestBody Restaurant restaurant, @PathVariable("id") int id) {
         restaurant.setId(id);
         service.save(restaurant, AuthorizedUser.getId());
     }

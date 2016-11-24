@@ -40,6 +40,11 @@ public class JpaRestaurantService implements RestaurantService {
     }
 
     @Override
+    public Restaurant get(Integer restaurantId) {
+        return restaurantRepository.get(restaurantId);
+    }
+
+    @Override
     public Restaurant update(Restaurant restaurant, int userId) throws NotFoundException {
         User savedUser = userRepository.get(userId);
         Objects.isNull(savedUser);

@@ -1,22 +1,27 @@
 package ru.restaurant.web.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 import ru.restaurant.model.User;
 import ru.restaurant.service.UserService;
 import ru.restaurant.web.AuthorizedUser;
 
 import java.util.Collection;
 
-@Controller
+@RestController("/users")
 public class UserRestController {
     @Autowired
     UserService service;
 
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public Collection<User> getAll() {
         return service.getAll(AuthorizedUser.getId());
     }
 
+    @GetMapping(name = "/{id}")
     public User get(int id) {
         return service.get(id, AuthorizedUser.getId());
     }

@@ -11,6 +11,8 @@ public interface RestaurantService {
 
     Collection<Restaurant> getAll();
 
+    Restaurant get(Integer restaurantId);
+
     Restaurant update(Restaurant restaurant, int userId) throws NotFoundException;
 
     Restaurant save(Restaurant restaurant, int userId);
