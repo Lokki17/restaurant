@@ -10,7 +10,8 @@ import ru.restaurant.web.AuthorizedUser;
 
 import java.util.Collection;
 
-@RestController("/users")
+@RestController
+@RequestMapping("/users")
 public class UserRestController {
     @Autowired
     UserService service;
@@ -20,8 +21,8 @@ public class UserRestController {
         return service.getAll(AuthorizedUser.getId());
     }
 
-    @GetMapping(name = "/{id}")
-    public User get(int id) {
+    @GetMapping(value = "/{id}")
+    public User get(@PathVariable("id") Integer id) {
         return service.get(id, AuthorizedUser.getId());
     }
 
@@ -31,12 +32,12 @@ public class UserRestController {
     }
 
     @DeleteMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void delete(@PathVariable("id") int id) {
+    public void delete(@PathVariable("id") Integer id) {
         service.delete(id, AuthorizedUser.getId());
     }
 
     @PutMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public User update(@RequestBody User user, @PathVariable int id) {
+    public User update(@RequestBody User user, @PathVariable Integer id) {
         user.setId(id);
         return service.save(user, AuthorizedUser.getId());
     }

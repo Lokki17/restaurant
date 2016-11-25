@@ -11,7 +11,7 @@ import ru.restaurant.web.AuthorizedUser;
 import java.util.Collection;
 
 @RestController
-@RequestMapping("/restaurant")
+@RequestMapping("/restaurants")
 public class RestaurantRestController {
     @Autowired
     RestaurantService service;
@@ -22,7 +22,7 @@ public class RestaurantRestController {
     }
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Restaurant get(@PathVariable("id") int id) {
+    public Restaurant get(@PathVariable("id") Integer id) {
         return service.get(id);
     }
 
@@ -32,12 +32,12 @@ public class RestaurantRestController {
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable("id") int id) {
+    public void delete(@PathVariable("id") Integer id) {
         service.delete(id, AuthorizedUser.getId());
     }
 
     @PutMapping("/{id}")
-    public void update(@RequestBody Restaurant restaurant, @PathVariable("id") int id) {
+    public void update(@RequestBody Restaurant restaurant, @PathVariable("id") Integer id) {
         restaurant.setId(id);
         service.save(restaurant, AuthorizedUser.getId());
     }

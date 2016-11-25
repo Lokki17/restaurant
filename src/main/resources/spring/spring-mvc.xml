@@ -24,10 +24,10 @@
 
     <mvc:annotation-driven/>
 
-<!--    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="suffix" value=".html"/>
         <property name="prefix" value="/WEB-INF/"/>
-    </bean>-->
+    </bean>
 
 
 </beans>

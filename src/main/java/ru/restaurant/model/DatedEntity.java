@@ -8,7 +8,7 @@ import java.time.LocalDate;
 
 @MappedSuperclass
 public class DatedEntity extends BaseEntity {
-    @Column(name = "date_time")
+    @Column(name = "date")
     @NotEmpty
     protected LocalDate date;
 

@@ -27,13 +27,13 @@ public class DishRestController {
         return service.save(dish, AuthorizedUser.getId());
     }
 
-    @DeleteMapping("/{id}")
-    public void delete(@PathVariable int id) {
+    @DeleteMapping(value = "/{id}")
+    public void delete(@PathVariable Integer id) {
         service.delete(id, AuthorizedUser.getId());
     }
 
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void update(@RequestBody Dish dish, @PathVariable int id) {
+    public void update(@RequestBody Dish dish, @PathVariable Integer id) {
         dish.setId(id);
         service.save(dish, AuthorizedUser.getId());
     }

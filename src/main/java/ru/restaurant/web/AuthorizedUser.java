@@ -1,7 +1,7 @@
 package ru.restaurant.web;
 
 public class AuthorizedUser {
-    private static Integer id;
+    private static Integer id = 100000;
 
     public static Integer getId() {
         return id;
