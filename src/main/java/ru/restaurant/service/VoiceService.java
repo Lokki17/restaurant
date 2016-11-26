@@ -11,7 +11,9 @@ import java.util.Collection;
 import java.util.Map;
 
 public interface VoiceService {
-    Voice get(int id) throws NotFoundException;
+    Voice get(int id, int userId) throws NotFoundException;
+
+    Collection<Voice> getAll();
 
     boolean delete(int id, int userId) throws NotFoundException;
 

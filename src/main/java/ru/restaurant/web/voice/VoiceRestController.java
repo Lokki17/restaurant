@@ -29,14 +29,14 @@ public class VoiceRestController {
         return service.getAllOnDate();
     }
 
-/*    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Voice get(@PathVariable("id") Integer id) {
-        return service.get(id);
-    }*/
+    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public Collection<Voice> get() {
+        return service.getAll();
+    }
 
-    @PostMapping(value = "/{restaurantId}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public Voice create(@RequestBody Voice voice, @RequestParam("restaurantId") Integer restaurantId) {
-        createVoice(voice, restaurantId);
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public Voice create(@RequestBody Voice voice) {
+        createVoice(voice, voice.getRestaurant().getId());
         return service.save(voice, AuthorizedUser.getId());
     }
 
@@ -45,10 +45,10 @@ public class VoiceRestController {
         service.delete(id, AuthorizedUser.getId());
     }
 
-    @PutMapping(value = "/{id}/{restaurantId}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public Voice update(@RequestBody Voice voice, @PathVariable("id") int id, @PathVariable("restaurantId") Integer restaurantId) {
+    @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public Voice update(@RequestBody Voice voice, @PathVariable("id") int id) {
         voice.setId(id);
-        createVoice(voice, restaurantId);
+        createVoice(voice, voice.getRestaurant().getId());
         return service.save(voice, AuthorizedUser.getId());
     }
 
@@ -60,4 +60,5 @@ public class VoiceRestController {
             throw new NotFoundException("Not found Restaurant");
         }
     }
+
 }

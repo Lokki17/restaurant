@@ -51,4 +51,9 @@ public class JpaVoiceRepositoryImpl implements VoiceRepository{
     public Collection<Voice> getAllOnDate(LocalDate localDate) {
         return em.createNamedQuery(Voice.GET_ALL, Voice.class).setParameter("date", localDate).getResultList();
     }
+
+    @Override
+    public Collection<Voice> getAll() {
+        return em.createNamedQuery(Voice.GET_ALL, Voice.class).setParameter("date", LocalDate.now()).getResultList();
+    }
 }

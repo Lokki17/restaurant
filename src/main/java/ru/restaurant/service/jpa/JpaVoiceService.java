@@ -33,8 +33,13 @@ public class JpaVoiceService implements VoiceService {
     UserRepository userRepository;
 
     @Override
-    public Voice get(int id) throws NotFoundException {
-        return voiceRepository.get(id, AuthorizedUser.getId(), LocalDate.now());
+    public Voice get(int id, int userId) throws NotFoundException {
+        return voiceRepository.get(id, userId, LocalDate.now());
+    }
+
+    @Override
+    public Collection<Voice> getAll() {
+        return voiceRepository.getAll();
     }
 
     @Override
@@ -60,12 +65,11 @@ public class JpaVoiceService implements VoiceService {
         if (TimeUtil.checkLaunchTime(dateTimeNow.toLocalTime())) {
             throw new WrongTimeException("Launch time is gone");
         }
-        Voice savedVoice = get(userId);
-        if (savedVoice != null) {
+/*        if (voice.getId() != null) {
             if (TimeUtil.checkTime(dateTimeNow.toLocalTime())) {
                 throw new WrongTimeException("You have made your choice today");
             }
-        }
+        }*/
 
         return voiceRepository.save(voice, dateTimeNow.toLocalDate(), userId);
     }
