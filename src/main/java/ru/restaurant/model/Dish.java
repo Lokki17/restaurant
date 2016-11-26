@@ -3,6 +3,7 @@ package ru.restaurant.model;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -16,7 +17,7 @@ import java.util.List;
 @Entity
 @Table(name = "dishes")
 public class Dish extends DatedEntity{
-    public static final String GRAPH = "Dishes.restaurant";
+//    public static final String GRAPH = "Dishes.restaurant";
 
     public static final String GET_ALL = "Dish.getAll";
     public static final String DELETE = "Dish.delete";
@@ -30,11 +31,11 @@ public class Dish extends DatedEntity{
     private List<Voice> voice;*/
 
     @Column(name = "price")
-    @NotEmpty
+    @NotNull
     private BigDecimal price;
 
     @Column(name = "name")
-    @NotEmpty
+    @NotNull
     private String name;
 
     public boolean isNew(){
@@ -73,4 +74,11 @@ public class Dish extends DatedEntity{
         this.name = name;
     }
 
+    @Override
+    public String toString() {
+        return "Dish{" +
+                "price=" + price +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

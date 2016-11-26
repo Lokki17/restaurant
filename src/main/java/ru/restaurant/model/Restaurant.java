@@ -18,7 +18,12 @@ public class Restaurant extends NamedEntity{
     public static final String DELETE = "Restaurant.delete";
     public static final String GET = "Restaurant.get";
 
-/*    @OneToMany(fetch = FetchType.LAZY, mappedBy = "restaurant", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @Override
+    public String toString() {
+        return name;
+    }
+
+    /*    @OneToMany(fetch = FetchType.LAZY, mappedBy = "restaurant", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     //@JsonIgnore
     private List<Dish> dishes;*/
 

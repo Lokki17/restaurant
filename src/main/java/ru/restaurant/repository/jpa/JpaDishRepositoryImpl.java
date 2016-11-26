@@ -18,7 +18,7 @@ public class JpaDishRepositoryImpl implements DishRepository {
     EntityManager em;
 
     @Override
-    @Transactional
+//    @Transactional
     public Dish save(Dish dish) {
         if (!dish.isNew() && get(dish.getId()) == null){
             return null;

@@ -2,13 +2,16 @@ package ru.restaurant.service.jpa;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ru.restaurant.model.Restaurant;
 import ru.restaurant.model.Role;
 import ru.restaurant.model.User;
 import ru.restaurant.model.Voice;
 import ru.restaurant.repository.UserRepository;
 import ru.restaurant.repository.VoiceRepository;
 import ru.restaurant.service.VoiceService;
+import ru.restaurant.to.RestaurantVoices;
 import ru.restaurant.util.TimeUtil;
+import ru.restaurant.util.VoiceUtil;
 import ru.restaurant.util.exception.NotFoundException;
 import ru.restaurant.util.exception.WrongTimeException;
 import ru.restaurant.web.AuthorizedUser;
@@ -16,6 +19,8 @@ import ru.restaurant.web.AuthorizedUser;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Collection;
+import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 @Service
@@ -44,8 +49,8 @@ public class JpaVoiceService implements VoiceService {
     }
 
     @Override
-    public Collection<Voice> getAllOnDate() {
-        return voiceRepository.getAllOnDate(LocalDate.now());
+    public Map<Restaurant, Integer> getAllOnDate() {
+        return VoiceUtil.getRestaurantVoiceDistribution(voiceRepository.getAllOnDate(LocalDate.now()));
     }
 
 
@@ -58,7 +63,7 @@ public class JpaVoiceService implements VoiceService {
         Voice savedVoice = get(userId);
         if (savedVoice != null) {
             if (TimeUtil.checkTime(dateTimeNow.toLocalTime())) {
-                throw new WrongTimeException("You have made your choice");
+                throw new WrongTimeException("You have made your choice today");
             }
         }
 

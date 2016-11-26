@@ -12,6 +12,7 @@ import ru.restaurant.util.exception.NotFoundException;
 import ru.restaurant.web.AuthorizedUser;
 
 import java.util.Collection;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/voices")
@@ -24,14 +25,14 @@ public class VoiceRestController {
     RestaurantService restaurantService;
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public Collection<Voice> getAll() {
+    public Map<Restaurant, Integer> getAll() {
         return service.getAllOnDate();
     }
 
-    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+/*    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public Voice get(@PathVariable("id") Integer id) {
         return service.get(id);
-    }
+    }*/
 
     @PostMapping(value = "/{restaurantId}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public Voice create(@RequestBody Voice voice, @RequestParam("restaurantId") Integer restaurantId) {
@@ -46,7 +47,6 @@ public class VoiceRestController {
 
     @PutMapping(value = "/{id}/{restaurantId}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public Voice update(@RequestBody Voice voice, @PathVariable("id") int id, @PathVariable("restaurantId") Integer restaurantId) {
-    //public Voice update(@RequestBody Voice voice, @PathVariable("id") int id, @RequestParam("restaurantId") int restaurantId) {
         voice.setId(id);
         createVoice(voice, restaurantId);
         return service.save(voice, AuthorizedUser.getId());
