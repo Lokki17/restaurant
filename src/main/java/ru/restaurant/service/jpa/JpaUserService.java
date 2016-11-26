@@ -29,7 +29,7 @@ public class JpaUserService implements UserService{
     public boolean delete(int id, int userId) throws NotFoundException {
         User savedUser = userRepository.get(userId);
         Objects.isNull(savedUser);
-        if (savedUser.getRole().contains(Role.ADMIN)){
+        if (savedUser.getRoles().contains(Role.ADMIN)){
             return userRepository.delete(id);
         } else {
             throw new AccessDeniedException("You can't delete user");
@@ -40,7 +40,7 @@ public class JpaUserService implements UserService{
     public Collection<User> getAll(int userId) {
         User savedUser = userRepository.get(userId);
         Objects.isNull(savedUser);
-        if (savedUser.getRole().contains(Role.ADMIN)){
+        if (savedUser.getRoles().contains(Role.ADMIN)){
             return userRepository.getAll();
         } else {
             throw new AccessDeniedException("You can't get users list");
@@ -51,7 +51,7 @@ public class JpaUserService implements UserService{
     public User update(User user, int userId) throws NotFoundException {
         User savedUser = userRepository.get(userId);
         Objects.isNull(savedUser);
-        if (savedUser.getRole().contains(Role.ADMIN)){
+        if (savedUser.getRoles().contains(Role.ADMIN)){
             userRepository.save(user);
         } else {
             throw new AccessDeniedException("You can't update user");
@@ -63,7 +63,7 @@ public class JpaUserService implements UserService{
     public User save(User user, int userId) {
         User savedUser = userRepository.get(userId);
         Objects.isNull(savedUser);
-        if (savedUser.getRole().contains(Role.ADMIN)){
+        if (savedUser.getRoles().contains(Role.ADMIN)){
             userRepository.save(user);
         } else {
             throw new AccessDeniedException("You can't save user");

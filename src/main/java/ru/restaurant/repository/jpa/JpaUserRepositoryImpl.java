@@ -33,7 +33,7 @@ public class JpaUserRepositoryImpl implements UserRepository{
     @Override
     @Transactional
     public boolean delete(int id) {
-        return em.createNamedQuery(User.DELETE, User.class).setParameter("userId", id).executeUpdate() != 0;
+        return em.createNamedQuery(User.DELETE).setParameter("userId", id).executeUpdate() != 0;
     }
 
     @Override

@@ -34,7 +34,7 @@ public class JpaDishRepositoryImpl implements DishRepository {
     @Override
     @Transactional
     public boolean delete(int id) {
-        return em.createNamedQuery(Dish.DELETE, Dish.class).setParameter("dishId", id).executeUpdate() != 0;
+        return em.createNamedQuery(Dish.DELETE).setParameter("dishId", id).executeUpdate() != 0;
     }
 
     @Override

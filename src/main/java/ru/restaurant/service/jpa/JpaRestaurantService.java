@@ -27,7 +27,7 @@ public class JpaRestaurantService implements RestaurantService {
     public boolean delete(int id, int userId) throws NotFoundException {
         User savedUser = userRepository.get(userId);
         Objects.isNull(savedUser);
-        if (savedUser.getRole().contains(Role.ADMIN)){
+        if (savedUser.getRoles().contains(Role.ADMIN)){
             return restaurantRepository.delete(id);
         } else {
             throw new AccessDeniedException("You can't delete restaurant");
@@ -48,7 +48,7 @@ public class JpaRestaurantService implements RestaurantService {
     public Restaurant update(Restaurant restaurant, int userId) throws NotFoundException {
         User savedUser = userRepository.get(userId);
         Objects.isNull(savedUser);
-        if (savedUser.getRole().contains(Role.ADMIN)){
+        if (savedUser.getRoles().contains(Role.ADMIN)){
             restaurantRepository.save(restaurant);
         } else {
             throw new AccessDeniedException("You can't update restaurant");
@@ -60,7 +60,7 @@ public class JpaRestaurantService implements RestaurantService {
     public Restaurant save(Restaurant restaurant, int userId) {
         User savedUser = userRepository.get(userId);
         Objects.isNull(savedUser);
-        if (savedUser.getRole().contains(Role.ADMIN)){
+        if (savedUser.getRoles().contains(Role.ADMIN)){
             restaurantRepository.save(restaurant);
         } else {
             throw new AccessDeniedException("You can't save restaurant");

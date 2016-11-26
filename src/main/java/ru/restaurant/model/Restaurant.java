@@ -18,14 +18,14 @@ public class Restaurant extends NamedEntity{
     public static final String DELETE = "Restaurant.delete";
     public static final String GET = "Restaurant.get";
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "restaurant", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JsonIgnore
-    private List<Dish> dishes;
+/*    @OneToMany(fetch = FetchType.LAZY, mappedBy = "restaurant", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    //@JsonIgnore
+    private List<Dish> dishes;*/
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "restaurant", cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    @JsonIgnore
-    private List<Voice> voices;
-
+/*    @OneToMany(fetch = FetchType.LAZY, mappedBy = "restaurant", cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    //@JsonIgnore
+    private List<Voice> voices;*/
+/*
     public List<Dish> getDishes() {
         return dishes;
     }
@@ -40,5 +40,5 @@ public class Restaurant extends NamedEntity{
 
     public void setVoices(List<Voice> voice) {
         this.voices = voice;
-    }
+    }*/
 }

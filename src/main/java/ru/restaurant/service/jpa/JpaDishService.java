@@ -28,7 +28,7 @@ public class JpaDishService implements DishService{
     public boolean delete(int id, int userId) throws NotFoundException {
         User savedUser = userRepository.get(userId);
         Objects.isNull(savedUser);
-        if (savedUser.getRole().contains(Role.ADMIN)){
+        if (savedUser.getRoles().contains(Role.ADMIN)){
             return dishRepository.delete(id);
         } else {
             throw new AccessDeniedException("You can't delete dish");
@@ -44,7 +44,7 @@ public class JpaDishService implements DishService{
     public Dish update(Dish dish, int userId) throws NotFoundException {
         User savedUser = userRepository.get(userId);
         Objects.isNull(savedUser);
-        if (savedUser.getRole().contains(Role.ADMIN)){
+        if (savedUser.getRoles().contains(Role.ADMIN)){
             dish.setDate(LocalDate.now());
             dishRepository.save(dish);
         } else {
@@ -57,7 +57,7 @@ public class JpaDishService implements DishService{
     public Dish save(Dish dish, int userId) {
         User savedUser = userRepository.get(userId);
         Objects.isNull(savedUser);
-        if (savedUser.getRole().contains(Role.ADMIN)){
+        if (savedUser.getRoles().contains(Role.ADMIN)){
             dish.setDate(LocalDate.now());
             dishRepository.save(dish);
         } else {

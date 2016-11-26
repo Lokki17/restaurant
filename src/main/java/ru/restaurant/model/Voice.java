@@ -3,7 +3,7 @@ package ru.restaurant.model;
 import javax.persistence.*;
 
 @NamedQueries({
-        @NamedQuery(name = Voice.GET_ALL, query = "SELECT v FROM Voice v WHERE v.date=:date"),
+        @NamedQuery(name = Voice.GET_ALL, query = "SELECT v FROM Voice v LEFT JOIN FETCH v.restaurant LEFT JOIN FETCH v.user WHERE v.date=:date"),
         @NamedQuery(name = Voice.DELETE, query = "DELETE FROM Voice v WHERE v.id=:voiceId"),
         @NamedQuery(name = Voice.GET, query = "SELECT v FROM Voice v WHERE v.id=:voiceId AND v.date=:date AND v.user.id=:userId")
 })
@@ -26,8 +26,8 @@ public class Voice extends DatedEntity {
         return restaurant;
     }
 
-    public void setRestaurant(Restaurant dish) {
-        this.restaurant = dish;
+    public void setRestaurant(Restaurant restaurant) {
+        this.restaurant = restaurant;
     }
 
     public User getUser() {

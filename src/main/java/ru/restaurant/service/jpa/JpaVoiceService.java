@@ -36,7 +36,7 @@ public class JpaVoiceService implements VoiceService {
     public boolean delete(int id, int userId) throws NotFoundException {
         User savedUser = userRepository.get(userId);
         Objects.isNull(savedUser);
-        if (savedUser.getRole().contains(Role.ADMIN)){
+        if (savedUser.getRoles().contains(Role.ADMIN)){
             return voiceRepository.delete(id);
         }
 

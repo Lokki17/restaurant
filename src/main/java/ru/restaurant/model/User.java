@@ -1,5 +1,6 @@
 package ru.restaurant.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
@@ -7,7 +8,8 @@ import java.util.List;
 import java.util.Set;
 
 @NamedQueries({
-        @NamedQuery(name = User.GET_ALL, query = "SELECT u FROM User u"),
+        @NamedQuery(name = User.GET_ALL, query = "SELECT DISTINCT u FROM User u LEFT JOIN FETCH u.roles"),
+//        @NamedQuery(name = User.GET_ALL, query = "SELECT DISTINCT u FROM User u left JOIN FETCH u.voices LEFT JOIN FETCH u.roles"),
         @NamedQuery(name = User.DELETE, query = "DELETE FROM User u WHERE u.id=:userId"),
         @NamedQuery(name = User.GET, query = "SELECT u FROM User u WHERE u.id=:userId")
 })
@@ -25,22 +27,23 @@ public class User extends NamedEntity{
     @Enumerated(EnumType.STRING)
     @CollectionTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"))
     @Column(name = "role")
-    @ElementCollection(fetch = FetchType.LAZY)
-    private Set<Role> role;
+    @ElementCollection(fetch = FetchType.EAGER)
+    private Set<Role> roles;
 
-    @OneToMany(mappedBy = "user")
-    private List<Voice> voices;
+/*    @OneToMany(mappedBy = "user")
+    //@JsonIgnore
+    private List<Voice> voices;*/
 
     public boolean isAdmin(){
-        return role.contains(Role.ADMIN);
+        return roles.contains(Role.ADMIN);
     }
 
-    public Set<Role> getRole() {
-        return role;
+    public Set<Role> getRoles() {
+        return roles;
     }
 
-    public void setRole(Set<Role> role) {
-        this.role = role;
+    public void setRoles(Set<Role> role) {
+        this.roles = role;
     }
 
     public String getPassword() {
@@ -51,11 +54,11 @@ public class User extends NamedEntity{
         this.password = password;
     }
 
-    public List<Voice> getVoices() {
+/*    public List<Voice> getVoices() {
         return voices;
     }
 
     public void setVoices(List<Voice> voices) {
         this.voices = voices;
-    }
+    }*/
 }

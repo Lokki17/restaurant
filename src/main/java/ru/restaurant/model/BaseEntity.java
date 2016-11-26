@@ -1,8 +1,13 @@
 package ru.restaurant.model;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+
 import javax.persistence.*;
 
+import static com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility.*;
+
 @MappedSuperclass
+@JsonAutoDetect(fieldVisibility = ANY, getterVisibility = NONE, isGetterVisibility = NONE, setterVisibility = NONE)
 public class BaseEntity {
     @Id
     @SequenceGenerator(name = "global_seq", sequenceName = "global_seq", allocationSize = 1)
