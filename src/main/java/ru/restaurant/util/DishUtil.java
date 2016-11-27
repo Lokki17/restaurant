@@ -2,7 +2,7 @@ package ru.restaurant.util;
 
 import ru.restaurant.model.Dish;
 import ru.restaurant.model.Restaurant;
-import ru.restaurant.to.RestaurantDishes;
+import ru.restaurant.model.User;
 
 import java.util.*;
 
@@ -16,5 +16,9 @@ public class DishUtil {
             result.get(dish.getRestaurant()).add(dish);
         }
         return result;
+    }
+
+    public static void checkDish(Dish dish, Restaurant restaurant, User user){
+
     }
 }
