@@ -1,4 +1,4 @@
-package ru.restaurant.util.exception;
+package ru.restaurant.util;
 
 import ru.restaurant.model.*;
 
