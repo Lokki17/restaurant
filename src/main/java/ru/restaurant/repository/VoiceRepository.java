@@ -15,7 +15,8 @@ public interface VoiceRepository {
     boolean delete(int id);
 
     // null if meal do not belong to userId
-    Voice get(int voiceId, int userId, LocalDate localDate);
+    Voice get(int userId, LocalDate localDate);
+//    Voice get(int voiceId, int userId, LocalDate localDate);
 
     // ORDERED dateTime
     Collection<Voice> getAllOnDate(LocalDate localDate);

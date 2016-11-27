@@ -1,17 +1,23 @@
 package ru.restaurant.util;
 
+import ru.restaurant.util.exception.WrongTimeException;
+
 import java.time.LocalTime;
 
 public class TimeUtil {
-    public static final LocalTime STOP_TIME = LocalTime.of(11, 0);
-    public static final LocalTime LANCH_TIME = LocalTime.of(15, 0);
+    public static final LocalTime STOP_TIME = LocalTime.of(20, 0);
+    public static final LocalTime LANCH_TIME = LocalTime.of(21, 0);
 //    public static final LocalTime LANCH_TIME = LocalTime.of(23, 0);
 
-    public static boolean checkTime(LocalTime localTime){
-        return localTime.isAfter(STOP_TIME);
+    public static void checkTime(LocalTime localTime) {
+        if (localTime.isAfter(STOP_TIME)) {
+            throw new WrongTimeException("You have made your choice today");
+        }
     }
 
-    public static boolean checkLaunchTime(LocalTime localTime){
-        return localTime.isAfter(LANCH_TIME);
+    public static void checkLaunchTime(LocalTime localTime) {
+        if (localTime.isAfter(LANCH_TIME)) {
+            throw new WrongTimeException("Launch time is gone");
+        }
     }
 }

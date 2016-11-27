@@ -32,7 +32,8 @@ public class VoiceServiceImpl implements VoiceService {
 
     @Override
     public Voice get(int id, int userId) {
-        return voiceRepository.get(id, userId, LocalDate.now());
+        return voiceRepository.get(userId, LocalDate.now());
+//        return voiceRepository.get(id, userId, LocalDate.now());
     }
 
     @Override
@@ -59,15 +60,14 @@ public class VoiceServiceImpl implements VoiceService {
     @Override //TODO проверить!!!
     public Voice save(Voice voice, int userId) {
         LocalDateTime dateTimeNow = LocalDateTime.now();
-        if (TimeUtil.checkLaunchTime(dateTimeNow.toLocalTime())) {
-            throw new WrongTimeException("Launch time is gone");
+        TimeUtil.checkLaunchTime(dateTimeNow.toLocalTime());
+        Voice savedVoice = voiceRepository.get(userId, dateTimeNow.toLocalDate());
+        if (savedVoice != null) {
+            TimeUtil.checkTime(dateTimeNow.toLocalTime());
+            voice.setId(savedVoice.getId());
+        } else {
+            voice.setId(null);
         }
-        if (voice.getId() != null) {
-            if (TimeUtil.checkTime(dateTimeNow.toLocalTime())) {
-                throw new WrongTimeException("You have made your choice today");
-            }
-        }
-
         return voiceRepository.save(voice, dateTimeNow.toLocalDate(), userId);
     }
 }

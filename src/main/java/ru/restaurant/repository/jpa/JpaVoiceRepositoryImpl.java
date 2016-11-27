@@ -21,7 +21,8 @@ public class JpaVoiceRepositoryImpl implements VoiceRepository{
     @Override
     @Transactional
     public Voice save(Voice voice, LocalDate localDate, int userId) {
-        if (!voice.isNew() && get(voice.getId(), userId, localDate) == null){
+        if (!voice.isNew() && get(userId, localDate) == null){
+//        if (!voice.isNew() && get(voice.getId(), userId, localDate) == null){
             return null;
         }
         if (voice.isNew()){
@@ -40,9 +41,10 @@ public class JpaVoiceRepositoryImpl implements VoiceRepository{
     }
 
     @Override
-    public Voice get(int voiceId, int userId, LocalDate localDate) {
+    public Voice get(int userId, LocalDate localDate) {
+//    public Voice get(int voiceId, int userId, LocalDate localDate) {
         List<Voice> result = em.createNamedQuery(Voice.GET, Voice.class)
-                .setParameter("voiceId", voiceId)
+//                .setParameter("voiceId", voiceId)
                 .setParameter("userId", userId)
                 .setParameter("date", localDate)
                 .getResultList();

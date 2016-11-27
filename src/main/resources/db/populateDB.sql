@@ -39,4 +39,4 @@ INSERT INTO dishes (restaurant_id, date, name, price) VALUES
 INSERT INTO voices (restaurant_id, date, user_id) VALUES
   (100003, '2016-11-27', 100000),
   (100003, '2016-11-27', 100001),
-  (100004, '2016-11-27', 100001);
+  (100004, '2016-11-27', 100002);

@@ -18,6 +18,8 @@ public interface RestaurantRepository {
     // ORDERED dateTime
     Collection<Restaurant> getAll();
 
+    Restaurant checkUser(Integer restaurantId);
+
     // ORDERED dateTime
     //Collection<Restaurant> getBetween(LocalDateTime startDate, LocalDateTime endDate, int userId);
 }

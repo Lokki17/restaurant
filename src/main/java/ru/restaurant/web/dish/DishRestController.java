@@ -9,6 +9,8 @@ import ru.restaurant.model.Restaurant;
 import ru.restaurant.service.DishService;
 import ru.restaurant.service.RestaurantService;
 import ru.restaurant.to.RestaurantDishes;
+import ru.restaurant.util.DishUtil;
+import ru.restaurant.util.EntityUtil;
 import ru.restaurant.web.AuthorizedUser;
 
 import javax.validation.Valid;

@@ -21,10 +21,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User get(int id, int userId) throws NotFoundException {
-        User savedUser = userRepository.checkUser(userId);
-        if (savedUser.isAdmin()) {
-            return userRepository.get(id);
-        } else throw new AccessDeniedException("You can't delete user");
+//        User savedUser = userRepository.checkUser(userId);
+//        if (savedUser.isAdmin()) {
+            return userRepository.get(userId);
+//        } else throw new AccessDeniedException("You can't delete user");
     }
 
     @Override
@@ -59,11 +59,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User save(User user, int userId) {
-        User savedUser = userRepository.checkUser(userId);
-        if (savedUser.isAdmin()) {
+//        User savedUser = userRepository.checkUser(userId);
+//        if (savedUser.isAdmin()) {
             return userRepository.save(user);
-        } else {
-            throw new AccessDeniedException("You can't save user");
-        }
+//        } else {
+//            throw new AccessDeniedException("You can't save user");
+//        }
     }
 }
