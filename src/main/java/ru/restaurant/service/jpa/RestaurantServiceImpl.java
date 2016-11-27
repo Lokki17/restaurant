@@ -29,7 +29,7 @@ public class RestaurantServiceImpl implements RestaurantService {
     public boolean delete(int id, int userId) throws NotFoundException {
         User savedUser = userRepository.get(userId);
         Assert.notNull(savedUser, "can't find user");
-        if (savedUser.getRoles().contains(Role.ADMIN)){
+        if (savedUser.isAdmin()){
             return restaurantRepository.delete(id);
         } else {
             throw new AccessDeniedException("You can't delete restaurant");
@@ -55,7 +55,7 @@ public class RestaurantServiceImpl implements RestaurantService {
     public Restaurant update(Restaurant restaurant, int userId) throws NotFoundException {
         User savedUser = userRepository.get(userId);
         Assert.notNull(savedUser, "can't find user");
-        if (savedUser.getRoles().contains(Role.ADMIN)){
+        if (savedUser.isAdmin()){
             return restaurantRepository.save(restaurant);
         } else {
             throw new AccessDeniedException("You can't update restaurant");
@@ -66,7 +66,7 @@ public class RestaurantServiceImpl implements RestaurantService {
     public Restaurant save(Restaurant restaurant, int userId) {
         User savedUser = userRepository.get(userId);
         Assert.notNull(savedUser, "can't find user");
-        if (savedUser.getRoles().contains(Role.ADMIN)){
+        if (savedUser.isAdmin()){
             return restaurantRepository.save(restaurant);
         } else {
             throw new AccessDeniedException("You can't save restaurant");

@@ -2,6 +2,7 @@ package ru.restaurant.service.jpa;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 import ru.restaurant.model.Role;
 import ru.restaurant.model.User;
 import ru.restaurant.repository.UserRepository;
@@ -21,15 +22,15 @@ public class UserServiceImpl implements UserService{
     @Override
     public User get(int id, int userId) throws NotFoundException {
         User savedUser = userRepository.get(id);
-        Objects.isNull(savedUser);
+        Assert.notNull(savedUser, "can't find user");
         return savedUser;
     }
 
     @Override
     public boolean delete(int id, int userId) throws NotFoundException {
         User savedUser = userRepository.get(userId);
-        Objects.isNull(savedUser);
-        if (savedUser.getRoles().contains(Role.ADMIN)){
+        Assert.notNull(savedUser, "can't find user");
+        if (savedUser.isAdmin()){
             return userRepository.delete(id);
         } else {
             throw new AccessDeniedException("You can't delete user");
@@ -39,8 +40,8 @@ public class UserServiceImpl implements UserService{
     @Override
     public Collection<User> getAll(int userId) {
         User savedUser = userRepository.get(userId);
-        Objects.isNull(savedUser);
-        if (savedUser.getRoles().contains(Role.ADMIN)){
+        Assert.notNull(savedUser, "can't find user");
+        if (savedUser.isAdmin()){
             return userRepository.getAll();
         } else {
             throw new AccessDeniedException("You can't get users list");
@@ -50,24 +51,22 @@ public class UserServiceImpl implements UserService{
     @Override
     public User update(User user, int userId) throws NotFoundException {
         User savedUser = userRepository.get(userId);
-        Objects.isNull(savedUser);
-        if (savedUser.getRoles().contains(Role.ADMIN)){
-            userRepository.save(user);
+        Assert.notNull(savedUser, "can't find user");
+        if (savedUser.isAdmin()){
+            return userRepository.save(user);
         } else {
             throw new AccessDeniedException("You can't update user");
         }
-        return user;
     }
 
     @Override
     public User save(User user, int userId) {
         User savedUser = userRepository.get(userId);
-        Objects.isNull(savedUser);
-        if (savedUser.getRoles().contains(Role.ADMIN)){
-            userRepository.save(user);
+        Assert.notNull(savedUser, "can't find user");
+        if (savedUser.isAdmin()){
+            return userRepository.save(user);
         } else {
             throw new AccessDeniedException("You can't save user");
         }
-        return user;
     }
 }
