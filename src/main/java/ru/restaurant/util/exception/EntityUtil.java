@@ -1,17 +1,20 @@
 package ru.restaurant.util.exception;
 
-import ru.restaurant.model.NamedEntity;
-import ru.restaurant.model.Restaurant;
-import ru.restaurant.model.User;
-import ru.restaurant.model.Voice;
+import ru.restaurant.model.*;
 
 import java.util.Objects;
 
 public class EntityUtil {
 
-    public static boolean checkEntity(Voice voice, Restaurant restaurant, User user) {
+    public static boolean checkVoice(Voice voice, Restaurant restaurant, User user) {
         if (!Objects.isNull(voice) && !Objects.isNull(restaurant) && !Objects.isNull(user)) {
             return checkEntity(voice.getRestaurant(), restaurant) && checkEntity(voice.getUser(), user);
+        } else return false;
+    }
+
+    public static boolean checkDish(Dish dish, Restaurant restaurant) {
+        if (!Objects.isNull(dish) && !Objects.isNull(restaurant)) {
+            return checkEntity(dish.getRestaurant(), restaurant);
         } else return false;
     }
 
