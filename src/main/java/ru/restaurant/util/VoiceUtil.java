@@ -5,6 +5,7 @@ import ru.restaurant.model.*;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class VoiceUtil {
 
@@ -13,5 +14,10 @@ public class VoiceUtil {
         voices.stream()
                 .forEach(voice -> destr.merge(voice.getRestaurant(), 1, (a, b) -> a + b));
         return destr;
+    }
+
+    public static void checkId(Voice voice){
+        Objects.requireNonNull(voice.getRestaurant());
+        Objects.requireNonNull(voice.getRestaurant().getId());
     }
 }

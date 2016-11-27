@@ -10,6 +10,7 @@ import ru.restaurant.model.Voice;
 import ru.restaurant.service.RestaurantService;
 import ru.restaurant.service.UserService;
 import ru.restaurant.service.VoiceService;
+import ru.restaurant.util.VoiceUtil;
 import ru.restaurant.util.exception.NotFoundException;
 import ru.restaurant.web.AuthorizedUser;
 
@@ -42,7 +43,7 @@ public class VoiceRestController {
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public Voice create(@Valid @RequestBody Voice voice) {
-        setRestaurant(voice, voice.getRestaurant().getId());
+        setRestaurant(voice);
         setUser(voice, AuthorizedUser.getId());
         return service.save(voice, AuthorizedUser.getId());
     }
@@ -55,13 +56,14 @@ public class VoiceRestController {
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public Voice update(@Valid @RequestBody Voice voice, @PathVariable("id") int id) {
         voice.setId(id);
-        setRestaurant(voice, voice.getRestaurant().getId());
+        setRestaurant(voice);
         setUser(voice, AuthorizedUser.getId());
         return service.save(voice, AuthorizedUser.getId());
     }
 
-    private void setRestaurant(Voice voice, Integer restaurantId){
-        Restaurant restaurant = restaurantService.get(restaurantId);
+    private void setRestaurant(Voice voice){
+        VoiceUtil.checkId(voice);
+        Restaurant restaurant = restaurantService.get(voice.getRestaurant().getId());
         if (restaurant != null){
             voice.setRestaurant(restaurant);
         } else {
