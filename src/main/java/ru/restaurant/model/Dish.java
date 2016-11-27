@@ -9,14 +9,14 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @NamedQueries({
-        @NamedQuery(name = Dish.GET_ALL, query = "SELECT d FROM Dish d LEFT JOIN FETCH d.restaurant WHERE d.date=:date"),
+        @NamedQuery(name = Dish.GET_ALL, query = "SELECT d FROM Dish d LEFT JOIN FETCH d.restaurant WHERE d.date=:date ORDER BY d.restaurant.name, d.name"),
         @NamedQuery(name = Dish.DELETE, query = "DELETE FROM Dish d WHERE d.id=:dishId"),
         @NamedQuery(name = Dish.GET, query = "SELECT d FROM Dish d WHERE d.id=:dishId")
 })
 //@NamedEntityGraph(name = Dish.GRAPH, attributeNodes = {@NamedAttributeNode("restaurant")})
 @Entity
 @Table(name = "dishes")
-public class Dish extends DatedEntity{
+public class Dish extends DatedEntity implements Comparable{
 //    public static final String GRAPH = "Dishes.restaurant";
 
     public static final String GET_ALL = "Dish.getAll";
@@ -80,5 +80,15 @@ public class Dish extends DatedEntity{
                 "price=" + price +
                 ", name='" + name + '\'' +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        Dish that = (Dish) o;
+        if (!this.name.equals(that.name)){
+            return this.name.compareTo(that.name);
+        } else {
+            return this.id.compareTo(that.getId());
+        }
     }
 }

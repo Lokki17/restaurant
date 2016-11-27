@@ -7,10 +7,10 @@ import java.util.*;
 
 public class DishUtil {
     public static Map<Restaurant, Set<Dish>> dishesWithRestaurants(Collection<Dish> dishes) {
-        Map<Restaurant, Set<Dish>> result = new HashMap<>();
+        Map<Restaurant, Set<Dish>> result = new TreeMap<>();
         for (Dish dish : dishes) {
             if (!result.containsKey(dish.getRestaurant())) {
-                result.put(dish.getRestaurant(), new HashSet<>());
+                result.put(dish.getRestaurant(), new TreeSet<>());
             }
             result.get(dish.getRestaurant()).add(dish);
         }

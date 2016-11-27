@@ -8,7 +8,7 @@ import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 @MappedSuperclass
-public class DatedEntity extends BaseEntity {
+public class DatedEntity extends BaseEntity{
     @Column(name = "date")
     @NotNull
     protected LocalDate date;

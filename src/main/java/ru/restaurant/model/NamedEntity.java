@@ -7,7 +7,7 @@ import javax.persistence.MappedSuperclass;
 import java.util.Objects;
 
 @MappedSuperclass
-public class NamedEntity extends BaseEntity{
+public class NamedEntity extends BaseEntity implements Comparable{
     @Column(name = "name")
     @NotEmpty
     protected String name;
@@ -18,5 +18,15 @@ public class NamedEntity extends BaseEntity{
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        NamedEntity that = (NamedEntity) o;
+        if (!this.name.equals(that.name)){
+            return this.name.compareTo(that.name);
+        } else {
+            return this.id.compareTo(that.getId());
+        }
     }
 }

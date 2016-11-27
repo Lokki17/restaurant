@@ -24,7 +24,7 @@ import java.util.Map;
 import java.util.Objects;
 
 @Service
-public class JpaVoiceService implements VoiceService {
+public class VoiceServiceImpl implements VoiceService {
 
     @Autowired
     VoiceRepository voiceRepository;

@@ -48,9 +48,9 @@ public class DishRestController {
     }*/
 
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void update(@Valid @RequestBody Dish dish, @PathVariable("id") Integer id) {
+    public Dish update(@Valid @RequestBody Dish dish, @PathVariable("id") Integer id) {
         dish.setId(id);
 //        dish.setRestaurant(restaurantService.get(restaurantId));
-        service.save(dish, AuthorizedUser.getId());
+        return service.save(dish, AuthorizedUser.getId());
     }
 }

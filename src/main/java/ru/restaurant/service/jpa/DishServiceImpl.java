@@ -3,6 +3,7 @@ package ru.restaurant.service.jpa;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Assert;
 import ru.restaurant.model.Dish;
 import ru.restaurant.model.Restaurant;
 import ru.restaurant.model.Role;
@@ -20,7 +21,7 @@ import java.time.LocalDate;
 import java.util.*;
 
 @Service
-public class JpaDishService implements DishService{
+public class DishServiceImpl implements DishService {
 
     @Autowired
     DishRepository dishRepository;
@@ -34,8 +35,8 @@ public class JpaDishService implements DishService{
     @Override
     public boolean delete(int id, int userId) throws NotFoundException {
         User savedUser = userRepository.get(userId);
-        Objects.isNull(savedUser);
-        if (savedUser.getRoles().contains(Role.ADMIN)){
+        Assert.notNull(savedUser, "can't find user");
+        if (savedUser.getRoles().contains(Role.ADMIN)) {
             return dishRepository.delete(id);
         } else {
             throw new AccessDeniedException("You can't delete dish");
@@ -44,44 +45,45 @@ public class JpaDishService implements DishService{
 
     @Override
     public Map<Restaurant, Set<Dish>> getAllOnDate(LocalDate date) {
-        return DishUtil.dishesWithRestaurants(dishRepository.getAll(date));
+        Collection<Dish> result = dishRepository.getAll(date);
+        if (!result.isEmpty()) {
+            return DishUtil.dishesWithRestaurants(result);
+        } else return Collections.emptyMap();
 
     }
 
     @Override
     public Dish update(Dish dish, int userId) throws NotFoundException {
         User savedUser = userRepository.get(userId);
-        Objects.isNull(savedUser);
-        if (savedUser.getRoles().contains(Role.ADMIN)){
+        Assert.notNull(savedUser, "can't find user");
+        if (savedUser.getRoles().contains(Role.ADMIN)) {
             dish.setDate(LocalDate.now());
-            dishRepository.save(dish);
+            return dishRepository.save(dish);
         } else {
             throw new AccessDeniedException("You can't update dish");
         }
-        return dish;
     }
 
     @Override
     @Transactional
     public Dish save(Dish dish, int userId) {
-//    public Dish save(Dish dish, int restaurantId, int userId) {
         User savedUser = userRepository.get(userId);
-        Objects.isNull(savedUser);
-
-        if (savedUser.getRoles().contains(Role.ADMIN)){
+        Assert.notNull(savedUser, "dish must not be null");
+        if (savedUser.getRoles().contains(Role.ADMIN)) {
             Restaurant savesRestaurant = restaurantRepository.get(dish.getRestaurant().getId());
-            Objects.isNull(savesRestaurant);
+            Assert.notNull(savesRestaurant, "can't find request restaurant");
             dish.setRestaurant(savesRestaurant);
             dish.setDate(LocalDate.now());
-            dishRepository.save(dish);
+            return dishRepository.save(dish);
         } else {
             throw new AccessDeniedException("You can't save dish");
         }
-        return dish;
     }
 
     @Override
     public Dish get(int dishId) {
-        return dishRepository.get(dishId);
+        Dish result = dishRepository.get(dishId);
+        Assert.notNull(result, "can't find request dish");
+        return result;
     }
 }

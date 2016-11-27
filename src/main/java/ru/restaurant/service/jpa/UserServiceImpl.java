@@ -13,7 +13,7 @@ import java.util.Collection;
 import java.util.Objects;
 
 @Service
-public class JpaUserService implements UserService{
+public class UserServiceImpl implements UserService{
 
     @Autowired
     UserRepository userRepository;
