@@ -1,12 +1,10 @@
 package ru.restaurant.util;
 
-import ru.restaurant.model.Restaurant;
-import ru.restaurant.model.Voice;
+import ru.restaurant.model.*;
 
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class VoiceUtil {
 
