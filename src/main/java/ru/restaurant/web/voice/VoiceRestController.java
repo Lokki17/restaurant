@@ -42,7 +42,8 @@ public class VoiceRestController {
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public Voice create(@Valid @RequestBody Voice voice) {
-        setVoice(voice, voice.getRestaurant().getId());
+        setRestaurant(voice, voice.getRestaurant().getId());
+        setUser(voice, AuthorizedUser.getId());
         return service.save(voice, AuthorizedUser.getId());
     }
 
@@ -54,12 +55,12 @@ public class VoiceRestController {
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public Voice update(@Valid @RequestBody Voice voice, @PathVariable("id") int id) {
         voice.setId(id);
-        setVoice(voice, voice.getRestaurant().getId());
-        setUser(voice, voice.getUser().getId());
+        setRestaurant(voice, voice.getRestaurant().getId());
+        setUser(voice, AuthorizedUser.getId());
         return service.save(voice, AuthorizedUser.getId());
     }
 
-    private void setVoice(Voice voice, Integer restaurantId){
+    private void setRestaurant(Voice voice, Integer restaurantId){
         Restaurant restaurant = restaurantService.get(restaurantId);
         if (restaurant != null){
             voice.setRestaurant(restaurant);

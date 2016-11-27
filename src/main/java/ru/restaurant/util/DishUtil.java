@@ -16,4 +16,9 @@ public class DishUtil {
         }
         return result;
     }
+
+    public static void checkId(Dish dish){
+        Objects.requireNonNull(dish.getRestaurant());
+        Objects.requireNonNull(dish.getRestaurant().getId());
+    }
 }
