@@ -34,8 +34,7 @@ public class DishServiceImpl implements DishService {
 
     @Override
     public boolean delete(int id, int userId) throws NotFoundException {
-        User savedUser = userRepository.get(userId);
-        Assert.notNull(savedUser, "can't find user");
+        User savedUser = userRepository.checkUser(userId);
         if (savedUser.isAdmin()) {
             return dishRepository.delete(id);
         } else {
@@ -54,8 +53,7 @@ public class DishServiceImpl implements DishService {
 
     @Override
     public Dish update(Dish dish, int userId) throws NotFoundException {
-        User savedUser = userRepository.get(userId);
-        Assert.notNull(savedUser, "can't find user");
+        User savedUser = userRepository.checkUser(userId);
         if (savedUser.isAdmin()) {
             dish.setDate(LocalDate.now());
             return dishRepository.save(dish);
@@ -67,8 +65,7 @@ public class DishServiceImpl implements DishService {
     @Override
     @Transactional
     public Dish save(Dish dish, int userId) {
-        User savedUser = userRepository.get(userId);
-        Assert.notNull(savedUser, "dish must not be null");
+        User savedUser = userRepository.checkUser(userId);
         if (savedUser.isAdmin()) {
             Restaurant savesRestaurant = restaurantRepository.get(dish.getRestaurant().getId());
             Assert.notNull(savesRestaurant, "can't find request restaurant");

@@ -16,6 +16,8 @@ public interface UserRepository {
 
     Collection<User> getAll();
 
+    User checkUser(Integer userId);
+
     // ORDERED dateTime
     //Collection<User> getAll(int userId);
 

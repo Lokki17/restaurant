@@ -2,6 +2,7 @@ package ru.restaurant.service.jpa;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 import ru.restaurant.model.Restaurant;
 import ru.restaurant.model.Role;
 import ru.restaurant.model.User;
@@ -18,10 +19,7 @@ import ru.restaurant.web.AuthorizedUser;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 @Service
 public class VoiceServiceImpl implements VoiceService {
@@ -33,7 +31,7 @@ public class VoiceServiceImpl implements VoiceService {
     UserRepository userRepository;
 
     @Override
-    public Voice get(int id, int userId) throws NotFoundException {
+    public Voice get(int id, int userId) {
         return voiceRepository.get(id, userId, LocalDate.now());
     }
 
@@ -43,19 +41,18 @@ public class VoiceServiceImpl implements VoiceService {
     }
 
     @Override
-    public boolean delete(int id, int userId) throws NotFoundException {
+    public boolean delete(int id, int userId) {
         User savedUser = userRepository.get(userId);
-        Objects.isNull(savedUser);
-        if (savedUser.getRoles().contains(Role.ADMIN)){
-            return voiceRepository.delete(id);
-        }
-
-        return false;
+        Assert.notNull(savedUser, "can't find user");
+        return savedUser.isAdmin() && voiceRepository.delete(id);
     }
 
     @Override
     public Map<Restaurant, Integer> getAllOnDate() {
-        return VoiceUtil.getRestaurantVoiceDistribution(voiceRepository.getAllOnDate(LocalDate.now()));
+        Collection<Voice> result = voiceRepository.getAllOnDate(LocalDate.now());
+        if (!result.isEmpty()) {
+            return VoiceUtil.getRestaurantVoiceDistribution(result);
+        } else return Collections.emptyMap();
     }
 
 

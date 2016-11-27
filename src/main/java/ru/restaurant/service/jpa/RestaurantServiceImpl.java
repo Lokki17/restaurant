@@ -27,8 +27,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 
     @Override
     public boolean delete(int id, int userId) throws NotFoundException {
-        User savedUser = userRepository.get(userId);
-        Assert.notNull(savedUser, "can't find user");
+        User savedUser = userRepository.checkUser(userId);
         if (savedUser.isAdmin()){
             return restaurantRepository.delete(id);
         } else {
@@ -53,8 +52,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 
     @Override
     public Restaurant update(Restaurant restaurant, int userId) throws NotFoundException {
-        User savedUser = userRepository.get(userId);
-        Assert.notNull(savedUser, "can't find user");
+        User savedUser = userRepository.checkUser(userId);
         if (savedUser.isAdmin()){
             return restaurantRepository.save(restaurant);
         } else {
@@ -64,8 +62,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 
     @Override
     public Restaurant save(Restaurant restaurant, int userId) {
-        User savedUser = userRepository.get(userId);
-        Assert.notNull(savedUser, "can't find user");
+        User savedUser = userRepository.checkUser(userId);
         if (savedUser.isAdmin()){
             return restaurantRepository.save(restaurant);
         } else {
