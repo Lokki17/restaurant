@@ -8,6 +8,7 @@ import ru.restaurant.model.User;
 import ru.restaurant.service.UserService;
 import ru.restaurant.web.AuthorizedUser;
 
+import javax.validation.Valid;
 import java.util.Collection;
 
 @RestController
@@ -27,7 +28,7 @@ public class UserRestController {
     }
 
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public User create(@RequestBody User user) {
+    public User create(@Valid @RequestBody User user) {
         return service.save(user, AuthorizedUser.getId());
     }
 
@@ -37,7 +38,7 @@ public class UserRestController {
     }
 
     @PutMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public User update(@RequestBody User user, @PathVariable Integer id) {
+    public User update(@Valid @RequestBody User user, @PathVariable Integer id) {
         user.setId(id);
         return service.save(user, AuthorizedUser.getId());
     }

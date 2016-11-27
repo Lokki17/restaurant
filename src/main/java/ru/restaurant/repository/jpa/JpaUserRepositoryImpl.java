@@ -8,6 +8,7 @@ import ru.restaurant.repository.UserRepository;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.Collection;
+import java.util.List;
 
 @Repository
 @Transactional(readOnly = true)
@@ -38,7 +39,10 @@ public class JpaUserRepositoryImpl implements UserRepository{
 
     @Override
     public User get(int id) {
-        return em.createNamedQuery(User.GET, User.class).setParameter("userId", id).getSingleResult();
+        List<User> result = em.createNamedQuery(User.GET, User.class).setParameter("userId", id).getResultList();
+        if (!result.isEmpty()){
+            return result.get(0);
+        } else return null;
     }
 
     @Override

@@ -11,6 +11,7 @@ import ru.restaurant.service.VoiceService;
 import ru.restaurant.util.exception.NotFoundException;
 import ru.restaurant.web.AuthorizedUser;
 
+import javax.validation.Valid;
 import java.util.Collection;
 import java.util.Map;
 
@@ -35,7 +36,7 @@ public class VoiceRestController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public Voice create(@RequestBody Voice voice) {
+    public Voice create(@Valid @RequestBody Voice voice) {
         createVoice(voice, voice.getRestaurant().getId());
         return service.save(voice, AuthorizedUser.getId());
     }
@@ -46,7 +47,7 @@ public class VoiceRestController {
     }
 
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public Voice update(@RequestBody Voice voice, @PathVariable("id") int id) {
+    public Voice update(@Valid @RequestBody Voice voice, @PathVariable("id") int id) {
         voice.setId(id);
         createVoice(voice, voice.getRestaurant().getId());
         return service.save(voice, AuthorizedUser.getId());

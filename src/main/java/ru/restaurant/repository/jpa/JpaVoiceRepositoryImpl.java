@@ -9,6 +9,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.time.LocalDate;
 import java.util.Collection;
+import java.util.List;
 
 @Repository
 @Transactional(readOnly = true)
@@ -40,11 +41,14 @@ public class JpaVoiceRepositoryImpl implements VoiceRepository{
 
     @Override
     public Voice get(int voiceId, int userId, LocalDate localDate) {
-        return em.createNamedQuery(Voice.GET, Voice.class)
+        List<Voice> result = em.createNamedQuery(Voice.GET, Voice.class)
                 .setParameter("voiceId", voiceId)
                 .setParameter("userId", userId)
                 .setParameter("date", localDate)
-                .getSingleResult();
+                .getResultList();
+        if (!result.isEmpty()){
+            return result.get(0);
+        } else return null;
     }
 
     @Override

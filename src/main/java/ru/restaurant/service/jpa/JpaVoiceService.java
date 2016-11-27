@@ -65,11 +65,11 @@ public class JpaVoiceService implements VoiceService {
         if (TimeUtil.checkLaunchTime(dateTimeNow.toLocalTime())) {
             throw new WrongTimeException("Launch time is gone");
         }
-/*        if (voice.getId() != null) {
+        if (voice.getId() != null) {
             if (TimeUtil.checkTime(dateTimeNow.toLocalTime())) {
                 throw new WrongTimeException("You have made your choice today");
             }
-        }*/
+        }
 
         return voiceRepository.save(voice, dateTimeNow.toLocalDate(), userId);
     }

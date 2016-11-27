@@ -11,6 +11,7 @@ import ru.restaurant.service.RestaurantService;
 import ru.restaurant.to.RestaurantDishes;
 import ru.restaurant.web.AuthorizedUser;
 
+import javax.validation.Valid;
 import java.time.LocalDate;
 import java.util.Collection;
 import java.util.Map;
@@ -22,8 +23,8 @@ public class DishRestController {
     @Autowired
     DishService service;
 
-    @Autowired
-    RestaurantService restaurantService;
+/*    @Autowired
+    RestaurantService restaurantService;*/
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public Map<Restaurant, Set<Dish>> getAll() {
@@ -31,7 +32,7 @@ public class DishRestController {
     }
 
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public Dish create(@RequestBody Dish dish) {
+    public Dish create(@Valid @RequestBody Dish dish) {
         return service.save(dish, AuthorizedUser.getId());
 //        return service.save(dish, restaurantId, AuthorizedUser.getId());
     }
@@ -47,7 +48,7 @@ public class DishRestController {
     }*/
 
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void update(@RequestBody Dish dish, @PathVariable("id") Integer id) {
+    public void update(@Valid @RequestBody Dish dish, @PathVariable("id") Integer id) {
         dish.setId(id);
 //        dish.setRestaurant(restaurantService.get(restaurantId));
         service.save(dish, AuthorizedUser.getId());
