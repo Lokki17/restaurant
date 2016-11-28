@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class RootController {
 
     @GetMapping
-    public String index(){
-        return "redirect:index";
+    public String root(){
+        return "redirect:/index";
     }
 
 }
