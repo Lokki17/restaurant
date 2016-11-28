@@ -57,4 +57,12 @@ public class JpaUserRepositoryImpl implements UserRepository {
         Assert.notNull(savedUser, "can't find user");
         return savedUser;
     }
+
+    @Override
+    public User getByName(String name) {
+        List<User> result = em.createNamedQuery(User.GET, User.class).setParameter("name", name).getResultList();
+        if (!result.isEmpty()) {
+            return result.get(0);
+        } else return null;
+    }
 }

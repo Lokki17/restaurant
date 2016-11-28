@@ -18,6 +18,8 @@ public interface UserRepository {
 
     User checkUser(Integer userId);
 
+    User getByName(String name);
+
     // ORDERED dateTime
     //Collection<User> getAll(int userId);
 

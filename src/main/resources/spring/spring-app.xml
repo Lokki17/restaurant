@@ -10,6 +10,8 @@
 
     <context:component-scan base-package="ru.restaurant.**.repository.jpa"/>
 
+    <!--<import resource="spring-security.xml"/>-->
+
     <context:annotation-config/>
 
 

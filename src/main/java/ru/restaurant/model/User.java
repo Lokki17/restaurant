@@ -11,7 +11,8 @@ import java.util.Set;
         @NamedQuery(name = User.GET_ALL, query = "SELECT DISTINCT u FROM User u LEFT JOIN FETCH u.roles"),
 //        @NamedQuery(name = User.GET_ALL, query = "SELECT DISTINCT u FROM User u left JOIN FETCH u.voices LEFT JOIN FETCH u.roles"),
         @NamedQuery(name = User.DELETE, query = "DELETE FROM User u WHERE u.id=:userId"),
-        @NamedQuery(name = User.GET, query = "SELECT u FROM User u WHERE u.id=:userId")
+        @NamedQuery(name = User.GET, query = "SELECT u FROM User u WHERE u.id=:userId"),
+        @NamedQuery(name = User.GET_BY_NAME, query = "SELECT u FROM User u WHERE u.name=:name")
 })
 @Entity
 @Table(name = "users")
@@ -19,6 +20,7 @@ public class User extends NamedEntity{
     public static final String GET_ALL = "User.getAll";
     public static final String DELETE = "User.delete";
     public static final String GET = "User.get";
+    public static final String GET_BY_NAME = "User.get.by.name";
 
     @Column(name = "password", nullable = false)
     @NotEmpty

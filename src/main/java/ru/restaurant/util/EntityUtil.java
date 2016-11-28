@@ -1,6 +1,7 @@
 package ru.restaurant.util;
 
 import ru.restaurant.model.*;
+import ru.restaurant.to.UserTo;
 
 import java.util.Objects;
 
@@ -22,5 +23,9 @@ public class EntityUtil {
         if (!Objects.isNull(first.getId()) && !Objects.isNull(second.getId()) && !Objects.isNull(first.getName()) && !Objects.isNull(second.getName())) {
             return first.getId().equals(second.getId()) && first.getName().equals(second.getName());
         } else return false;
+    }
+
+    public static UserTo asTo(User user) {
+        return new UserTo(user.getId(), user.getName(), user.getPassword());
     }
 }
