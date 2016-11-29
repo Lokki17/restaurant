@@ -30,9 +30,6 @@ public class DishRestController {
     @Autowired
     RestaurantService restaurantService;
 
-/*    @Autowired
-    RestaurantService restaurantService;*/
-
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public Map<Restaurant, Set<Dish>> getAll() {
         return service.getAllOnDate(LocalDate.now());

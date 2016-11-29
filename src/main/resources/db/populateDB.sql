@@ -12,13 +12,13 @@ INSERT INTO users (name, password)
 VALUES ('User2', 'password');
 
 INSERT INTO users (name, password)
-VALUES ('Admin', 'admin');
+VALUES ('admin', 'admin');
 
 INSERT INTO user_roles (role, user_id) VALUES
-  ('USER', 100000),
-  ('ADMIN', 100000),
-  ('ADMIN', 100001),
-  ('ADMIN', 100002);
+  ('ROLE_USER', 100000),
+  ('ROLE_ADMIN', 100000),
+  ('ROLE_ADMIN', 100001),
+  ('ROLE_ADMIN', 100002);
 
 INSERT INTO restaurants (name) VALUES
   ('Минутка'),

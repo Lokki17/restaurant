@@ -37,7 +37,7 @@ public class User extends NamedEntity{
     private List<Voice> voices;*/
 
     public boolean isAdmin(){
-        return roles.contains(Role.ADMIN);
+        return roles.contains(Role.ROLE_ADMIN);
     }
 
     public Set<Role> getRoles() {
