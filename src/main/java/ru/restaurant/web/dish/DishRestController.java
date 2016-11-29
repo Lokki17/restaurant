@@ -62,7 +62,8 @@ public class DishRestController {
 
     private void setRestaurant(Dish dish){
         DishUtil.checkId(dish);
-        Restaurant restaurant = restaurantService.get(dish.getRestaurant().getId());
+        Restaurant restaurant = restaurantService.getByName(dish.getRestaurant().getName());
+//        Restaurant restaurant = restaurantService.get(dish.getRestaurant().getId());
         if (restaurant != null){
             dish.setRestaurant(restaurant);
         } else {

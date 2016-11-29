@@ -22,14 +22,14 @@
                     <password-encoder ref="passwordEncoder"/>
                 </authentication-provider>-->
         <authentication-provider>
-            <!--<jdbc-user-service data-source-ref="dataSource"
+            <jdbc-user-service data-source-ref="dataSource"
                                users-by-username-query="SELECT name, password FROM users WHERE name = ?"
                                authorities-by-username-query="SELECT u.name, r.role FROM users u, user_roles r WHERE u.id = r.user_id AND u.name = ?"
-            />-->
-                        <user-service>
-                            <user name="admin" password="admin" authorities="ROLE_ADMIN"/>
-                            <user name="User1" password="password" authorities="ROLE_USER"/>
-                        </user-service>
+            />
+            <!--                        <user-service>
+                                        <user name="admin" password="admin" authorities="ROLE_ADMIN"/>
+                                        <user name="User1" password="password" authorities="ROLE_USER"/>
+                                    </user-service>-->
         </authentication-provider>
     </authentication-manager>
 

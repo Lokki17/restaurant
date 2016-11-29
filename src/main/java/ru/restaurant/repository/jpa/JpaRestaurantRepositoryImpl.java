@@ -10,6 +10,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.time.LocalDateTime;
 import java.util.Collection;
+import java.util.List;
 
 @Repository
 @Transactional(readOnly = true)
@@ -40,6 +41,14 @@ public class JpaRestaurantRepositoryImpl implements RestaurantRepository {
     @Override
     public Restaurant get(int id) {
         return em.find(Restaurant.class, id);
+    }
+
+    @Override
+    public Restaurant get(String restaurantName) {
+        List<Restaurant> result = em.createNamedQuery(Restaurant.GET_BY_NAME, Restaurant.class).setParameter("restaurantName", restaurantName).getResultList();
+        if (!result.isEmpty()){
+            return result.get(0);
+        } else return null;
     }
 
     @Override

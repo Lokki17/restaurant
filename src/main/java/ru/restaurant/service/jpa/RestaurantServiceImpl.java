@@ -51,6 +51,13 @@ public class RestaurantServiceImpl implements RestaurantService {
     }
 
     @Override
+    public Restaurant getByName(String restaurantName) {
+        Restaurant result = restaurantRepository.get(restaurantName);
+        Assert.notNull(result, "can't find request restaurant");
+        return result;
+    }
+
+    @Override
     public Restaurant update(Restaurant restaurant, int userId) throws NotFoundException {
         User savedUser = userRepository.checkUser(userId);
         if (savedUser.isAdmin()){

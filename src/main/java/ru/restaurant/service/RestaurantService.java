@@ -13,6 +13,8 @@ public interface RestaurantService {
 
     Restaurant get(Integer restaurantId);
 
+    Restaurant getByName(String restaurantName);
+
     Restaurant update(Restaurant restaurant, int userId) throws NotFoundException;
 
     Restaurant save(Restaurant restaurant, int userId);

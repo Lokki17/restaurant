@@ -15,6 +15,8 @@ public interface RestaurantRepository {
     // null if meal do not belong to userId
     Restaurant get(int id);
 
+    Restaurant get(String restaurantName);
+
     // ORDERED dateTime
     Collection<Restaurant> getAll();
 
