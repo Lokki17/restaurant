@@ -8,7 +8,7 @@ import java.io.Serializable;
 public class UserTo implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    private Integer id;
+    private Integer id = 100000;
 
     @NotEmpty
     private String name;

@@ -1,5 +1,6 @@
 package ru.restaurant.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.Column;
@@ -11,6 +12,7 @@ import java.time.LocalDate;
 public class DatedEntity extends BaseEntity{
     @Column(name = "date")
     @NotNull
+    @JsonIgnore
     protected LocalDate date;
 
     public LocalDate getDate() {

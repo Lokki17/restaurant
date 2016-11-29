@@ -8,10 +8,10 @@
 
 
     <http auto-config="true">
-        <intercept-url pattern="/users/**" access="hasRole('ADMIN')"/>
-        <intercept-url pattern="/dishes/**" access="hasRole('ADMIN')"/>
+<!--        <intercept-url pattern="/users/**" access="hasRole('ADMIN')"/>
+        <intercept-url pattern="/dishes/**" access="permitAll"/>
         <intercept-url pattern="/restaurants/**" access="hasRole('ADMIN')"/>
-        <intercept-url pattern="/voices/**" access="hasRole('ADMIN')"/>
+        <intercept-url pattern="/voices/**" access="hasRole('ADMIN')"/>-->
         <logout/>
     </http>
 
@@ -22,14 +22,14 @@
                     <password-encoder ref="passwordEncoder"/>
                 </authentication-provider>-->
         <authentication-provider>
-            <jdbc-user-service data-source-ref="dataSource"
+            <!--<jdbc-user-service data-source-ref="dataSource"
                                users-by-username-query="SELECT name, password FROM users WHERE name = ?"
                                authorities-by-username-query="SELECT u.name, r.role FROM users u, user_roles r WHERE u.id = r.user_id AND u.name = ?"
-            />
-<!--                        <user-service>
+            />-->
+                        <user-service>
                             <user name="Admin" password="admin" authorities="ADMIN"/>
                             <user name="User1" password="password" authorities="USER"/>
-                        </user-service>-->
+                        </user-service>
         </authentication-provider>
     </authentication-manager>
 
