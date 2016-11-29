@@ -64,12 +64,10 @@ public class DishServiceImpl implements DishService {
 
     @Override
     @Transactional
-    public Dish save(Dish dish, int userId) {
+    public Dish save(Dish dish, int restaurantId, int userId) {
         User savedUser = userRepository.checkUser(userId);
         if (savedUser.isAdmin()) {
-            Restaurant savesRestaurant = restaurantRepository.get(dish.getRestaurant().getId());
-            Assert.notNull(savesRestaurant, "can't find request restaurant");
-            dish.setRestaurant(savesRestaurant);
+            setRestaurant(dish, restaurantId);
             dish.setDate(LocalDate.now());
             return dishRepository.save(dish);
         } else {
@@ -82,5 +80,16 @@ public class DishServiceImpl implements DishService {
         Dish result = dishRepository.get(dishId);
         Assert.notNull(result, "can't find request dish");
         return result;
+    }
+
+    private void setRestaurant(Dish dish, Integer restaurantId){
+//        DishUtil.checkId(dish);
+        Restaurant restaurant = restaurantRepository.get(restaurantId);
+//        Restaurant restaurant = restaurantService.get(dish.getRestaurant().getId());
+        if (restaurant != null){
+            dish.setRestaurant(restaurant);
+        } else {
+            throw new NotFoundException("Not found Restaurant");
+        }
     }
 }

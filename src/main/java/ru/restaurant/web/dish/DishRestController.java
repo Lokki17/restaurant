@@ -36,9 +36,9 @@ public class DishRestController {
     }
 
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public Dish create(@Valid @RequestBody Dish dish) {
-        setRestaurant(dish);
-        return service.save(dish, AuthorizedUser.getId());
+    public Dish create(@Valid @RequestBody Dish dish, @RequestParam("id") Integer restaurantId) {
+//        setRestaurant(dish);
+        return service.save(dish, restaurantId, AuthorizedUser.getId());
 //        return service.save(dish, restaurantId, AuthorizedUser.getId());
     }
 
@@ -53,15 +53,15 @@ public class DishRestController {
     }*/
 
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public Dish update(@Valid @RequestBody Dish dish, @PathVariable("id") Integer id) {
+    public Dish update(@Valid @RequestBody Dish dish, @PathVariable("id") Integer id, @RequestParam("restaurantId") Integer restaurantId) {
         dish.setId(id);
-        setRestaurant(dish);
+//        setRestaurant(dish);
 //        dish.setRestaurant(restaurantService.get(restaurantId));
-        return service.save(dish, AuthorizedUser.getId());
+        return service.save(dish, restaurantId, AuthorizedUser.getId());
     }
 
-    private void setRestaurant(Dish dish){
-        DishUtil.checkId(dish);
+/*    private void setRestaurant(Dish dish){
+//        DishUtil.checkId(dish);
         Restaurant restaurant = restaurantService.getByName(dish.getRestaurant().getName());
 //        Restaurant restaurant = restaurantService.get(dish.getRestaurant().getId());
         if (restaurant != null){
@@ -69,5 +69,5 @@ public class DishRestController {
         } else {
             throw new NotFoundException("Not found Restaurant");
         }
-    }
+    }*/
 }

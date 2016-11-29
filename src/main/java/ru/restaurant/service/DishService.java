@@ -20,7 +20,7 @@ public interface DishService {
 
     Dish update(Dish dish, int userId) throws NotFoundException;
 
-    Dish save(Dish dish, int userId);
+    Dish save(Dish dish, int restaurantId, int userId);
 //    Dish save(Dish dish, int restaurantId, int userId);
 
     Dish get(int userId);

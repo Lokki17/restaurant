@@ -11,7 +11,7 @@ import java.time.LocalDate;
 @MappedSuperclass
 public class DatedEntity extends BaseEntity{
     @Column(name = "date")
-    @NotNull
+//    @NotNull
     @JsonIgnore
     protected LocalDate date;
 

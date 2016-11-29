@@ -12,6 +12,7 @@
         <intercept-url pattern="/dishes/**" access="permitAll"/>
         <intercept-url pattern="/restaurants/**" access="hasRole('ADMIN')"/>
         <intercept-url pattern="/voices/**" access="hasRole('ADMIN')"/>
+        <csrf disabled="true"/>
         <logout/>
     </http>
 
