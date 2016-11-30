@@ -3,6 +3,7 @@ package ru.restaurant.web.dish;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -39,6 +40,7 @@ public class DishRestController {
     }
 
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    @Secured("ROLE_ADMIN")
     public ResponseEntity<Dish> create(@Valid @RequestBody Dish dish, @RequestParam("id") Integer restaurantId) {
 //        setRestaurant(dish);
         Dish created = service.save(dish, restaurantId, AuthorizedUser.getId());
@@ -51,6 +53,7 @@ public class DishRestController {
     }
 
     @DeleteMapping(value = "/{id}")
+    @Secured("ROLE_ADMIN")
     public boolean delete(@PathVariable Integer id) {
         return service.delete(id, AuthorizedUser.getId());
     }
@@ -61,6 +64,7 @@ public class DishRestController {
     }*/
 
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @Secured("ROLE_ADMIN")
     public Dish update(@Valid @RequestBody Dish dish, @PathVariable("id") Integer id, @RequestParam("restaurantId") Integer restaurantId) {
         dish.setId(id);
 //        setRestaurant(dish);

@@ -9,12 +9,14 @@
 
     <http auto-config="true">
         <intercept-url pattern="/users/**" access="hasRole('ROLE_ADMIN')"/>
-        <intercept-url pattern="/dishes/**" access="permitAll"/>
+        <intercept-url pattern="/dishes/**" access="hasRole('ROLE_USER')"/>
         <intercept-url pattern="/restaurants/**" access="hasRole('ROLE_ADMIN')"/>
-        <intercept-url pattern="/voices/**" access="hasRole('ROLE_ADMIN')"/>
+        <intercept-url pattern="/voices/**" access="hasRole('ROLE_USER')"/>
         <csrf disabled="true"/>
         <logout/>
     </http>
+
+    <global-method-security secured-annotations="enabled"/>
 
     <!--<beans:bean class="ru.restaurant.util.PasswordUtil" id="passwordEncoder" factory-method="getPasswordEncoder"/>-->
 

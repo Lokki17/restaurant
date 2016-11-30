@@ -4,6 +4,7 @@ package ru.restaurant.web.voice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import ru.restaurant.model.Restaurant;
@@ -41,6 +42,7 @@ public class VoiceRestController {
     }
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @Secured("ROLE_ADMIN")
     public Collection<VoiceTo> get() {
         return VoiceUtil.toToCollection(service.getAll());
     }
@@ -58,6 +60,7 @@ public class VoiceRestController {
     }
 
     @DeleteMapping(value = "/{id}")
+    @Secured("ROLE_ADMIN")
     public boolean delete(@PathVariable("id") Integer id) {
         return service.delete(id, AuthorizedUser.getId());
     }
