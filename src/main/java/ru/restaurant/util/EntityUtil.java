@@ -1,7 +1,6 @@
 package ru.restaurant.util;
 
 import ru.restaurant.model.*;
-import ru.restaurant.to.UserTo;
 
 import java.util.Objects;
 
@@ -25,7 +24,7 @@ public class EntityUtil {
         } else return false;
     }
 
-    public static UserTo asTo(User user) {
+/*    public static UserTo asTo(User user) {
         return new UserTo(user.getId(), user.getName(), user.getPassword());
-    }
+    }*/
 }

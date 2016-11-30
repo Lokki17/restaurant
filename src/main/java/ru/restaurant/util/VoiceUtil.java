@@ -1,11 +1,9 @@
 package ru.restaurant.util;
 
 import ru.restaurant.model.*;
+import ru.restaurant.to.VoiceTo;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 public class VoiceUtil {
 
@@ -18,6 +16,12 @@ public class VoiceUtil {
 
     public static void checkId(Voice voice){
         Objects.requireNonNull(voice.getRestaurant());
-        Objects.requireNonNull(voice.getRestaurant().getId());
+//        Objects.requireNonNull(voice.getRestaurant().getId());
+    }
+
+    public static Collection<VoiceTo> toToCollection(Collection<Voice> voices){
+        Collection<VoiceTo> result = new LinkedList<>();
+        voices.stream().forEach(voice -> result.add(new VoiceTo(voice)));
+        return result;
     }
 }

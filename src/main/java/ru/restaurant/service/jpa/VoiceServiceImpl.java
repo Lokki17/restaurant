@@ -68,6 +68,7 @@ public class VoiceServiceImpl implements VoiceService {
         } else {
             voice.setId(null);
         }
+        voice.setDate(dateTimeNow.toLocalDate());
         return voiceRepository.save(voice, dateTimeNow.toLocalDate(), userId);
     }
 }
