@@ -3,7 +3,9 @@ package ru.restaurant.web.voice;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import ru.restaurant.model.Restaurant;
 import ru.restaurant.model.User;
 import ru.restaurant.model.Voice;
@@ -16,6 +18,7 @@ import ru.restaurant.util.exception.NotFoundException;
 import ru.restaurant.web.AuthorizedUser;
 
 import javax.validation.Valid;
+import java.net.URI;
 import java.util.Collection;
 import java.util.Map;
 
@@ -43,15 +46,20 @@ public class VoiceRestController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public VoiceTo create(@Valid @RequestBody Voice voice) {
+    public ResponseEntity<VoiceTo> create(@Valid @RequestBody Voice voice) {
         setRestaurant(voice);
         setUser(voice, AuthorizedUser.getId());
-        return new VoiceTo(service.save(voice, AuthorizedUser.getId()));
+        VoiceTo created = new VoiceTo(service.save(voice, AuthorizedUser.getId()));
+        URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
+                .path("/voices" + created.getId())
+                .buildAndExpand(created.getId()).toUri();
+
+        return ResponseEntity.created(uriOfNewResource).body(created);
     }
 
     @DeleteMapping(value = "/{id}")
-    public void delete(@PathVariable("id") Integer id) {
-        service.delete(id, AuthorizedUser.getId());
+    public boolean delete(@PathVariable("id") Integer id) {
+        return service.delete(id, AuthorizedUser.getId());
     }
 
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)

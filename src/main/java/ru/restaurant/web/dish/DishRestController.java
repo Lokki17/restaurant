@@ -2,8 +2,10 @@ package ru.restaurant.web.dish;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import ru.restaurant.model.Dish;
 import ru.restaurant.model.Restaurant;
 import ru.restaurant.model.Voice;
@@ -16,6 +18,7 @@ import ru.restaurant.util.exception.NotFoundException;
 import ru.restaurant.web.AuthorizedUser;
 
 import javax.validation.Valid;
+import java.net.URI;
 import java.time.LocalDate;
 import java.util.Collection;
 import java.util.Map;
@@ -36,15 +39,20 @@ public class DishRestController {
     }
 
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public Dish create(@Valid @RequestBody Dish dish, @RequestParam("id") Integer restaurantId) {
+    public ResponseEntity<Dish> create(@Valid @RequestBody Dish dish, @RequestParam("id") Integer restaurantId) {
 //        setRestaurant(dish);
-        return service.save(dish, restaurantId, AuthorizedUser.getId());
+        Dish created = service.save(dish, restaurantId, AuthorizedUser.getId());
 //        return service.save(dish, restaurantId, AuthorizedUser.getId());
+        URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
+                .path("/dishes" + created.getId())
+                .buildAndExpand(created.getId()).toUri();
+
+        return ResponseEntity.created(uriOfNewResource).body(created);
     }
 
     @DeleteMapping(value = "/{id}")
-    public void delete(@PathVariable Integer id) {
-        service.delete(id, AuthorizedUser.getId());
+    public boolean delete(@PathVariable Integer id) {
+        return service.delete(id, AuthorizedUser.getId());
     }
 
 /*    @GetMapping(value = "/{id}")
