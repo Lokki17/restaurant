@@ -18,7 +18,41 @@
     </li>
     <li>Each restaurant provides new menu each day.</li>
 </ul>
+<h3>Note:</h3>
+<p> mapping "/" - root mapping (this page)</p>
+<p>mapping "/dishes"</p>
+<ul>
+    <li> "/" (method Get) - get dishes list with restaurants. For any authenticated user</li>
+    <li> "/" (method Post) - create new dish (json body required). Only for users with Role "ROLE_ADMIN"</li>
+    <li> "/{id}" (method Get) - get dish with id. Only for users with Role "ROLE_ADMIN"</li>
+    <li> "/{id}" (method Put) - update dish with id (json body required). Only for users with Role "ROLE_ADMIN"</li>
+    <li> "/{id}" (method Delete) - delete dish with id. Only for users with Role "ROLE_ADMIN"</li>
+</ul>
+<p> mapping "/voices"</p>
+<ul>
+    <li> "/" (method Get) - get restaurant list with voices count. For any authenticated user</li>
+    <li> "/" (method Post) - create new voice (json body required). Only for users with Role "ROLE_USER"</li>
+    <li> "/{id}" (method Get) - get voice with id. Only for users with Role "ROLE_ADMIN"</li>
+    <li> "/{id}" (method Put) - update voice with id (json body required). Only for users with Role "ROLE_ADMIN"</li>
+    <li> "/{id}" (method Delete) - delete voice with id. Only for users with Role "ROLE_ADMIN"</li>
+</ul>
+<p> mapping "/users" (All points only for users with Role "ROLE_ADMIN")</p>
+<ul>
+    <li> "/" (method Get) - get users list.</li>
+    <li> "/" (method Post) - create new user (json body required).</li>
+    <li> "/{id}" (method Get) - get user with id.</li>
+    <li> "/{id}" (method Put) - update user with id (json body required).</li>
+    <li> "/{id}" (method Delete) - delete user with id.</li>
+</ul>
+<p> mapping "/restaurants" (All points only for users with Role "ROLE_ADMIN")</p>
+<ul>
+    <li> "/" (method Get) - get restaurants list.</li>
+    <li> "/" (method Post) - create new restaurant (json body required).</li>
+    <li> "/{id}" (method Get) - get restaurant with id.</li>
+    <li> "/{id}" (method Put) - update restaurant with id (json body required).</li>
+    <li> "/{id}" (method Delete) - delete restaurant with id.</li>
+</ul>
+<p></p>
 
-<hr/>
 </body>
 </html>
