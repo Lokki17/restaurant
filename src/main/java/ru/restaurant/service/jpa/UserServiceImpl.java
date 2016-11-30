@@ -1,17 +1,21 @@
 package ru.restaurant.service.jpa;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import ru.restaurant.model.User;
 import ru.restaurant.repository.UserRepository;
 import ru.restaurant.service.UserService;
 import ru.restaurant.util.exception.AccessDeniedException;
 import ru.restaurant.util.exception.NotFoundException;
+import ru.restaurant.web.AuthorizedUser;
 
 import java.util.Collection;
 
 @Service("userService")
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService, UserDetailsService{
 
     @Autowired
     UserRepository userRepository;
@@ -62,5 +66,14 @@ public class UserServiceImpl implements UserService{
 //        } else {
 //            throw new AccessDeniedException("You can't save user");
 //        }
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        User user = userRepository.getByName(username);
+        if (user == null) {
+            throw new UsernameNotFoundException("User " + username + " is not found");
+        }
+        return new AuthorizedUser(user);
     }
 }
