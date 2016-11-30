@@ -8,7 +8,7 @@ import java.io.Serializable;
 public class UserTo implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    private Integer id = 100000;
+    private Integer id;
 
     @NotEmpty
     private String name;
@@ -53,13 +53,12 @@ public class UserTo implements Serializable {
         return id == null;
     }
 
-
     @Override
     public String toString() {
         return "UserTo{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", password='" + password + '\'' +
                 '}';
     }
-
 }

@@ -72,10 +72,10 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    public AuthorizedUser loadUserByUsername(String s) throws UsernameNotFoundException {
-        User u = userRepository.getByName(s.toLowerCase());
+    public AuthorizedUser loadUserByUsername(String name) throws UsernameNotFoundException {
+        User u = userRepository.getByName(name);
         if (u == null) {
-            throw new UsernameNotFoundException("User " + s + " is not found");
+            throw new UsernameNotFoundException("User " + name + " is not found");
         }
         return new AuthorizedUser(u);
     }
