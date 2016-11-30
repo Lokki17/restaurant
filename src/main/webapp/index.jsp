@@ -29,6 +29,7 @@
     <li> "/{id}" (method Delete) - delete dish with id. Only for users with Role "ROLE_ADMIN"</li>
 </ul>
 <p> mapping "/voices"</p>
+<p> mapptig "/create" - (method Post) - register new user (json body required). Only for unauthenticated users</p>
 <ul>
     <li> "/" (method Get) - get restaurant list with voices count. For any authenticated user</li>
     <li> "/" (method Post) - create new voice (json body required). Only for users with Role "ROLE_USER"</li>

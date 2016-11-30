@@ -9,9 +9,10 @@
 
     <http auto-config="true">
         <intercept-url pattern="/users/**" access="hasRole('ROLE_ADMIN')"/>
-        <intercept-url pattern="/dishes/**" access="isAuthenticated"/>
+        <intercept-url pattern="/dishes/**" access="isAuthenticated()"/>
         <intercept-url pattern="/restaurants/**" access="hasRole('ROLE_ADMIN')"/>
-        <intercept-url pattern="/voices/**" access="isAuthenticated"/>
+        <intercept-url pattern="/voices/**" access="isAuthenticated()"/>
+        <intercept-url pattern="/create" access="permitAll"/>
         <csrf disabled="true"/>
         <logout/>
     </http>

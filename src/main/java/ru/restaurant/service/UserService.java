@@ -15,4 +15,6 @@ public interface UserService {
     User update(User user, int userId) throws NotFoundException;
 
     User save(User user, int userId);
+
+    boolean checkUser(String name);
 }
