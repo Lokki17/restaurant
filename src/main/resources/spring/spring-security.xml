@@ -15,7 +15,11 @@
         <intercept-url pattern="/create" access="permitAll"/>
         <csrf disabled="true"/>
         <logout/>
+        <access-denied-handler ref="accessDeniedHandler"/>
     </http>
+
+    <beans:bean id="accessDeniedHandler" class="ru.restaurant.util.exception.AccessDeniedHandlerImpl"/>
+
 
     <global-method-security secured-annotations="enabled"/>
 
