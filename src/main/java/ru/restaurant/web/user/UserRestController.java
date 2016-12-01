@@ -9,6 +9,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import ru.restaurant.model.User;
 import ru.restaurant.service.UserService;
 import ru.restaurant.to.UserTo;
+import ru.restaurant.to.UserToClient;
 import ru.restaurant.web.AuthorizedUser;
 
 import javax.validation.Valid;
@@ -27,8 +28,8 @@ public class UserRestController {
     }
 
     @GetMapping(value = "/{id}")
-    public User get(@PathVariable("id") Integer id) {
-        return service.get(id, AuthorizedUser.getId());
+    public UserToClient get(@PathVariable("id") Integer id) {
+        return new UserToClient(service.get(id, AuthorizedUser.getId()));
     }
 
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -47,8 +48,8 @@ public class UserRestController {
     }
 
     @PutMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public User update(@Valid @RequestBody User user, @PathVariable Integer id) {
+    public UserToClient update(@Valid @RequestBody User user, @PathVariable Integer id) {
         user.setId(id);
-        return service.save(user, AuthorizedUser.getId());
+        return new UserToClient(service.save(user, AuthorizedUser.getId()));
     }
 }
