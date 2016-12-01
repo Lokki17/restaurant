@@ -69,7 +69,7 @@ public class DishRestController {
         dish.setId(id);
 //        setRestaurant(dish);
 //        dish.setRestaurant(restaurantService.get(restaurantId));
-        return service.save(dish, restaurantId, AuthorizedUser.getId());
+        return service.update(dish, restaurantId, AuthorizedUser.getId());
     }
 
 /*    private void setRestaurant(Dish dish){

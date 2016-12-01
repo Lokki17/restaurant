@@ -33,13 +33,8 @@ public class DishServiceImpl implements DishService {
     RestaurantRepository restaurantRepository;
 
     @Override
-    public boolean delete(int id, int userId) throws NotFoundException {
-        User savedUser = userRepository.checkUser(userId);
-        if (savedUser.isAdmin()) {
-            return dishRepository.delete(id);
-        } else {
-            throw new AccessDeniedException("You can't delete dish");
-        }
+    public boolean delete(int id, int userId) {
+        return dishRepository.delete(id);
     }
 
     @Override
@@ -52,30 +47,21 @@ public class DishServiceImpl implements DishService {
     }
 
     @Override
-    public Dish update(Dish dish, int userId) throws NotFoundException {
+    public Dish update(Dish dish, int restaurantId, int userId) throws NotFoundException {
         User savedUser = userRepository.checkUser(userId);
-        if (savedUser.isAdmin()) {
-            dish.setDate(LocalDate.now());
-            return dishRepository.save(dish);
-        } else {
-            throw new AccessDeniedException("You can't update dish");
-        }
+        setRestaurant(dish, restaurantId);
+        dish.setDate(LocalDate.now());
+        return dishRepository.save(dish);
     }
 
     @Override
     @Transactional
     public Dish save(Dish dish, int restaurantId, int userId) {
-//        User savedUser = userRepository.checkUser(userId);
-//        if (savedUser.isAdmin()) {
-            setRestaurant(dish, restaurantId);
-            dish.setDate(LocalDate.now());
-            Dish result = dishRepository.save(dish);
-            if (result != null){
-                return result;
-            } else throw new NotFoundException("Not found dish");
-//        } else {
-//            throw new AccessDeniedException("You can't save dish");
-//        }
+        setRestaurant(dish, restaurantId);
+        dish.setDate(LocalDate.now());
+        Dish result = dishRepository.save(dish);
+        Assert.notNull(result, "Not found dish");
+        return result;
     }
 
     @Override
@@ -85,14 +71,9 @@ public class DishServiceImpl implements DishService {
         return result;
     }
 
-    private void setRestaurant(Dish dish, Integer restaurantId){
-//        DishUtil.checkId(dish);
+    private void setRestaurant(Dish dish, Integer restaurantId) {
         Restaurant restaurant = restaurantRepository.get(restaurantId);
-//        Restaurant restaurant = restaurantService.get(dish.getRestaurant().getId());
-        if (restaurant != null){
-            dish.setRestaurant(restaurant);
-        } else {
-            throw new NotFoundException("Not found Restaurant");
-        }
+        Assert.notNull(restaurant, "Not found Restaurant");
+        dish.setRestaurant(restaurant);
     }
 }

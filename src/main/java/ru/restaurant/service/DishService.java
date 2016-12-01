@@ -18,7 +18,7 @@ public interface DishService {
 
     Map<Restaurant, Set<Dish>> getAllOnDate(LocalDate dateTime);
 
-    Dish update(Dish dish, int userId) throws NotFoundException;
+    Dish update(Dish dish, int restaurantId, int userId) throws NotFoundException;
 
     Dish save(Dish dish, int restaurantId, int userId);
 //    Dish save(Dish dish, int restaurantId, int userId);

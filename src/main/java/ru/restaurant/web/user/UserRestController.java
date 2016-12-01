@@ -38,7 +38,7 @@ public class UserRestController {
                 .path("/users" + created.getId())
                 .buildAndExpand(created.getId()).toUri();
 
-        return ResponseEntity.created(uriOfNewResource).body(new UserTo(created));
+        return ResponseEntity.created(uriOfNewResource).body(new UserTo(user));
     }
 
     @DeleteMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)

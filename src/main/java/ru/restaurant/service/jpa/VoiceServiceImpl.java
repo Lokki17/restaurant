@@ -32,8 +32,9 @@ public class VoiceServiceImpl implements VoiceService {
 
     @Override
     public Voice get(int id, int userId) {
-        return voiceRepository.get(userId, LocalDate.now());
-//        return voiceRepository.get(id, userId, LocalDate.now());
+        Voice result = voiceRepository.get(userId, LocalDate.now());
+        Assert.notNull(result, "can't find request voice");
+        return result;
     }
 
     @Override
@@ -44,8 +45,8 @@ public class VoiceServiceImpl implements VoiceService {
     @Override
     public boolean delete(int id, int userId) {
         User savedUser = userRepository.get(userId);
-        Assert.notNull(savedUser, "can't find user");
-        return savedUser.isAdmin() && voiceRepository.delete(id);
+        Assert.notNull(savedUser, "can't find voice");
+        return voiceRepository.delete(id);
     }
 
     @Override

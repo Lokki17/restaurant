@@ -5,8 +5,8 @@ import ru.restaurant.util.exception.WrongTimeException;
 import java.time.LocalTime;
 
 public class TimeUtil {
-    public static final LocalTime STOP_TIME = LocalTime.of(9, 0);
-    public static final LocalTime LANCH_TIME = LocalTime.of(8, 0);
+    public static final LocalTime STOP_TIME = LocalTime.of(20, 0);
+    public static final LocalTime LANCH_TIME = LocalTime.of(19, 0);
 //    public static final LocalTime LANCH_TIME = LocalTime.of(23, 0);
 
     public static void checkTime(LocalTime localTime) {
