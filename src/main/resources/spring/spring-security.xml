@@ -7,7 +7,8 @@
 	http://www.springframework.org/schema/security/spring-security.xsd">
 
 
-    <http auto-config="true">
+    <http create-session="stateless" entry-point-ref="authenticationFailedEntryPoint">
+        <custom-filter ref="authenticationFilter" position="BASIC_AUTH_FILTER"/>
         <intercept-url pattern="/users/**" access="hasRole('ROLE_ADMIN')"/>
         <intercept-url pattern="/dishes/**" access="isAuthenticated()"/>
         <intercept-url pattern="/restaurants/**" access="hasRole('ROLE_ADMIN')"/>
@@ -20,12 +21,19 @@
 
     <beans:bean id="accessDeniedHandler" class="ru.restaurant.util.exception.AccessDeniedHandlerImpl"/>
 
+    <beans:bean id="authenticationFilter" class="org.springframework.security.web.authentication.www.BasicAuthenticationFilter">
+        <beans:constructor-arg name="authenticationManager" ref="authenticationManager" />
+        <beans:constructor-arg name="authenticationEntryPoint" ref="authenticationFailedEntryPoint" />
+    </beans:bean>
+
+    <beans:bean id="authenticationFailedEntryPoint"
+                class="ru.restaurant.util.exception.AuthenticationFailedEntryPoint"/>
 
     <global-method-security secured-annotations="enabled"/>
 
     <!--<beans:bean class="ru.restaurant.util.PasswordUtil" id="passwordEncoder" factory-method="getPasswordEncoder"/>-->
 
-    <authentication-manager>
+    <authentication-manager alias="authenticationManager">
                 <authentication-provider user-service-ref="userService">
                     <!--<password-encoder ref="passwordEncoder"/>-->
                 </authentication-provider>
