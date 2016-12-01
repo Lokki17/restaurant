@@ -65,14 +65,17 @@ public class DishServiceImpl implements DishService {
     @Override
     @Transactional
     public Dish save(Dish dish, int restaurantId, int userId) {
-        User savedUser = userRepository.checkUser(userId);
-        if (savedUser.isAdmin()) {
+//        User savedUser = userRepository.checkUser(userId);
+//        if (savedUser.isAdmin()) {
             setRestaurant(dish, restaurantId);
             dish.setDate(LocalDate.now());
-            return dishRepository.save(dish);
-        } else {
-            throw new AccessDeniedException("You can't save dish");
-        }
+            Dish result = dishRepository.save(dish);
+            if (result != null){
+                return result;
+            } else throw new NotFoundException("Not found dish");
+//        } else {
+//            throw new AccessDeniedException("You can't save dish");
+//        }
     }
 
     @Override

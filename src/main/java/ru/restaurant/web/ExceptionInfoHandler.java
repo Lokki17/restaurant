@@ -6,6 +6,7 @@ import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 import ru.restaurant.util.exception.AccessDeniedException;
 import ru.restaurant.util.exception.ErrorInfo;
@@ -34,10 +35,18 @@ public class ExceptionInfoHandler {
         return logAndGetErrorInfo(req, e, true);
     }
 
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ExceptionHandler(UsernameNotFoundException.class)
+    @ResponseBody
+    @Order(Ordered.HIGHEST_PRECEDENCE + 2)
+    public ErrorInfo handleError(HttpServletRequest req, UsernameNotFoundException e) {
+        return logAndGetErrorInfo(req, e, true);
+    }
+
     @ResponseStatus(value = HttpStatus.CONFLICT)  // 409
     @ExceptionHandler(DataIntegrityViolationException.class)
     @ResponseBody
-    @Order(Ordered.HIGHEST_PRECEDENCE + 2)
+    @Order(Ordered.HIGHEST_PRECEDENCE + 3)
     public ErrorInfo conflict(HttpServletRequest req, DataIntegrityViolationException e) {
         return logAndGetErrorInfo(req, e, true);
     }
@@ -45,7 +54,7 @@ public class ExceptionInfoHandler {
     @ResponseStatus(value = HttpStatus.BAD_REQUEST)
     @ExceptionHandler(WrongTimeException.class)
     @ResponseBody
-    @Order(Ordered.HIGHEST_PRECEDENCE + 3)
+    @Order(Ordered.HIGHEST_PRECEDENCE + 4)
     public ErrorInfo wrongTime(HttpServletRequest req, WrongTimeException e) {
         return logAndGetErrorInfo(req, e, true);
     }

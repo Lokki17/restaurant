@@ -27,12 +27,12 @@ public class RestaurantServiceImpl implements RestaurantService {
 
     @Override
     public boolean delete(int id, int userId) throws NotFoundException {
-        User savedUser = userRepository.checkUser(userId);
-        if (savedUser.isAdmin()){
+//        User savedUser = userRepository.checkUser(userId);
+//        if (savedUser.isAdmin()){
             return restaurantRepository.delete(id);
-        } else {
-            throw new AccessDeniedException("You can't delete restaurant");
-        }
+//        } else {
+//            throw new AccessDeniedException("You can't delete restaurant");
+//        }
     }
 
     @Override
@@ -59,21 +59,21 @@ public class RestaurantServiceImpl implements RestaurantService {
 
     @Override
     public Restaurant update(Restaurant restaurant, int userId) throws NotFoundException {
-        User savedUser = userRepository.checkUser(userId);
-        if (savedUser.isAdmin()){
+//        User savedUser = userRepository.checkUser(userId);
+//        if (savedUser.isAdmin()){
             return restaurantRepository.save(restaurant);
-        } else {
-            throw new AccessDeniedException("You can't update restaurant");
-        }
+//        } else {
+//            throw new AccessDeniedException("You can't update restaurant");
+//        }
     }
 
     @Override
     public Restaurant save(Restaurant restaurant, int userId) {
-        User savedUser = userRepository.checkUser(userId);
-        if (savedUser.isAdmin()){
+//        User savedUser = userRepository.checkUser(userId);
+//        if (savedUser.isAdmin()){
             return restaurantRepository.save(restaurant);
-        } else {
-            throw new AccessDeniedException("You can't save restaurant");
-        }
+//        } else {
+//            throw new AccessDeniedException("You can't save restaurant");
+//        }
     }
 }
