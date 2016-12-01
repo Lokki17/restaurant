@@ -53,8 +53,19 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
+    public User save(User user) {
+        User savedUser = userRepository.save(user);
+        Assert.notNull(user, "user " + user.getName() + "did't saved");
+        return savedUser;
+    }
+
+    @Override
     public boolean checkUser(String name) {
-        return loadUserByUsername(name) == null;
+        try {
+            loadUserByUsername(name);
+        } catch (UsernameNotFoundException e){
+            return true;
+        } return false;
     }
 
     @Override
