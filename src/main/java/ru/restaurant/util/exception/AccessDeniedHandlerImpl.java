@@ -13,7 +13,8 @@ import java.io.IOException;
 public class AccessDeniedHandlerImpl extends ExceptionInfoHandler implements AccessDeniedHandler {
 
     @Override
-    public void handle(HttpServletRequest request, HttpServletResponse response, AccessDeniedException accessDeniedException) throws IOException, ServletException {
+    public void handle(HttpServletRequest request, HttpServletResponse response,
+                       AccessDeniedException accessDeniedException) throws IOException, ServletException {
         ObjectMapper objectMapper = new ObjectMapper();
         String s = objectMapper.writeValueAsString(new ErrorInfo(request.getRequestURL(), accessDeniedException));
         response.setContentType("application/json;charset=UTF-8");
