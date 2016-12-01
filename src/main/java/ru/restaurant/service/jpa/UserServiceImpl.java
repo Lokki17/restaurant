@@ -40,23 +40,17 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     public User update(User user, int userId) throws NotFoundException {
-        User result = userRepository.save(user);
-        Assert.notNull(result, "can't find request user");
-        return result;
+        return checkUser(userRepository.save(user), "Can't find request user");
     }
 
     @Override
     public User save(User user, int userId) {
-        User result = userRepository.save(user);
-        Assert.notNull(result, "can't find request user");
-        return result;
+        return checkUser(userRepository.save(user), "Can't find request user");
     }
 
     @Override
     public User save(User user) {
-        User savedUser = userRepository.save(user);
-        Assert.notNull(user, "user " + user.getName() + "did't saved");
-        return savedUser;
+        return checkUser(userRepository.save(user), "user " + user.getName() + "did't save");
     }
 
     @Override
@@ -75,5 +69,10 @@ public class UserServiceImpl implements UserService, UserDetailsService {
             throw new UsernameNotFoundException("User " + username + " is not found");
         }
         return new AuthorizedUser(user);
+    }
+
+    private User checkUser(User result, String message){
+        Assert.notNull(result, message);
+        return result;
     }
 }

@@ -12,7 +12,7 @@ public interface VoiceRepository {
     Voice save(Voice voice, LocalDate localDate, int userId) throws WrongTimeException;
 
     // false if meal do not belong to userId
-    boolean delete(int id);
+    boolean delete(int id, int userId);
 
     // null if meal do not belong to userId
     Voice get(int userId, LocalDate localDate);

@@ -77,7 +77,6 @@ public class VoiceRestController {
     private void setRestaurant(Voice voice){
         VoiceUtil.checkId(voice);
         Restaurant restaurant = restaurantService.getByName(voice.getRestaurant().getName());
-//        Restaurant restaurant = restaurantService.get(voice.getRestaurant().getId());
         Assert.notNull(restaurant, "Restaurant not found");
             voice.setRestaurant(restaurant);
     }

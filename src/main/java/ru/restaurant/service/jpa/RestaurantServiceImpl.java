@@ -40,29 +40,26 @@ public class RestaurantServiceImpl implements RestaurantService {
 
     @Override
     public Restaurant get(Integer restaurantId) {
-        Restaurant result = restaurantRepository.get(restaurantId);
-        Assert.notNull(result, "can't find request restaurant");
-        return result;
+        return checkRestaurant(restaurantRepository.get(restaurantId), "Can't find request restaurant");
     }
 
     @Override
     public Restaurant getByName(String restaurantName) {
-        Restaurant result = restaurantRepository.get(restaurantName);
-        Assert.notNull(result, "can't find request restaurant");
-        return result;
+        return checkRestaurant(restaurantRepository.get(restaurantName), "Can't find " + restaurantName + " restaurant");
     }
 
     @Override
-    public Restaurant update(Restaurant restaurant, int userId) throws NotFoundException {
-        Restaurant result = restaurantRepository.save(restaurant);
-        Assert.notNull(result, "can't find request restaurant");
-        return result;
+    public Restaurant update(Restaurant restaurant, int userId) {
+        return checkRestaurant(restaurantRepository.save(restaurant), "Can't find request restaurant");
     }
 
     @Override
     public Restaurant save(Restaurant restaurant, int userId) {
-        Restaurant result =  restaurantRepository.save(restaurant);
-        Assert.notNull(result, "can't find request restaurant");
+        return checkRestaurant(restaurantRepository.save(restaurant), "Restaurant didn't save");
+    }
+
+    private Restaurant checkRestaurant(Restaurant result, String message){
+        Assert.notNull(result, message);
         return result;
     }
 }

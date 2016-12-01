@@ -36,8 +36,8 @@ public class JpaVoiceRepositoryImpl implements VoiceRepository{
 
     @Override
     @Transactional
-    public boolean delete(int id) {
-        return em.createNamedQuery(Voice.DELETE).setParameter("voiceId", id).executeUpdate() != 0;
+    public boolean delete(int id, int userId) {
+        return em.createNamedQuery(Voice.DELETE).setParameter("voiceId", id).setParameter("userId", userId).executeUpdate() != 0;
     }
 
     @Override

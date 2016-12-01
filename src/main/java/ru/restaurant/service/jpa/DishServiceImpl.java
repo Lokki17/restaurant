@@ -26,8 +26,8 @@ public class DishServiceImpl implements DishService {
     @Autowired
     DishRepository dishRepository;
 
-    @Autowired
-    UserRepository userRepository;
+/*    @Autowired
+    UserRepository userRepository;*/
 
     @Autowired
     RestaurantRepository restaurantRepository;
@@ -47,11 +47,11 @@ public class DishServiceImpl implements DishService {
     }
 
     @Override
-    public Dish update(Dish dish, int restaurantId, int userId) throws NotFoundException {
-        User savedUser = userRepository.checkUser(userId);
+    public Dish update(Dish dish, int restaurantId, int userId) {
+//        User savedUser = userRepository.checkUser(userId);
         setRestaurant(dish, restaurantId);
         dish.setDate(LocalDate.now());
-        return dishRepository.save(dish);
+        return checkDish(dishRepository.save(dish), "Dish didn't update");
     }
 
     @Override
@@ -59,21 +59,22 @@ public class DishServiceImpl implements DishService {
     public Dish save(Dish dish, int restaurantId, int userId) {
         setRestaurant(dish, restaurantId);
         dish.setDate(LocalDate.now());
-        Dish result = dishRepository.save(dish);
-        Assert.notNull(result, "Not found dish");
-        return result;
+        return checkDish(dishRepository.save(dish), "Dish didn't save");
     }
 
     @Override
     public Dish get(int dishId) {
-        Dish result = dishRepository.get(dishId);
-        Assert.notNull(result, "can't find request dish");
-        return result;
+        return checkDish(dishRepository.get(dishId), "Can't find request dish");
     }
 
     private void setRestaurant(Dish dish, Integer restaurantId) {
         Restaurant restaurant = restaurantRepository.get(restaurantId);
         Assert.notNull(restaurant, "Not found Restaurant");
         dish.setRestaurant(restaurant);
+    }
+
+    private Dish checkDish(Dish result, String message){
+        Assert.notNull(result, message);
+        return result;
     }
 }

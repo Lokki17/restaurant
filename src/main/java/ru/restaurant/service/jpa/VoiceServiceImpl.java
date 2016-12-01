@@ -27,14 +27,12 @@ public class VoiceServiceImpl implements VoiceService {
     @Autowired
     VoiceRepository voiceRepository;
 
-    @Autowired
-    UserRepository userRepository;
+/*    @Autowired
+    UserRepository userRepository;*/
 
     @Override
     public Voice get(int id, int userId) {
-        Voice result = voiceRepository.get(userId, LocalDate.now());
-        Assert.notNull(result, "can't find request voice");
-        return result;
+        return checkVoice(voiceRepository.get(userId, LocalDate.now()), "Can't find your today voice");
     }
 
     @Override
@@ -44,9 +42,9 @@ public class VoiceServiceImpl implements VoiceService {
 
     @Override
     public boolean delete(int id, int userId) {
-        User savedUser = userRepository.get(userId);
-        Assert.notNull(savedUser, "can't find voice");
-        return voiceRepository.delete(id);
+/*        User savedUser = userRepository.get(userId);
+        Assert.notNull(savedUser, "can't find voice");*/
+        return voiceRepository.delete(id, userId);
     }
 
     @Override
@@ -71,5 +69,10 @@ public class VoiceServiceImpl implements VoiceService {
         }
         voice.setDate(dateTimeNow.toLocalDate());
         return voiceRepository.save(voice, dateTimeNow.toLocalDate(), userId);
+    }
+
+    private Voice checkVoice(Voice result, String message){
+        Assert.notNull(result, message);
+        return result;
     }
 }
