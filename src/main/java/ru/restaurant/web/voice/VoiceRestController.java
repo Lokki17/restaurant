@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import ru.restaurant.model.Restaurant;
@@ -77,20 +78,13 @@ public class VoiceRestController {
         VoiceUtil.checkId(voice);
         Restaurant restaurant = restaurantService.getByName(voice.getRestaurant().getName());
 //        Restaurant restaurant = restaurantService.get(voice.getRestaurant().getId());
-        if (restaurant != null){
+        Assert.notNull(restaurant, "Restaurant not found");
             voice.setRestaurant(restaurant);
-        } else {
-            throw new NotFoundException("Not found Restaurant");
-        }
     }
 
     private void setUser(Voice voice, Integer userId){
         User savedUser = userService.get(userId, AuthorizedUser.getId());
-        if (savedUser != null){
+        Assert.notNull(savedUser, "User not found");
             voice.setUser(savedUser);
-        } else {
-            throw new NotFoundException("Not found User");
-        }
     }
-
 }
