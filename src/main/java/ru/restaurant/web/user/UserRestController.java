@@ -10,6 +10,7 @@ import ru.restaurant.model.User;
 import ru.restaurant.service.UserService;
 import ru.restaurant.to.UserTo;
 import ru.restaurant.to.UserToClient;
+import ru.restaurant.util.UserUtil;
 import ru.restaurant.web.AuthorizedUser;
 
 import javax.validation.Valid;
@@ -23,8 +24,8 @@ public class UserRestController {
     UserService service;
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public Collection<User> getAll() {
-        return service.getAll(AuthorizedUser.getId());
+    public Collection<UserToClient> getAll() {
+        return UserUtil.toClient(service.getAll(AuthorizedUser.getId()));
     }
 
     @GetMapping(value = "/{id}")
