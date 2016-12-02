@@ -20,7 +20,7 @@
 </ul>
 <h3>Note:</h3>
 <p> mapping "/" - root mapping (this page)</p>
-<p> mapping "/create" - register new user (json body required) </p>
+<p> mapping "/create" (method Post) - register new user (json body required) </p>
 <p>mapping "/dishes"</p>
 <ul>
     <li> "/" (method Get) - get dishes list with restaurants. For any authenticated user</li>
@@ -29,8 +29,7 @@
     <li> "/{id}" (method Put) - update dish with id (json body required). Only for users with Role "ROLE_ADMIN"</li>
     <li> "/{id}" (method Delete) - delete dish with id. Only for users with Role "ROLE_ADMIN"</li>
 </ul>
-<p> mapping "/voices"</p>
-<p> mapptig "/create" - (method Post) - register new user (json body required). Only for unauthenticated users</p>
+<p> mapping "/voices" - (method Post) - register new user (json body required). Only for unauthenticated users</p>
 <ul>
     <li> "/" (method Get) - get restaurant list with voices count. For any authenticated user</li>
     <li> "/" (method Post) - create new voice (json body required). Only for users with Role "ROLE_USER"</li>

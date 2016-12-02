@@ -16,16 +16,9 @@ import ru.restaurant.util.exception.WrongTimeException;
 import javax.servlet.http.HttpServletRequest;
 
 @RestControllerAdvice(annotations = RestController.class)
+@ControllerAdvice
 public class ExceptionInfoHandler {
     Logger LOG = LoggerFactory.getLogger(ExceptionInfoHandler.class);
-
-/*    @ResponseStatus(HttpStatus.NOT_ACCEPTABLE)
-    @ExceptionHandler(AccessDeniedException.class)
-    @ResponseBody
-    @Order(Ordered.HIGHEST_PRECEDENCE)
-    public ErrorInfo accessDenied(HttpServletRequest req, AccessDeniedException e) {
-        return logAndGetErrorInfo(req, e, true);
-    }*/
 
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(NotFoundException.class)
@@ -74,6 +67,7 @@ public class ExceptionInfoHandler {
     public ErrorInfo handleError(HttpServletRequest req, Exception e) {
         return logAndGetErrorInfo(req, e, true);
     }
+
 
     public ErrorInfo logAndGetErrorInfo(HttpServletRequest req, Exception e, boolean logException) {
         if (logException) {
