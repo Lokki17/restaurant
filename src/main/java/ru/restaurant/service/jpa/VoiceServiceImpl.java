@@ -78,6 +78,7 @@ public class VoiceServiceImpl implements VoiceService {
     }
 
     private void setUser(Voice voice, Integer userId) {
+        VoiceUtil.checkId(voice);
         User savedUser = userRepository.get(userId);
         Assert.notNull(savedUser, "User not found");
         voice.setUser(savedUser);

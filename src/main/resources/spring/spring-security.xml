@@ -31,11 +31,11 @@
 
     <global-method-security secured-annotations="enabled"/>
 
-    <!--<beans:bean class="ru.restaurant.util.PasswordUtil" id="passwordEncoder" factory-method="getPasswordEncoder"/>-->
+    <beans:bean class="ru.restaurant.util.PasswordUtil" id="passwordEncoder" factory-method="getPasswordEncoder"/>
 
     <authentication-manager alias="authenticationManager">
                 <authentication-provider user-service-ref="userService">
-                    <!--<password-encoder ref="passwordEncoder"/>-->
+                    <password-encoder ref="passwordEncoder"/>
                 </authentication-provider>
 <!--        <authentication-provider>
             <jdbc-user-service data-source-ref="dataSource"
