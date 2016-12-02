@@ -13,7 +13,8 @@ CREATE TABLE users
   name       VARCHAR NOT NULL,
   password   VARCHAR NOT NULL
 );
-CREATE UNIQUE INDEX users_unique_idx ON users (id, name);
+CREATE UNIQUE INDEX users_unique_idx ON users (name);
+-- CREATE UNIQUE INDEX users_unique_idx ON users (id, name);
 
 CREATE TABLE user_roles
 (

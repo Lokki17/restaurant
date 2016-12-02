@@ -9,7 +9,6 @@ import org.springframework.util.Assert;
 import ru.restaurant.model.User;
 import ru.restaurant.repository.UserRepository;
 import ru.restaurant.service.UserService;
-import ru.restaurant.util.exception.AccessDeniedException;
 import ru.restaurant.util.exception.NotFoundException;
 import ru.restaurant.web.AuthorizedUser;
 

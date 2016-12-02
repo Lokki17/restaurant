@@ -4,17 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import ru.restaurant.model.Restaurant;
-import ru.restaurant.model.Role;
-import ru.restaurant.model.User;
 import ru.restaurant.repository.RestaurantRepository;
 import ru.restaurant.repository.UserRepository;
 import ru.restaurant.service.RestaurantService;
-import ru.restaurant.util.exception.AccessDeniedException;
 import ru.restaurant.util.exception.NotFoundException;
 
 import java.util.Collection;
 import java.util.Collections;
-import java.util.Objects;
 
 @Service
 public class RestaurantServiceImpl implements RestaurantService {

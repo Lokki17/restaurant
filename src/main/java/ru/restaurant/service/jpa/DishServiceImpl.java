@@ -6,16 +6,10 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 import ru.restaurant.model.Dish;
 import ru.restaurant.model.Restaurant;
-import ru.restaurant.model.Role;
-import ru.restaurant.model.User;
 import ru.restaurant.repository.DishRepository;
 import ru.restaurant.repository.RestaurantRepository;
-import ru.restaurant.repository.UserRepository;
 import ru.restaurant.service.DishService;
-import ru.restaurant.to.RestaurantDishes;
 import ru.restaurant.util.DishUtil;
-import ru.restaurant.util.exception.AccessDeniedException;
-import ru.restaurant.util.exception.NotFoundException;
 
 import java.time.LocalDate;
 import java.util.*;

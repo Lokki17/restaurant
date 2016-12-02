@@ -3,17 +3,15 @@ package ru.restaurant.web;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import ru.restaurant.model.User;
 import ru.restaurant.service.UserService;
+import ru.restaurant.to.UserToClient;
+import ru.restaurant.util.exception.UserExistsException;
 
 import javax.validation.Valid;
 
-@Controller
-//@RequestMapping("/")
+@RestController
 public class RootController {
 
     @Autowired
@@ -25,10 +23,10 @@ public class RootController {
     }
 
     @PostMapping(value = "/create", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public String create(@Valid @RequestBody User user) {
-        if (service.checkUser(user.getName())) {
-            service.save(user);
-            return "redirect:/";
-        } else throw new RuntimeException("User already registered");
+    public UserToClient create(@Valid @RequestBody User user) {
+//        if (service.checkUser(user.getName())) {
+            return new UserToClient(service.save(user));
+//            return "redirect:/";
+//        } else throw new UserExistsException("User already registered");
     }
 }
