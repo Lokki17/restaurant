@@ -10,6 +10,7 @@ import ru.restaurant.model.User;
 import ru.restaurant.service.UserService;
 import ru.restaurant.to.UserTo;
 import ru.restaurant.to.UserToClient;
+import ru.restaurant.util.UserUtil;
 import ru.restaurant.web.AuthorizedUser;
 
 import javax.validation.Valid;
@@ -23,8 +24,8 @@ public class UserRestController {
     UserService service;
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public Collection<User> getAll() {
-        return service.getAll(AuthorizedUser.getId());
+    public Collection<UserToClient> getAll() {
+        return UserUtil.toClient(service.getAll(AuthorizedUser.getId()));
     }
 
     @GetMapping(value = "/{id}")
@@ -33,13 +34,13 @@ public class UserRestController {
     }
 
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<UserTo> create(@Valid @RequestBody User user) {
+    public ResponseEntity<UserToClient> create(@Valid @RequestBody User user) {
         User created = service.save(user, AuthorizedUser.getId());
         URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path("/users" + created.getId())
                 .buildAndExpand(created.getId()).toUri();
 
-        return ResponseEntity.created(uriOfNewResource).body(new UserTo(user));
+        return ResponseEntity.created(uriOfNewResource).body(UserUtil.toClient(user));
     }
 
     @DeleteMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -48,8 +49,8 @@ public class UserRestController {
     }
 
     @PutMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public User update(@Valid @RequestBody User user, @PathVariable Integer id) {
+    public UserToClient update(@Valid @RequestBody User user, @PathVariable Integer id) {
         user.setId(id);
-        return service.save(user, AuthorizedUser.getId());
+        return UserUtil.toClient(service.save(user, AuthorizedUser.getId()));
     }
 }

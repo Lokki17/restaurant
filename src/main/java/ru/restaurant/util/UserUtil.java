@@ -14,6 +14,10 @@ public class UserUtil {
         return result;
     }
 
+    public static UserToClient toClient(User user){
+        return new UserToClient(user);
+    }
+
     public static User prepareToSave(User user) {
         user.setPassword(PasswordUtil.encode(user.getPassword()));
         return user;
