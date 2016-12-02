@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import ru.restaurant.model.Role;
 import ru.restaurant.model.User;
 import ru.restaurant.service.UserService;
 import ru.restaurant.to.UserTo;
@@ -52,5 +53,10 @@ public class UserRestController {
     public UserToClient update(@Valid @RequestBody User user, @PathVariable Integer id) {
         user.setId(id);
         return UserUtil.toClient(service.save(user, AuthorizedUser.getId()));
+    }
+
+    @PutMapping
+    public boolean setRole(@RequestParam("id") Integer id, @RequestParam("role") Role role){
+        return service.setRole(id, role);
     }
 }

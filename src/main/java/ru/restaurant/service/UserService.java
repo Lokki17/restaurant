@@ -1,5 +1,6 @@
 package ru.restaurant.service;
 
+import ru.restaurant.model.Role;
 import ru.restaurant.model.User;
 import ru.restaurant.util.exception.NotFoundException;
 
@@ -17,6 +18,8 @@ public interface UserService {
     User save(User user, int userId);
 
     User save(User user);
+
+    boolean setRole(Integer id, Role role);
 
 //    boolean checkUser(String name);
 }

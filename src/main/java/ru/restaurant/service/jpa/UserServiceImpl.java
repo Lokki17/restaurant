@@ -6,6 +6,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
+import ru.restaurant.model.Role;
 import ru.restaurant.model.User;
 import ru.restaurant.repository.UserRepository;
 import ru.restaurant.service.UserService;
@@ -53,6 +54,15 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     public User save(User user) {
         return checkUser(userRepository.save(prepareToSave(user)), "user " + user.getName() + "did't save");
+    }
+
+    @Override
+    public boolean setRole(Integer id, Role role) {
+        User result = userRepository.get(id);
+        Assert.notNull(result, "can't find request user");
+        if(result.getRoles().add(role)){
+            return userRepository.save(result) != null;
+        } else return false;
     }
 
 /*    @Override
