@@ -18,5 +18,5 @@ public interface UserService {
 
     User save(User user);
 
-    boolean checkUser(String name);
+//    boolean checkUser(String name);
 }
