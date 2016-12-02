@@ -13,4 +13,9 @@ public class UserUtil {
         users.stream().forEach(user -> result.add(new UserToClient(user)));
         return result;
     }
+
+    public static User prepareToSave(User user) {
+        user.setPassword(PasswordUtil.encode(user.getPassword()));
+        return user;
+    }
 }

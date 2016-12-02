@@ -15,6 +15,8 @@ import ru.restaurant.web.AuthorizedUser;
 
 import java.util.Collection;
 
+import static ru.restaurant.util.UserUtil.prepareToSave;
+
 @Service("userService")
 public class UserServiceImpl implements UserService, UserDetailsService {
 
@@ -40,17 +42,17 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     public User update(User user, int userId) throws NotFoundException {
-        return checkUser(userRepository.save(user), "Can't find request user");
+        return checkUser(userRepository.save(prepareToSave(user)), "Can't find request user");
     }
 
     @Override
     public User save(User user, int userId) {
-        return checkUser(userRepository.save(user), "Can't find request user");
+        return checkUser(userRepository.save(prepareToSave(user)), "Can't find request user");
     }
 
     @Override
     public User save(User user) {
-        return checkUser(userRepository.save(user), "user " + user.getName() + "did't save");
+        return checkUser(userRepository.save(prepareToSave(user)), "user " + user.getName() + "did't save");
     }
 
     @Override

@@ -6,13 +6,13 @@ DELETE FROM restaurants;
 ALTER SEQUENCE global_seq RESTART WITH 100000;
 
 INSERT INTO users (name, password)
-VALUES ('User1', 'password');
+VALUES ('User1', '$2a$10$2P4bcB/yUPSs1iGVMgU3Zek.gV.aJYeGSOk9R6DxxIxQcEwU/OFAm');
 
 INSERT INTO users (name, password)
-VALUES ('User2', 'password');
+VALUES ('User2', '$2a$10$o8KAMZeKLH3sDbdqyuga5ua0rnW0E6Xxfls9HhzxdCI3Sgs70Clua');
 
 INSERT INTO users (name, password)
-VALUES ('admin', 'admin');
+VALUES ('admin', '$2a$10$WejOLxVuXRpOgr4IlzQJ.eT4UcukNqHlAiOVZj1P/nmc8WbpMkiju');
 
 INSERT INTO user_roles (role, user_id) VALUES
   ('ROLE_USER', 100000),
