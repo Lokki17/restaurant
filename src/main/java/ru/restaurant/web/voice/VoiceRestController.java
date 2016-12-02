@@ -50,8 +50,8 @@ public class VoiceRestController {
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<VoiceTo> create(@Valid @RequestBody Voice voice) {
-        setRestaurant(voice);
-        setUser(voice, AuthorizedUser.getId());
+/*        setRestaurant(voice);
+        setUser(voice, AuthorizedUser.getId());*/
         VoiceTo created = new VoiceTo(service.save(voice, AuthorizedUser.getId()));
         URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path("/voices" + created.getId())
@@ -69,21 +69,20 @@ public class VoiceRestController {
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public VoiceTo update(@Valid @RequestBody Voice voice, @PathVariable("id") int id) {
         voice.setId(id);
-        setRestaurant(voice);
-        setUser(voice, AuthorizedUser.getId());
+/*        setRestaurant(voice);
+        setUser(voice, AuthorizedUser.getId());*/
         return new VoiceTo(service.save(voice, AuthorizedUser.getId()));
     }
 
-    private void setRestaurant(Voice voice){
+/*    private void setRestaurant(Voice voice){
         VoiceUtil.checkId(voice);
         Restaurant restaurant = restaurantService.getByName(voice.getRestaurant().getName());
         Assert.notNull(restaurant, "Restaurant not found");
             voice.setRestaurant(restaurant);
-    }
+    }*/
 
-    private void setUser(Voice voice, Integer userId){
+/*    private void setUser(Voice voice, Integer userId){
         User savedUser = userService.get(userId, AuthorizedUser.getId());
 //        Assert.notNull(savedUser, "User not found");
-            voice.setUser(savedUser);
-    }
+            voice.setUser(savedUser);*/
 }

@@ -4,7 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import ru.restaurant.model.Restaurant;
+import ru.restaurant.model.User;
 import ru.restaurant.model.Voice;
+import ru.restaurant.repository.RestaurantRepository;
+import ru.restaurant.repository.UserRepository;
 import ru.restaurant.repository.VoiceRepository;
 import ru.restaurant.service.VoiceService;
 import ru.restaurant.util.TimeUtil;
@@ -20,8 +23,11 @@ public class VoiceServiceImpl implements VoiceService {
     @Autowired
     VoiceRepository voiceRepository;
 
-/*    @Autowired
-    UserRepository userRepository;*/
+    @Autowired
+    UserRepository userRepository;
+
+    @Autowired
+    RestaurantRepository restaurantRepository;
 
     @Override
     public Voice get(int id, int userId) {
@@ -61,12 +67,26 @@ public class VoiceServiceImpl implements VoiceService {
             voice.setId(null);
         }
         voice.setDate(dateTimeNow.toLocalDate());
+        setRestaurant(voice);
+        setUser(voice, userId);
         return voiceRepository.save(voice, dateTimeNow.toLocalDate(), userId);
     }
 
-    private Voice checkVoice(Voice result, String message){
+    private Voice checkVoice(Voice result, String message) {
         Assert.notNull(result, message);
         return result;
     }
 
+    private void setUser(Voice voice, Integer userId) {
+        User savedUser = userRepository.get(userId);
+        Assert.notNull(savedUser, "User not found");
+        voice.setUser(savedUser);
+    }
+
+    private void setRestaurant(Voice voice){
+        VoiceUtil.checkId(voice);
+        Restaurant restaurant = restaurantRepository.get(voice.getRestaurant().getName());
+        Assert.notNull(restaurant, "Restaurant not found");
+        voice.setRestaurant(restaurant);
+    }
 }
