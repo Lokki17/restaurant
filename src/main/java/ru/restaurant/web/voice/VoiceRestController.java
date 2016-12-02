@@ -83,7 +83,7 @@ public class VoiceRestController {
 
     private void setUser(Voice voice, Integer userId){
         User savedUser = userService.get(userId, AuthorizedUser.getId());
-        Assert.notNull(savedUser, "User not found");
+//        Assert.notNull(savedUser, "User not found");
             voice.setUser(savedUser);
     }
 }

@@ -4,18 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import ru.restaurant.model.Restaurant;
-import ru.restaurant.model.Role;
-import ru.restaurant.model.User;
 import ru.restaurant.model.Voice;
-import ru.restaurant.repository.UserRepository;
 import ru.restaurant.repository.VoiceRepository;
 import ru.restaurant.service.VoiceService;
-import ru.restaurant.to.RestaurantVoices;
 import ru.restaurant.util.TimeUtil;
 import ru.restaurant.util.VoiceUtil;
-import ru.restaurant.util.exception.NotFoundException;
-import ru.restaurant.util.exception.WrongTimeException;
-import ru.restaurant.web.AuthorizedUser;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -75,4 +68,5 @@ public class VoiceServiceImpl implements VoiceService {
         Assert.notNull(result, message);
         return result;
     }
+
 }

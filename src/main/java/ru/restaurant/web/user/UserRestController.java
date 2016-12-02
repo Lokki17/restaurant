@@ -10,7 +10,6 @@ import ru.restaurant.model.User;
 import ru.restaurant.service.UserService;
 import ru.restaurant.to.UserTo;
 import ru.restaurant.to.UserToClient;
-import ru.restaurant.util.UserUtil;
 import ru.restaurant.web.AuthorizedUser;
 
 import javax.validation.Valid;
@@ -24,8 +23,8 @@ public class UserRestController {
     UserService service;
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public Collection<UserToClient> getAll() {
-        return UserUtil.toClient(service.getAll(AuthorizedUser.getId()));
+    public Collection<User> getAll() {
+        return service.getAll(AuthorizedUser.getId());
     }
 
     @GetMapping(value = "/{id}")
@@ -49,8 +48,8 @@ public class UserRestController {
     }
 
     @PutMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public UserToClient update(@Valid @RequestBody User user, @PathVariable Integer id) {
+    public User update(@Valid @RequestBody User user, @PathVariable Integer id) {
         user.setId(id);
-        return new UserToClient(service.save(user, AuthorizedUser.getId()));
+        return service.save(user, AuthorizedUser.getId());
     }
 }
