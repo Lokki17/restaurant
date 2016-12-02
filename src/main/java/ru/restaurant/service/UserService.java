@@ -21,5 +21,7 @@ public interface UserService {
 
     boolean setRole(Integer id, Role role);
 
+    boolean deleteRole(Integer id, Role role);
+
 //    boolean checkUser(String name);
 }

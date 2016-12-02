@@ -59,4 +59,9 @@ public class UserRestController {
     public boolean setRole(@RequestParam("id") Integer id, @RequestParam("role") Role role){
         return service.setRole(id, role);
     }
+
+    @DeleteMapping
+    public boolean deleteRole(@RequestParam("id") Integer id, @RequestParam("role") Role role){
+        return service.deleteRole(id, role);
+    }
 }

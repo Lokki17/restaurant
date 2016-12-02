@@ -15,6 +15,7 @@ import ru.restaurant.util.exception.NotFoundException;
 import ru.restaurant.web.AuthorizedUser;
 
 import java.util.Collection;
+import java.util.Set;
 
 import static ru.restaurant.util.UserUtil.prepareToSave;
 
@@ -60,8 +61,21 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     public boolean setRole(Integer id, Role role) {
         User result = userRepository.get(id);
         Assert.notNull(result, "can't find request user");
+        User savedUser;
         if(result.getRoles().add(role)){
-            return userRepository.save(result) != null;
+            savedUser = userRepository.save(result);
+            return savedUser != null;
+        } else return false;
+    }
+
+    @Override
+    public boolean deleteRole(Integer id, Role role) {
+        User result = userRepository.get(id);
+        Assert.notNull(result, "can't find request user");
+        User savedUser;
+        if (result.getRoles().remove(role)){
+            savedUser = userRepository.save(result);
+            return savedUser != null;
         } else return false;
     }
 
