@@ -7,6 +7,7 @@ import org.springframework.core.annotation.Order;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.annotation.*;
 import ru.restaurant.util.exception.ErrorInfo;
 import ru.restaurant.util.exception.NotFoundException;
@@ -57,6 +58,14 @@ public class ExceptionInfoHandler {
     @ResponseBody
     @Order(Ordered.HIGHEST_PRECEDENCE + 4)
     public ErrorInfo runTime(HttpServletRequest req, UserExistsException e) {
+        return logAndGetErrorInfo(req, e, true);
+    }
+
+    @ResponseStatus(HttpStatus.METHOD_NOT_ALLOWED)
+    @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
+    @ResponseBody
+    @Order(Ordered.HIGHEST_PRECEDENCE + 5)
+    public ErrorInfo handleError405(HttpServletRequest req, Exception e) {
         return logAndGetErrorInfo(req, e, true);
     }
 
