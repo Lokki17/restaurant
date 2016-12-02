@@ -20,6 +20,7 @@
 </ul>
 <h3>Note:</h3>
 <p> mapping "/" - root mapping (this page)</p>
+<p> mapping "/create" - register new user (json body required) </p>
 <p>mapping "/dishes"</p>
 <ul>
     <li> "/" (method Get) - get dishes list with restaurants. For any authenticated user</li>
