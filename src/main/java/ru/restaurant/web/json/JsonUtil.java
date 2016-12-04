@@ -6,7 +6,8 @@ import com.fasterxml.jackson.databind.ObjectReader;
 import java.io.IOException;
 import java.util.List;
 
-import static ru.javawebinar.topjava.web.json.JacksonObjectMapper.getMapper;
+import static ru.restaurant.web.json.JacksonObjectMapper.getMapper;
+
 
 /**
  * User: gkislin

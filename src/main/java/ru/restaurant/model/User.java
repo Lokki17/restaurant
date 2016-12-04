@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
+import java.util.EnumSet;
 import java.util.List;
 import java.util.Set;
 
@@ -32,7 +33,24 @@ public class User extends NamedEntity{
     @ElementCollection(fetch = FetchType.EAGER)
     private Set<Role> roles;
 
-/*    @OneToMany(mappedBy = "user")
+    public User() {
+    }
+
+    public User(Integer id, String name, String password, Role role, Role... roles) {
+        this.id = id;
+        this.name = name;
+        this.password = password;
+        this.roles = EnumSet.of(role, roles);
+    }
+
+    public User(String name, String password, Set<Role> roles) {
+        this.id = null;
+        this.name = name;
+        this.password = password;
+        this.roles = roles;
+    }
+
+    /*    @OneToMany(mappedBy = "user")
     //@JsonIgnore
     private List<Voice> voices;*/
 

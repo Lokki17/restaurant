@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 @NamedQueries({
         @NamedQuery(name = Dish.GET_ALL, query = "SELECT d FROM Dish d LEFT JOIN FETCH d.restaurant WHERE d.date=:date ORDER BY d.restaurant.name, d.name"),
@@ -36,6 +37,25 @@ public class Dish extends DatedEntity implements Comparable{
     @Column(name = "name")
     @NotNull
     private String name;
+
+    public Dish() {
+    }
+
+    public Dish(Integer id, LocalDate date, String name, BigDecimal price, Restaurant restaurant ) {
+        this.id = id;
+        this.date = date;
+        this.name = name;
+        this.price = price;
+        this.restaurant = restaurant;
+    }
+
+    public Dish(LocalDate date, String name, BigDecimal price, Restaurant restaurant ) {
+        this.id = null;
+        this.date = date;
+        this.name = name;
+        this.price = price;
+        this.restaurant = restaurant;
+    }
 
     public boolean isNew(){
         return id == null;

@@ -20,6 +20,19 @@ public class Restaurant extends NamedEntity{
     public static final String GET = "Restaurant.get";
     public static final String GET_BY_NAME = "Restaurant.get.by.name";
 
+    public Restaurant() {
+    }
+
+    public Restaurant(Integer id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public Restaurant(String name) {
+        this.id = null;
+        this.name = name;
+    }
+
     @Override
     public String toString() {
         return name;

@@ -1,6 +1,7 @@
 package ru.restaurant.model;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @NamedQueries({
         @NamedQuery(name = Voice.GET_ALL, query = "SELECT v FROM Voice v LEFT JOIN FETCH v.restaurant LEFT JOIN FETCH v.user WHERE v.date=:date"),
@@ -22,6 +23,23 @@ public class Voice extends DatedEntity {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "user_id")
     private User user;
+
+    public Voice() {
+    }
+
+    public Voice(Integer id, LocalDate date, Restaurant restaurant, User user) {
+        this.id = id;
+        this.date = date;
+        this.restaurant = restaurant;
+        this.user = user;
+    }
+
+    public Voice(LocalDate date, Restaurant restaurant, User user) {
+        this.id = null;
+        this.date = date;
+        this.restaurant = restaurant;
+        this.user = user;
+    }
 
     public Restaurant getRestaurant() {
         return restaurant;
