@@ -6,7 +6,13 @@ import ru.restaurant.model.Restaurant;
 import java.util.*;
 
 public class DishUtil {
+
+    private DishUtil() {
+    }
+
     public static Map<Restaurant, Set<Dish>> dishesWithRestaurants(Collection<Dish> dishes) {
+
+
         Map<Restaurant, Set<Dish>> result = new TreeMap<>();
         for (Dish dish : dishes) {
             if (!result.containsKey(dish.getRestaurant())) {

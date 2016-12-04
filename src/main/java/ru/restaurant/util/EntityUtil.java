@@ -6,6 +6,9 @@ import java.util.Objects;
 
 public class EntityUtil {
 
+    private EntityUtil() {
+    }
+
     public static boolean checkVoice(Voice voice, Restaurant restaurant, User user) {
         if (!Objects.isNull(voice) && !Objects.isNull(restaurant) && !Objects.isNull(user)) {
             return checkEntity(voice.getRestaurant(), restaurant) && checkEntity(voice.getUser(), user);

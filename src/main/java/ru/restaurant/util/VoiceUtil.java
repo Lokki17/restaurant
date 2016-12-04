@@ -7,6 +7,9 @@ import java.util.*;
 
 public class VoiceUtil {
 
+    private VoiceUtil() {
+    }
+
     public static Map<Restaurant, Integer> getRestaurantVoiceDistribution(Collection<Voice> voices) {
         Map<Restaurant, Integer> destr = new HashMap<>();
         voices.stream()
