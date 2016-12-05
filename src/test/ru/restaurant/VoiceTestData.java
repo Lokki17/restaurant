@@ -32,6 +32,6 @@ public class VoiceTestData {
     }
 
     public static Voice getCreated(){
-        return new Voice(LocalDate.now(), RESTAURANT_1, ADMIN);
+        return new Voice(LocalDate.now(), RESTAURANT_2, ADMIN);
     }
 }

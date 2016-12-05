@@ -12,12 +12,10 @@ import ru.restaurant.service.VoiceService;
 import ru.restaurant.util.exception.NotFoundException;
 
 import static org.junit.Assert.*;
-import static ru.restaurant.UserTestData.ADMIN_ID;
-import static ru.restaurant.UserTestData.USER;
-import static ru.restaurant.UserTestData.USER_ID;
-import static ru.restaurant.VoiceTestData.MATCHER;
-import static ru.restaurant.VoiceTestData.VOICE_1;
-import static ru.restaurant.VoiceTestData.VOICE_ID;
+import static ru.restaurant.RestaurantTestData.*;
+import static ru.restaurant.UserTestData.*;
+import static ru.restaurant.VoiceTestData.*;
+import static ru.restaurant.VoiceTestData.getCreated;
 
 public class VoiceServiceImplTest extends AbstractServiceTest{
 
@@ -27,7 +25,7 @@ public class VoiceServiceImplTest extends AbstractServiceTest{
     @Test
     public void testGet() throws Exception {
         Voice saved = service.get(ADMIN_ID);
-        MATCHER.assertEquals(VOICE_1, saved);
+        VoiceTestData.MATCHER.assertEquals(VOICE_1, saved);
         UserTestData.MATCHER.assertEquals(VOICE_1.getUser(), saved.getUser());
         RestaurantTestData.MATCHER.assertEquals(VOICE_1.getRestaurant(), saved.getRestaurant());
     }
@@ -55,6 +53,10 @@ public class VoiceServiceImplTest extends AbstractServiceTest{
 
     @Test
     public void testSave() throws Exception {
-
+        Voice created = getCreated();
+        Voice actual = service.save(created, ADMIN_ID);
+        VoiceTestData.MATCHER.assertEquals(created, actual);
+        UserTestData.MATCHER.assertEquals(created.getUser(), actual.getUser());
+        RestaurantTestData.MATCHER.assertEquals(created.getRestaurant(), actual.getRestaurant());
     }
 }
