@@ -20,7 +20,7 @@ public class DishServiceImplTest extends AbstractServiceTest {
 
     @Test
     public void testDelete() throws Exception {
-        service.delete(DISH_ID, USER_ID);
+        service.delete(DISH_ID);
         MATCHER.assertCollectionEquals(Arrays.asList(DISH_2, DISH_3, DISH_4, DISH_5, DISH_6, DISH_7, DISH_8, DISH_9),
                 Arrays.asList(service.get(DISH_ID + 1), service.get(DISH_ID + 2),
                         service.get(DISH_ID + 3), service.get(DISH_ID + 4), service.get(DISH_ID + 5),
@@ -28,7 +28,7 @@ public class DishServiceImplTest extends AbstractServiceTest {
     }
     @Test
     public void testDeleteNotFound() throws Exception {
-        Boolean excepted = service.delete(DISH_ID - 1, USER_ID);
+        Boolean excepted = service.delete(DISH_ID - 1);
         Assert.isTrue(!excepted);
     }
 
@@ -43,14 +43,14 @@ public class DishServiceImplTest extends AbstractServiceTest {
     @Test
     public void testUpdate() throws Exception {
         Dish updated = getUpdated();
-        service.update(updated, updated.getRestaurant().getId(), USER_ID);
+        service.update(updated, updated.getRestaurant().getId());
         MATCHER.assertEquals(updated, service.get(DISH_ID));
     }
 
     @Test
     public void testSave() throws Exception {
         Dish saved = getUpdated();
-        service.save(saved, saved.getRestaurant().getId(), USER_ID);
+        service.save(saved, saved.getRestaurant().getId());
         MATCHER.assertEquals(saved, service.get(DISH_ID));
     }
 
@@ -60,9 +60,9 @@ public class DishServiceImplTest extends AbstractServiceTest {
         MATCHER.assertEquals(DISH_1, saved);
     }
 
-    @Test
+    @Test(expected = NotFoundException.class)
     public void testGetNotFound() throws Exception {
-        thrown.expect(NotFoundException.class);
+//        thrown.expect(NotFoundException.class);
         Dish saved = service.get(DISH_ID - 1);
         MATCHER.assertEquals(DISH_1, saved);
     }

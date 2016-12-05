@@ -28,7 +28,7 @@ public class DishServiceImpl implements DishService {
     RestaurantRepository restaurantRepository;
 
     @Override
-    public boolean delete(int id, int userId) {
+    public boolean delete(int id) {
         return dishRepository.delete(id);
     }
 
@@ -42,7 +42,7 @@ public class DishServiceImpl implements DishService {
     }
 
     @Override
-    public Dish update(Dish dish, int restaurantId, int userId) {
+    public Dish update(Dish dish, int restaurantId) {
 //        User savedUser = userRepository.checkUser(userId);
         setRestaurant(dish, restaurantId);
         dish.setDate(LocalDate.now());
@@ -51,7 +51,7 @@ public class DishServiceImpl implements DishService {
 
     @Override
     @Transactional
-    public Dish save(Dish dish, int restaurantId, int userId) {
+    public Dish save(Dish dish, int restaurantId) {
         setRestaurant(dish, restaurantId);
         dish.setDate(LocalDate.now());
         return checkDish(dishRepository.save(dish), "Dish didn't save");
@@ -73,11 +73,5 @@ public class DishServiceImpl implements DishService {
             throw new NotFoundException(message);
         }
         return result;
-    }
-
-    private void checkNotFound(boolean found, int id){
-        if (found){
-            throw new NotFoundException("Not found entity with " + id);
-        }
     }
 }

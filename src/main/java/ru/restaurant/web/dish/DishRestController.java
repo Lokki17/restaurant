@@ -36,7 +36,7 @@ public class DishRestController {
     @Secured("ROLE_ADMIN")
     public ResponseEntity<Dish> create(@Valid @RequestBody Dish dish, @RequestParam("id") Integer restaurantId) {
 //        setRestaurant(dish);
-        Dish created = service.save(dish, restaurantId, AuthorizedUser.getId());
+        Dish created = service.save(dish, restaurantId);
 //        return service.save(dish, restaurantId, AuthorizedUser.getId());
         URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path("/dishes" + created.getId())
@@ -48,7 +48,7 @@ public class DishRestController {
     @DeleteMapping(value = "/{id}")
     @Secured("ROLE_ADMIN")
     public boolean delete(@PathVariable Integer id) {
-        return service.delete(id, AuthorizedUser.getId());
+        return service.delete(id);
     }
 
 /*    @GetMapping(value = "/{id}")
@@ -62,7 +62,7 @@ public class DishRestController {
         dish.setId(id);
 //        setRestaurant(dish);
 //        dish.setRestaurant(restaurantService.get(restaurantId));
-        return service.update(dish, restaurantId, AuthorizedUser.getId());
+        return service.update(dish, restaurantId);
     }
 
 /*    private void setRestaurant(Dish dish){
