@@ -27,11 +27,10 @@ public class JpaVoiceRepositoryImpl implements VoiceRepository{
         }
         if (voice.isNew()){
             em.persist(voice);
+            return voice;
         } else {
-            em.merge(voice);
+            return em.merge(voice);
         }
-
-        return voice;
     }
 
     @Override

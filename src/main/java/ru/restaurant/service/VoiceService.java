@@ -8,7 +8,7 @@ import java.util.Collection;
 import java.util.Map;
 
 public interface VoiceService {
-    Voice get(int id, int userId) throws NotFoundException;
+    Voice get(int userId) throws NotFoundException;
 
     Collection<Voice> getAll();
 

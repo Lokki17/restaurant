@@ -12,6 +12,7 @@ import ru.restaurant.repository.VoiceRepository;
 import ru.restaurant.service.VoiceService;
 import ru.restaurant.util.TimeUtil;
 import ru.restaurant.util.VoiceUtil;
+import ru.restaurant.util.exception.NotFoundException;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -30,7 +31,7 @@ public class VoiceServiceImpl implements VoiceService {
     RestaurantRepository restaurantRepository;
 
     @Override
-    public Voice get(int id, int userId) {
+    public Voice get(int userId) {
         return checkVoice(voiceRepository.get(userId, LocalDate.now()), "Can't find your today voice");
     }
 
@@ -73,7 +74,9 @@ public class VoiceServiceImpl implements VoiceService {
     }
 
     private Voice checkVoice(Voice result, String message) {
-        Assert.notNull(result, message);
+        if (result == null){
+            throw new NotFoundException(message);
+        }
         return result;
     }
 

@@ -6,7 +6,7 @@ import java.time.LocalDate;
 @NamedQueries({
         @NamedQuery(name = Voice.GET_ALL, query = "SELECT v FROM Voice v LEFT JOIN FETCH v.restaurant LEFT JOIN FETCH v.user WHERE v.date=:date"),
         @NamedQuery(name = Voice.DELETE, query = "DELETE FROM Voice v WHERE v.id=:voiceId AND v.user.id=:userId"),
-        @NamedQuery(name = Voice.GET, query = "SELECT v FROM Voice v WHERE v.date=:date AND v.user.id=:userId")
+        @NamedQuery(name = Voice.GET, query = "SELECT v FROM Voice v LEFT JOIN FETCH v.restaurant LEFT JOIN FETCH v.user WHERE v.date=:date AND v.user.id=:userId")
 //        @NamedQuery(name = Voice.GET, query = "SELECT v FROM Voice v WHERE v.id=:voiceId AND v.date=:date AND v.user.id=:userId")
 })
 @Entity
@@ -62,8 +62,8 @@ public class Voice extends DatedEntity {
         return "Voice{" +
                 "id=" + id +
                 ", date=" + date +
-                ", restaurant_name=" + restaurant.name +
-                ", user_name=" + user.name +
+/*                ", restaurant=" + restaurant +
+                ", user=" + user +*/
                 '}';
     }
 }
