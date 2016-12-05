@@ -19,8 +19,10 @@ import java.net.URI;
 import java.util.Collection;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping(UserRestController.USER_URL)
 public class UserRestController {
+    public static final String USER_URL = "/users";
+
     @Autowired
     UserService service;
 

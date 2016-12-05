@@ -6,6 +6,8 @@ import static org.junit.Assert.*;
 
 public class UserRestControllerTest {
 
+    private static final String USER_URL = UserRestController.USER_URL + "/";
+
     @Test
     public void testGetAll() throws Exception {
 

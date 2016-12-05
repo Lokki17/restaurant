@@ -25,8 +25,9 @@ import java.util.Collection;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/voices")
+@RequestMapping(VoiceRestController.VOICE_URL)
 public class VoiceRestController {
+    public static final String VOICE_URL = "/voices";
 
     @Autowired
     VoiceService service;

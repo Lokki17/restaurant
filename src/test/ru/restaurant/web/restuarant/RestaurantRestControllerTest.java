@@ -6,6 +6,8 @@ import static org.junit.Assert.*;
 
 public class RestaurantRestControllerTest {
 
+    private static final String REST_URL = RestaurantRestController.RESTAURANT_URL + "/";
+
     @Test
     public void testGetAll() throws Exception {
 

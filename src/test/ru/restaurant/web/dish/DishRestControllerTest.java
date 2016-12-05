@@ -6,6 +6,8 @@ import static org.junit.Assert.*;
 
 public class DishRestControllerTest {
 
+    private static final String REST_URL = DishRestController.DISH_URL + "/";
+
     @Test
     public void testGetAll() throws Exception {
 

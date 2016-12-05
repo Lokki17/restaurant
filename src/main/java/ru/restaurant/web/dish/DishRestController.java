@@ -19,8 +19,10 @@ import java.util.Map;
 import java.util.Set;
 
 @RestController
-@RequestMapping("/dishes")
+@RequestMapping(DishRestController.DISH_URL)
 public class DishRestController {
+    public static final String DISH_URL = "/dishes";
+
     @Autowired
     DishService service;
 

@@ -6,6 +6,8 @@ import static org.junit.Assert.*;
 
 public class VoiceRestControllerTest {
 
+    private static final String VOICE_URL = VoiceRestController.VOICE_URL + "/";
+
     @Test
     public void testGetAll() throws Exception {
 

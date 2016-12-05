@@ -15,8 +15,10 @@ import java.net.URI;
 import java.util.Collection;
 
 @RestController
-@RequestMapping("/restaurants")
+@RequestMapping(RestaurantRestController.RESTAURANT_URL)
 public class RestaurantRestController {
+    public static final String RESTAURANT_URL = "/restaurants";
+
     @Autowired
     RestaurantService service;
 
