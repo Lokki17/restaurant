@@ -56,4 +56,14 @@ public class Voice extends DatedEntity {
     public void setUser(User user) {
         this.user = user;
     }
+
+    @Override
+    public String toString() {
+        return "Voice{" +
+                "id=" + id +
+                ", date=" + date +
+                ", restaurant_name=" + restaurant.name +
+                ", user_name=" + user.name +
+                '}';
+    }
 }

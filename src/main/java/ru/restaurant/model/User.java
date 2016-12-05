@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Set;
 
 @NamedQueries({
-        @NamedQuery(name = User.GET_ALL, query = "SELECT DISTINCT u FROM User u LEFT JOIN FETCH u.roles"),
+        @NamedQuery(name = User.GET_ALL, query = "SELECT DISTINCT u FROM User u LEFT JOIN FETCH u.roles ORDER BY u.id"),
 //        @NamedQuery(name = User.GET_ALL, query = "SELECT DISTINCT u FROM User u left JOIN FETCH u.voices LEFT JOIN FETCH u.roles"),
         @NamedQuery(name = User.DELETE, query = "DELETE FROM User u WHERE u.id=:userId"),
         @NamedQuery(name = User.GET, query = "SELECT u FROM User u WHERE u.id=:userId"),

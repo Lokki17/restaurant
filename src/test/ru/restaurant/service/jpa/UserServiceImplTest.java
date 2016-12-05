@@ -44,7 +44,7 @@ public class UserServiceImplTest extends AbstractServiceTest {
 
     @Test
     public void testGetAll() throws Exception {
-        MATCHER.assertCollectionEquals(Arrays.asList(ADMIN_USER, USER, ADMIN), service.getAll());
+        MATCHER.assertCollectionEquals(Arrays.asList(USER, ADMIN_USER, ADMIN), service.getAll());
     }
 
     @Test

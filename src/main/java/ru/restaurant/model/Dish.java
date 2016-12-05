@@ -78,6 +78,8 @@ public class Dish extends DatedEntity implements Comparable{
         this.restaurant = restaurant;
     }
 
+
+
 /*    public List<Voice> getVoice() {
         return voice;
     }
@@ -97,8 +99,10 @@ public class Dish extends DatedEntity implements Comparable{
     @Override
     public String toString() {
         return "Dish{" +
-                "price=" + price +
-                ", name='" + name + '\'' +
+                "id=" + id +
+                ", name=" + name +
+                ", date=" + date +
+                ", price='" + price + '\'' +
                 '}';
     }
 

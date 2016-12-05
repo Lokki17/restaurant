@@ -35,7 +35,10 @@ public class Restaurant extends NamedEntity{
 
     @Override
     public String toString() {
-        return name;
+        return "Restaurant (" +
+                "id=" + id +
+                ", name=" + name +
+                ')';
     }
 
     /*    @OneToMany(fetch = FetchType.LAZY, mappedBy = "restaurant", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
