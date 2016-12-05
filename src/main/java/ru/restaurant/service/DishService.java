@@ -18,5 +18,5 @@ public interface DishService {
 
     Dish save(Dish dish, int restaurantId, int userId);
 
-    Dish get(int userId);
+    Dish get(int distId);
 }

@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.time.LocalDate;
 
 @NamedQueries({
@@ -32,7 +33,7 @@ public class Dish extends DatedEntity implements Comparable{
 
     @Column(name = "price")
     @NotNull
-    private BigDecimal price;
+    private BigInteger price;
 
     @Column(name = "name")
     @NotNull
@@ -41,7 +42,7 @@ public class Dish extends DatedEntity implements Comparable{
     public Dish() {
     }
 
-    public Dish(Integer id, LocalDate date, String name, BigDecimal price, Restaurant restaurant ) {
+    public Dish(Integer id, LocalDate date, String name, BigInteger price, Restaurant restaurant ) {
         this.id = id;
         this.date = date;
         this.name = name;
@@ -49,7 +50,7 @@ public class Dish extends DatedEntity implements Comparable{
         this.restaurant = restaurant;
     }
 
-    public Dish(LocalDate date, String name, BigDecimal price, Restaurant restaurant ) {
+    public Dish(LocalDate date, String name, BigInteger price, Restaurant restaurant ) {
         this.id = null;
         this.date = date;
         this.name = name;
@@ -61,11 +62,11 @@ public class Dish extends DatedEntity implements Comparable{
         return id == null;
     }
 
-    public BigDecimal getPrice() {
+    public BigInteger getPrice() {
         return price;
     }
 
-    public void setPrice(BigDecimal price) {
+    public void setPrice(BigInteger price) {
         this.price = price;
     }
 
