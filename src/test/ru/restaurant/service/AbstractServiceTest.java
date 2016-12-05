@@ -18,6 +18,4 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class AbstractServiceTest {
 
-    @Rule
-    public ExpectedException thrown = ExpectedException.none();
 }

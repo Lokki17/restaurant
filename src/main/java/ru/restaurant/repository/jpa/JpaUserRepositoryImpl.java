@@ -26,10 +26,10 @@ public class JpaUserRepositoryImpl implements UserRepository {
         }
         if (user.isNew()) {
             em.persist(user);
+            return user;
         } else {
-            em.merge(user);
+            return em.merge(user);
         }
-        return user;
     }
 
     @Override
@@ -51,12 +51,12 @@ public class JpaUserRepositoryImpl implements UserRepository {
         return em.createNamedQuery(User.GET_ALL, User.class).getResultList();
     }
 
-    @Override
+/*    @Override
     public User checkUser(Integer userId) {
         User savedUser = get(userId);
         Assert.notNull(savedUser, "can't find user");
         return savedUser;
-    }
+    }*/
 
     @Override
     public User getByName(String name) {

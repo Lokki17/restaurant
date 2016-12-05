@@ -16,7 +16,7 @@ public interface UserRepository {
 
     Collection<User> getAll();
 
-    User checkUser(Integer userId);
+//    User checkUser(Integer userId);
 
     User getByName(String name);
 

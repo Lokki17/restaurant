@@ -7,15 +7,15 @@ import ru.restaurant.util.exception.NotFoundException;
 import java.util.Collection;
 
 public interface UserService {
-    User get(int id, int userId) throws NotFoundException;
+    User get(int id) throws NotFoundException;
 
-    boolean delete(int id, int userId) throws NotFoundException;
+    boolean delete(int id) throws NotFoundException;
 
-    Collection<User> getAll(int userId);
+    Collection<User> getAll();
 
-    User update(User user, int userId) throws NotFoundException;
+    User update(User user) throws NotFoundException;
 
-    User save(User user, int userId);
+//    User save(User user, int userId);
 
     User save(User user);
 

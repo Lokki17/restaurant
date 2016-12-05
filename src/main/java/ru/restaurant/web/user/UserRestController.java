@@ -26,17 +26,17 @@ public class UserRestController {
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public Collection<UserToClient> getAll() {
-        return UserUtil.toClient(service.getAll(AuthorizedUser.getId()));
+        return UserUtil.toClient(service.getAll());
     }
 
     @GetMapping(value = "/{id}")
     public UserToClient get(@PathVariable("id") Integer id) {
-        return new UserToClient(service.get(id, AuthorizedUser.getId()));
+        return new UserToClient(service.get(id));
     }
 
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<UserToClient> create(@Valid @RequestBody User user) {
-        User created = service.save(user, AuthorizedUser.getId());
+        User created = service.save(user);
         URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path("/users" + created.getId())
                 .buildAndExpand(created.getId()).toUri();
@@ -46,13 +46,13 @@ public class UserRestController {
 
     @DeleteMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
     public boolean delete(@PathVariable("id") Integer id) {
-        return service.delete(id, AuthorizedUser.getId());
+        return service.delete(id);
     }
 
     @PutMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public UserToClient update(@Valid @RequestBody User user, @PathVariable Integer id) {
         user.setId(id);
-        return UserUtil.toClient(service.save(user, AuthorizedUser.getId()));
+        return UserUtil.toClient(service.save(user));
     }
 
     @PutMapping

@@ -40,4 +40,12 @@ public class UserTestData {
         }
         return true;
     }
+
+    public static User getUpdated(){
+        return new User(USER_ID, "UserUpdated", "password", Role.ROLE_USER);
+    }
+
+    public static User getCreated(){
+        return new User("UserCreated", "password", Role.ROLE_USER);
+    }
 }

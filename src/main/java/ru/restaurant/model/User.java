@@ -43,11 +43,11 @@ public class User extends NamedEntity{
         this.roles = EnumSet.of(role, roles);
     }
 
-    public User(String name, String password, Set<Role> roles) {
+    public User(String name, String password, Role role, Role... roles) {
         this.id = null;
         this.name = name;
         this.password = password;
-        this.roles = roles;
+        this.roles = EnumSet.of(role, roles);
     }
 
     /*    @OneToMany(mappedBy = "user")
@@ -81,4 +81,13 @@ public class User extends NamedEntity{
     public void setVoices(List<Voice> voices) {
         this.voices = voices;
     }*/
+
+    @Override
+    public String toString() {
+        return "User (" +
+                "id=" + id +
+                ", name=" + name +
+                ", roles=" + roles +
+                ')';
+    }
 }

@@ -32,13 +32,13 @@ public class DishServiceImplTest extends AbstractServiceTest {
         Assert.isTrue(!excepted);
     }
 
-    @Test
+/*    @Test
     public void testGetAllOnDate() throws Exception {
         MATCHER.assertCollectionEquals(Arrays.asList(DISH_1, DISH_2, DISH_3, DISH_4, DISH_5, DISH_6, DISH_7, DISH_8, DISH_9),
                 Arrays.asList(service.get(DISH_ID), service.get(DISH_ID + 1), service.get(DISH_ID + 2),
                         service.get(DISH_ID + 3), service.get(DISH_ID + 4), service.get(DISH_ID + 5),
                         service.get(DISH_ID + 6), service.get(DISH_ID + 7), service.get(DISH_ID + 8)));
-    }
+    }*/
 
     @Test
     public void testUpdate() throws Exception {

@@ -26,31 +26,31 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     UserRepository userRepository;
 
     @Override
-    public User get(int id, int userId) throws NotFoundException {
+    public User get(int id) throws NotFoundException {
         User result = userRepository.get(id);
         Assert.notNull(result, "can't find request user");
         return result;
     }
 
     @Override
-    public boolean delete(int id, int userId) throws NotFoundException {
+    public boolean delete(int id) throws NotFoundException {
         return userRepository.delete(id);
     }
 
     @Override
-    public Collection<User> getAll(int userId) {
+    public Collection<User> getAll() {
         return userRepository.getAll();
     }
 
     @Override
-    public User update(User user, int userId) throws NotFoundException {
+    public User update(User user) throws NotFoundException {
         return checkUser(userRepository.save(prepareToSave(user)), "Can't find request user");
     }
 
-    @Override
+/*    @Override
     public User save(User user, int userId) {
         return checkUser(userRepository.save(prepareToSave(user)), "Can't find request user");
-    }
+    }*/
 
     @Override
     public User save(User user) {
