@@ -3,6 +3,8 @@ package ru.restaurant.to;
 import ru.restaurant.model.Restaurant;
 import ru.restaurant.model.Voice;
 
+import java.time.LocalDate;
+
 public class VoiceTo {
 
     private Integer id;
@@ -13,11 +15,17 @@ public class VoiceTo {
 
     private Integer userId;
 
+    private LocalDate date;
+
+    public VoiceTo() {
+    }
+
     public VoiceTo(Voice voice) {
         this.id = voice.getId();
         this.restaurant = voice.getRestaurant();
         this.userName = voice.getUser().getName();
         this.userId = voice.getUser().getId();
+        this.date = voice.getDate();
     }
 
     public Integer getId() {
@@ -50,5 +58,24 @@ public class VoiceTo {
 
     public void setUserId(Integer userId) {
         this.userId = userId;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    @Override
+    public String toString() {
+        return "VoiceTo{" +
+                "id=" + id +
+                ", restaurant=" + restaurant +
+                ", userName='" + userName + '\'' +
+                ", userId=" + userId +
+                ", date=" + date +
+                '}';
     }
 }

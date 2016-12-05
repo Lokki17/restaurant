@@ -2,6 +2,7 @@ package ru.restaurant;
 
 import ru.restaurant.matcher.ModelMatcher;
 import ru.restaurant.model.Voice;
+import ru.restaurant.to.VoiceTo;
 
 import java.time.LocalDate;
 import java.util.Objects;
@@ -26,6 +27,14 @@ public class VoiceTestData {
 //                            && Objects.equals(expected.getUser(), actual.getUser())
 //                            && Objects.equals(expected.getRestaurant(), actual.getRestaurant())
                             && Objects.equals(expected.getDate(), actual.getDate()));
+
+    public static final ModelMatcher<VoiceTo> MATCHER_TO = ModelMatcher.of(VoiceTo.class,
+            ((expected, actual) -> expected == actual ||
+            Objects.equals(expected.getId(), actual.getId() )
+            && Objects.equals(expected.getRestaurant().getName(), actual.getRestaurant().getName())
+            && Objects.equals(expected.getDate(), actual.getDate())
+            && Objects.equals(expected.getUserId(), actual.getUserId())
+            && Objects.equals(expected.getUserName(), actual.getUserName())));
 
     public static Voice getUpdated(){
         return new Voice(VOICE_ID, LocalDate.now(), RESTAURANT_2, ADMIN);

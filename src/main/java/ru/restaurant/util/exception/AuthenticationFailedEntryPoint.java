@@ -15,7 +15,7 @@ public class AuthenticationFailedEntryPoint implements AuthenticationEntryPoint 
         ObjectMapper objectMapper = new ObjectMapper();
         String s = objectMapper.writeValueAsString(new ErrorInfo(httpServletRequest.getRequestURL(), e));
         httpServletResponse.setContentType("application/json;charset=UTF-8");
-        httpServletResponse.setStatus(HttpServletResponse.SC_NOT_ACCEPTABLE);
+        httpServletResponse.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
         httpServletResponse.getWriter().write(s);
         httpServletResponse.getWriter().flush();
         httpServletResponse.getWriter().close();
