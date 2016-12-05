@@ -21,5 +21,11 @@ public class RestaurantTestData {
     public static final Restaurant RESTAURANT_3 = new Restaurant(RESTAURANT_ID + 2, "Самый лучший ресторан");
     public static final Restaurant RESTAURANT_4 = new Restaurant(RESTAURANT_ID + 3, "The Best");
 
+    public static Restaurant getUpdated(){
+        return new Restaurant(RESTAURANT_ID, "Хутка и смачна");
+    }
 
+    public static Restaurant getCreated(){
+        return new Restaurant("McDonalds");
+    }
 }

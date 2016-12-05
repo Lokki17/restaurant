@@ -26,10 +26,11 @@ public class JpaRestaurantRepositoryImpl implements RestaurantRepository {
         }
         if (restaurant.isNew()) {
             em.persist(restaurant);
+            return restaurant;
         } else {
-            em.merge(restaurant);
+            return em.merge(restaurant);
         }
-        return restaurant;
+
     }
 
     @Override

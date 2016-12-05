@@ -22,7 +22,7 @@ public class RestaurantServiceImpl implements RestaurantService {
     UserRepository userRepository;
 
     @Override
-    public boolean delete(int id, int userId) throws NotFoundException {
+    public boolean delete(int id) throws NotFoundException {
         return restaurantRepository.delete(id);
     }
 
@@ -45,17 +45,19 @@ public class RestaurantServiceImpl implements RestaurantService {
     }
 
     @Override
-    public Restaurant update(Restaurant restaurant, int userId) {
+    public Restaurant update(Restaurant restaurant) {
         return checkRestaurant(restaurantRepository.save(restaurant), "Can't find request restaurant");
     }
 
     @Override
-    public Restaurant save(Restaurant restaurant, int userId) {
+    public Restaurant save(Restaurant restaurant) {
         return checkRestaurant(restaurantRepository.save(restaurant), "Restaurant didn't save");
     }
 
     private Restaurant checkRestaurant(Restaurant result, String message){
-        Assert.notNull(result, message);
+        if (result == null){
+            throw new NotFoundException(message);
+        }
         return result;
     }
 }
