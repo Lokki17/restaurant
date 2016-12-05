@@ -3,14 +3,13 @@ package ru.restaurant.service.jpa;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.Assert;
-import ru.restaurant.DishTestData;
 import ru.restaurant.model.Dish;
 import ru.restaurant.service.AbstractServiceTest;
 import ru.restaurant.service.DishService;
+import ru.restaurant.util.exception.NotFoundException;
 
 import java.util.Arrays;
 
-import static org.junit.Assert.*;
 import static ru.restaurant.DishTestData.*;
 import static ru.restaurant.UserTestData.USER_ID;
 
@@ -26,6 +25,11 @@ public class DishServiceImplTest extends AbstractServiceTest {
                 Arrays.asList(service.get(DISH_ID + 1), service.get(DISH_ID + 2),
                         service.get(DISH_ID + 3), service.get(DISH_ID + 4), service.get(DISH_ID + 5),
                         service.get(DISH_ID + 6), service.get(DISH_ID + 7), service.get(DISH_ID + 8)));
+    }
+    @Test
+    public void testDeleteNotFound() throws Exception {
+        Boolean excepted = service.delete(DISH_ID - 1, USER_ID);
+        Assert.isTrue(!excepted);
     }
 
     @Test
@@ -53,6 +57,13 @@ public class DishServiceImplTest extends AbstractServiceTest {
     @Test
     public void testGet() throws Exception {
         Dish saved = service.get(DISH_ID);
+        MATCHER.assertEquals(DISH_1, saved);
+    }
+
+    @Test
+    public void testGetNotFound() throws Exception {
+        thrown.expect(NotFoundException.class);
+        Dish saved = service.get(DISH_ID - 1);
         MATCHER.assertEquals(DISH_1, saved);
     }
 }

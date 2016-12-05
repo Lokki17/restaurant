@@ -10,6 +10,7 @@ import ru.restaurant.repository.DishRepository;
 import ru.restaurant.repository.RestaurantRepository;
 import ru.restaurant.service.DishService;
 import ru.restaurant.util.DishUtil;
+import ru.restaurant.util.exception.NotFoundException;
 
 import java.time.LocalDate;
 import java.util.*;
@@ -68,7 +69,15 @@ public class DishServiceImpl implements DishService {
     }
 
     private Dish checkDish(Dish result, String message){
-        Assert.notNull(result, message);
+        if (result == null){
+            throw new NotFoundException(message);
+        }
         return result;
+    }
+
+    private void checkNotFound(boolean found, int id){
+        if (found){
+            throw new NotFoundException("Not found entity with " + id);
+        }
     }
 }
