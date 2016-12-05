@@ -1,8 +1,8 @@
 package ru.restaurant.service.jpa;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.Assert;
 import ru.restaurant.model.Dish;
 import ru.restaurant.service.AbstractServiceTest;
 import ru.restaurant.service.DishService;
@@ -29,7 +29,7 @@ public class DishServiceImplTest extends AbstractServiceTest {
     @Test
     public void testDeleteNotFound() throws Exception {
         Boolean excepted = service.delete(DISH_ID - 1);
-        Assert.isTrue(!excepted);
+        Assert.assertFalse(excepted);
     }
 
 /*    @Test

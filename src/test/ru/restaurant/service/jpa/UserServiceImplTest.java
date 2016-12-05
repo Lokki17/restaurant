@@ -3,6 +3,7 @@ package ru.restaurant.service.jpa;
 import org.hibernate.engine.internal.Collections;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 import ru.restaurant.UserTestData;
 import ru.restaurant.model.Role;
@@ -73,6 +74,9 @@ public class UserServiceImplTest extends AbstractServiceTest {
         ADMIN_USER.getRoles().remove(Role.ROLE_ADMIN);
         service.deleteRole(ADMIN_USER_ID, Role.ROLE_ADMIN);
         MATCHER.assertEquals(ADMIN_USER, service.get(ADMIN_USER_ID));
+        ADMIN_USER.getRoles().add(Role.ROLE_ADMIN);
+        ADMIN_USER.getRoles().add(Role.ROLE_USER);
+        //Why @Transactional dont work?
     }
 
 }

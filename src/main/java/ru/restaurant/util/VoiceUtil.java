@@ -11,7 +11,7 @@ public class VoiceUtil {
     }
 
     public static Map<Restaurant, Integer> getRestaurantVoiceDistribution(Collection<Voice> voices) {
-        Map<Restaurant, Integer> destr = new HashMap<>();
+        Map<Restaurant, Integer> destr = new TreeMap<>();
         voices.stream()
                 .forEach(voice -> destr.merge(voice.getRestaurant(), 1, (a, b) -> a + b));
         return destr;

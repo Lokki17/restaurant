@@ -1,9 +1,8 @@
 package ru.restaurant.service.jpa;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.Assert;
-import ru.restaurant.RestaurantTestData;
 import ru.restaurant.model.Restaurant;
 import ru.restaurant.service.AbstractServiceTest;
 import ru.restaurant.service.RestaurantService;
@@ -11,7 +10,6 @@ import ru.restaurant.util.exception.NotFoundException;
 
 import java.util.Arrays;
 
-import static org.junit.Assert.*;
 import static ru.restaurant.RestaurantTestData.*;
 
 public class RestaurantServiceImplTest extends AbstractServiceTest {
@@ -29,7 +27,7 @@ public class RestaurantServiceImplTest extends AbstractServiceTest {
     @Test()
     public void testDeleteNotFound() throws Exception {
         Boolean excepted = service.delete(RESTAURANT_ID - 1);
-        Assert.isTrue(!excepted);
+        Assert.assertFalse(excepted);
     }
 
     @Test
