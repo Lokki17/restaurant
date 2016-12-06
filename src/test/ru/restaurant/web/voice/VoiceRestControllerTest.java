@@ -39,7 +39,6 @@ public class VoiceRestControllerTest extends AbstractControllerTest {
                 .andExpect(status().isOk())
                 .andDo(print())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON));
-        //// TODO: 05.12.2016
     }
 
     @Test
@@ -65,7 +64,6 @@ public class VoiceRestControllerTest extends AbstractControllerTest {
         createdTo.setId(returned.getId());
 
         MATCHER_TO.assertEquals(createdTo, returned);
-//        MATCHER.assertCollectionEquals(Arrays.asList(ADMIN_MEAL2, created, ADMIN_MEAL1), service.getAll(ADMIN_ID));
     }
 
     @Test

@@ -23,9 +23,6 @@ public class VoiceTestData {
     public static final ModelMatcher<Voice> MATCHER = ModelMatcher.of(Voice.class,
             (expected, actual) -> expected == actual ||
                     Objects.equals(expected.getId(), actual.getId())
-//                            && UserTestData.MATCHER.assertEquals(expected.getUser(), actual.getUser())
-//                            && Objects.equals(expected.getUser(), actual.getUser())
-//                            && Objects.equals(expected.getRestaurant(), actual.getRestaurant())
                             && Objects.equals(expected.getDate(), actual.getDate()));
 
     public static final ModelMatcher<VoiceTo> MATCHER_TO = ModelMatcher.of(VoiceTo.class,
