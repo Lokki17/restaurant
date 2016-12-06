@@ -24,7 +24,10 @@ public class RestaurantServiceImpl implements RestaurantService {
 
     @Override
     public boolean delete(int id) throws NotFoundException {
-        return restaurantRepository.delete(id);
+        Boolean result = restaurantRepository.delete(id);
+        if (result){
+            return true;
+        } else throw new NotFoundException("Can't find request restaurant");
     }
 
     @Override

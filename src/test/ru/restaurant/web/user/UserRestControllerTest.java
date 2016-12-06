@@ -136,6 +136,8 @@ public class UserRestControllerTest extends AbstractControllerTest {
                 .andExpect(status().isOk());
 
         MATCHER.assertEquals(USER, service.get(USER_ID));
+        USER.setRoles(roleUser);
+//        USER.getRoles().remove(Role.ROLE_ADMIN);
     }
 
     @Test

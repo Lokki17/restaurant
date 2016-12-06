@@ -24,7 +24,7 @@ public class RestaurantServiceImplTest extends AbstractServiceTest {
                 service.getAll());
     }
 
-    @Test()
+    @Test(expected = NotFoundException.class)
     public void testDeleteNotFound() throws Exception {
         Boolean excepted = service.delete(RESTAURANT_ID - 1);
         Assert.assertFalse(excepted);

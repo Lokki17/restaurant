@@ -8,7 +8,7 @@ import ru.restaurant.model.User;
 import ru.restaurant.to.UserToClient;
 import ru.restaurant.util.PasswordUtil;
 
-import java.util.Objects;
+import java.util.*;
 
 import static ru.restaurant.model.BaseEntity.START_SEQ;
 
@@ -22,6 +22,8 @@ public class UserTestData {
     public static final User USER = new User(USER_ID, "User1", "password", Role.ROLE_USER);
     public static final User ADMIN_USER = new User(ADMIN_USER_ID, "User2", "password", Role.ROLE_USER, Role.ROLE_ADMIN);
     public static final User ADMIN = new User(ADMIN_ID, "admin", "admin", Role.ROLE_ADMIN);
+
+    public static final Set<Role> roleUser = new HashSet<>(Collections.singletonList(Role.ROLE_USER));
 
     public static final ModelMatcher<User> MATCHER = ModelMatcher.of(User.class,
             (expected, actual) -> expected == actual ||

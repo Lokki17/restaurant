@@ -7,7 +7,7 @@ import javax.persistence.*;
 import java.time.LocalDate;
 
 @NamedQueries({
-        @NamedQuery(name = Voice.GET_ALL, query = "SELECT v FROM Voice v LEFT JOIN FETCH v.restaurant LEFT JOIN FETCH v.user WHERE v.date=:date"),
+        @NamedQuery(name = Voice.GET_ALL, query = "SELECT v FROM Voice v LEFT JOIN FETCH v.restaurant LEFT JOIN FETCH v.user WHERE v.date=:date ORDER BY v.id"),
         @NamedQuery(name = Voice.DELETE, query = "DELETE FROM Voice v WHERE v.id=:voiceId AND v.user.id=:userId"),
         @NamedQuery(name = Voice.GET, query = "SELECT v FROM Voice v LEFT JOIN FETCH v.restaurant LEFT JOIN FETCH v.user WHERE v.date=:date AND v.user.id=:userId")
 //        @NamedQuery(name = Voice.GET, query = "SELECT v FROM Voice v WHERE v.id=:voiceId AND v.date=:date AND v.user.id=:userId")
