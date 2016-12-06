@@ -65,8 +65,6 @@ public class Voice extends DatedEntity {
         return "Voice{" +
                 "id=" + id +
                 ", date=" + date +
-/*                ", restaurant=" + restaurant +
-                ", user=" + user +*/
                 "}";
     }
 }

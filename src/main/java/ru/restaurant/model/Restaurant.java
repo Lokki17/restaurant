@@ -40,28 +40,4 @@ public class Restaurant extends NamedEntity{
                 ", name=" + name +
                 ')';
     }
-
-    /*    @OneToMany(fetch = FetchType.LAZY, mappedBy = "restaurant", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    //@JsonIgnore
-    private List<Dish> dishes;*/
-
-/*    @OneToMany(fetch = FetchType.LAZY, mappedBy = "restaurant", cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    //@JsonIgnore
-    private List<Voice> voices;*/
-/*
-    public List<Dish> getDishes() {
-        return dishes;
-    }
-
-    public void setDishes(List<Dish> dishes) {
-        this.dishes = dishes;
-    }
-
-    public List<Voice> getVoices() {
-        return voices;
-    }
-
-    public void setVoices(List<Voice> voice) {
-        this.voices = voice;
-    }*/
 }

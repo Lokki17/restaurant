@@ -12,7 +12,6 @@ import java.util.Set;
 
 @NamedQueries({
         @NamedQuery(name = User.GET_ALL, query = "SELECT DISTINCT u FROM User u LEFT JOIN FETCH u.roles ORDER BY u.id"),
-//        @NamedQuery(name = User.GET_ALL, query = "SELECT DISTINCT u FROM User u left JOIN FETCH u.voices LEFT JOIN FETCH u.roles"),
         @NamedQuery(name = User.DELETE, query = "DELETE FROM User u WHERE u.id=:userId"),
         @NamedQuery(name = User.GET, query = "SELECT u FROM User u WHERE u.id=:userId"),
         @NamedQuery(name = User.GET_BY_NAME, query = "SELECT u FROM User u WHERE u.name=:name")
@@ -52,10 +51,6 @@ public class User extends NamedEntity{
         this.roles = EnumSet.of(role, roles);
     }
 
-    /*    @OneToMany(mappedBy = "user")
-    //@JsonIgnore
-    private List<Voice> voices;*/
-
     public boolean isAdmin(){
         return roles.contains(Role.ROLE_ADMIN);
     }
@@ -75,14 +70,6 @@ public class User extends NamedEntity{
     public void setPassword(String password) {
         this.password = password;
     }
-
-/*    public List<Voice> getVoices() {
-        return voices;
-    }
-
-    public void setVoices(List<Voice> voices) {
-        this.voices = voices;
-    }*/
 
     @Override
     public String toString() {

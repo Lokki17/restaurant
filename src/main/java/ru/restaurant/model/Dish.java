@@ -28,9 +28,6 @@ public class Dish extends DatedEntity implements Comparable{
     @JsonIgnore
     private Restaurant restaurant;
 
-/*    @OneToMany(mappedBy = "dish", cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.LAZY)
-    private List<Voice> voice;*/
-
     @Column(name = "price")
     @NotNull
     private BigInteger price;
@@ -77,16 +74,6 @@ public class Dish extends DatedEntity implements Comparable{
     public void setRestaurant(Restaurant restaurant) {
         this.restaurant = restaurant;
     }
-
-
-
-/*    public List<Voice> getVoice() {
-        return voice;
-    }
-
-    public void setVoice(List<Voice> voice) {
-        this.voice = voice;
-    }*/
 
     public String getName() {
         return name;
