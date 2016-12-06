@@ -76,8 +76,8 @@ public class UserRestControllerTest extends AbstractControllerTest {
         UserToClient expectedTo = new UserToClient(expected);
 
         MATCHER_TO_CLIENT.assertEquals(expectedTo, returnedTo);
-//        MATCHER_TO_CLIENT.assertCollectionEquals(UserUtil.toClient(Arrays.asList(USER_FOR_TEST, ADMIN_USER, ADMIN, expected)),
-//                UserUtil.toClient(service.getAll()));
+        MATCHER_TO_CLIENT.assertCollectionEquals(UserUtil.toClient(Arrays.asList(USER_FOR_TEST, ADMIN_USER, ADMIN, expected)),
+                UserUtil.toClient(service.getAll()));
     }
 
     @Test
