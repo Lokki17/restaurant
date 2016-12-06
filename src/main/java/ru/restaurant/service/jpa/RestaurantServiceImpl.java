@@ -64,11 +64,4 @@ public class RestaurantServiceImpl implements RestaurantService {
         }
         return result;
     }
-
-
-/*    private Restaurant checkUser(Integer restaurantId) {
-        Restaurant savedRestaurant = get(restaurantId);
-        Assert.notNull(savedRestaurant, "can't find restaurant");
-        return savedRestaurant;
-    }*/
 }

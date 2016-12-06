@@ -15,7 +15,6 @@ public interface UserService {
 
     User update(User user) throws NotFoundException;
 
-//    User save(User user, int userId);
 
     User save(User user);
 
@@ -24,6 +23,4 @@ public interface UserService {
     boolean deleteRole(Integer id, Role role);
 
     void evictCache();
-
-//    boolean checkUser(String name);
 }

@@ -9,9 +9,8 @@ public class TimeUtil {
     private TimeUtil() {
     }
 
-    public static final LocalTime STOP_TIME = LocalTime.of(23, 0);
-    public static final LocalTime LANCH_TIME = LocalTime.of(22, 0);
-//    public static final LocalTime LANCH_TIME = LocalTime.of(23, 0);
+    public static final LocalTime STOP_TIME = LocalTime.of(11, 0);
+    public static final LocalTime LUNCH_TIME = LocalTime.of(15, 0);
 
     public static void checkTime(LocalTime localTime) {
         if (localTime.isAfter(STOP_TIME)) {
@@ -20,7 +19,7 @@ public class TimeUtil {
     }
 
     public static void checkLaunchTime(LocalTime localTime) {
-        if (localTime.isAfter(LANCH_TIME)) {
+        if (localTime.isAfter(LUNCH_TIME)) {
             throw new WrongTimeException("Launch time is gone");
         }
     }

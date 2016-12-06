@@ -13,13 +13,9 @@ public class AuthorizedUser extends org.springframework.security.core.userdetail
 
     private UserTo userTo;
 
-    //private static Integer id = 100002;
-
     public AuthorizedUser(User user) {
         super(user.getName(), user.getPassword(), user.getRoles());
         this.userTo = new UserTo(user);
-        //super(user.getName(), user.getPassword(), true, true, true, true, user.getRoles());
-        //this.userTo = EntityUtil.asTo(user);
     }
 
     public static AuthorizedUser safeGet() {

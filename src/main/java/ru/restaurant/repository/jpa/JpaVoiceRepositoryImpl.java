@@ -41,9 +41,7 @@ public class JpaVoiceRepositoryImpl implements VoiceRepository{
 
     @Override
     public Voice get(int userId, LocalDate localDate) {
-//    public Voice get(int voiceId, int userId, LocalDate localDate) {
         List<Voice> result = em.createNamedQuery(Voice.GET, Voice.class)
-//                .setParameter("voiceId", voiceId)
                 .setParameter("userId", userId)
                 .setParameter("date", localDate)
                 .getResultList();

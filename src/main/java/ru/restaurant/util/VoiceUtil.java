@@ -19,7 +19,6 @@ public class VoiceUtil {
 
     public static void checkId(Voice voice){
         Objects.requireNonNull(voice.getRestaurant());
-//        Objects.requireNonNull(voice.getRestaurant().getId());
     }
 
     public static Collection<VoiceTo> toToCollection(Collection<Voice> voices){

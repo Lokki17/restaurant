@@ -51,11 +51,6 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         return checkUser(userRepository.save(prepareToSave(user)), "Can't find request user");
     }
 
-/*    @Override
-    public User save(User user, int userId) {
-        return checkUser(userRepository.save(prepareToSave(user)), "Can't find request user");
-    }*/
-
     @Override
     public User save(User user) {
         return checkUser(userRepository.save(prepareToSave(user)), "user " + user.getName() + "did't save");
@@ -82,15 +77,6 @@ public class UserServiceImpl implements UserService, UserDetailsService {
             return savedUser != null;
         } else return false;
     }
-
-/*    @Override
-    public boolean checkUser(String name) {
-        try {
-            loadUserByUsername(name);
-        } catch (UsernameNotFoundException e){
-            return true;
-        } return false;
-    }*/
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

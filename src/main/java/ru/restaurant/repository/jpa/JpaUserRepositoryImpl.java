@@ -51,13 +51,6 @@ public class JpaUserRepositoryImpl implements UserRepository {
         return em.createNamedQuery(User.GET_ALL, User.class).getResultList();
     }
 
-/*    @Override
-    public User checkUser(Integer userId) {
-        User savedUser = get(userId);
-        Assert.notNull(savedUser, "can't find user");
-        return savedUser;
-    }*/
-
     @Override
     public User getByName(String name) {
         List<User> result = em.createNamedQuery(User.GET_BY_NAME, User.class).setParameter("name", name).getResultList();

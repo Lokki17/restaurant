@@ -21,9 +21,6 @@ public class DishServiceImpl implements DishService {
     @Autowired
     DishRepository dishRepository;
 
-/*    @Autowired
-    UserRepository userRepository;*/
-
     @Autowired
     RestaurantRepository restaurantRepository;
 
@@ -46,7 +43,6 @@ public class DishServiceImpl implements DishService {
 
     @Override
     public Dish update(Dish dish, int restaurantId) {
-//        User savedUser = userRepository.checkUser(userId);
         setRestaurant(dish, restaurantId);
         dish.setDate(LocalDate.now());
         return checkDish(dishRepository.save(dish), "Dish didn't update");

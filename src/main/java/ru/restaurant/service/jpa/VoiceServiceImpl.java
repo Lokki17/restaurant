@@ -42,8 +42,6 @@ public class VoiceServiceImpl implements VoiceService {
 
     @Override
     public boolean delete(int id, int userId) {
-/*        User savedUser = userRepository.get(userId);
-        Assert.notNull(savedUser, "can't find voice");*/
         return voiceRepository.delete(id, userId);
     }
 

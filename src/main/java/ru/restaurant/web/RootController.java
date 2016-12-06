@@ -35,8 +35,5 @@ public class RootController {
                 .buildAndExpand(created.getId()).toUri();
 
         return ResponseEntity.created(uriOfNewResource).body(UserUtil.toClient(user));
-//        if (service.checkUser(user.getName())) {
-//            return "redirect:/";
-//        } else throw new UserExistsException("User already registered");
     }
 }

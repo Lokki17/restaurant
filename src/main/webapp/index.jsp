@@ -19,6 +19,7 @@
     <li>Each restaurant provides new menu each day.</li>
 </ul>
 <h3>Note:</h3>
+<p>Before run, change date in file populateDB.sql to today. Lunch time is 15.00</p>
 <p> mapping "/" - root mapping (this page)</p>
 <p> mapping "/create" (method Post) - register new user (json body required) </p>
 <p>mapping "/dishes"</p>
