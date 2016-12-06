@@ -73,13 +73,6 @@ public class VoiceServiceImpl implements VoiceService {
         return voiceRepository.save(voice, dateTimeNow.toLocalDate(), userId);
     }
 
-    private Voice checkVoice(Voice result, String message) {
-        if (result == null){
-            throw new NotFoundException(message);
-        }
-        return result;
-    }
-
     private void setUser(Voice voice, Integer userId) {
         VoiceUtil.checkId(voice);
         User savedUser = userRepository.get(userId);
@@ -92,5 +85,12 @@ public class VoiceServiceImpl implements VoiceService {
         Restaurant restaurant = restaurantRepository.get(voice.getRestaurant().getName());
         Assert.notNull(restaurant, "Restaurant not found");
         voice.setRestaurant(restaurant);
+    }
+
+    private Voice checkVoice(Voice result, String message) {
+        if (result == null){
+            throw new NotFoundException(message);
+        }
+        return result;
     }
 }

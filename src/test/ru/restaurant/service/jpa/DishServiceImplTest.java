@@ -26,10 +26,11 @@ public class DishServiceImplTest extends AbstractServiceTest {
                         service.get(DISH_ID + 3), service.get(DISH_ID + 4), service.get(DISH_ID + 5),
                         service.get(DISH_ID + 6), service.get(DISH_ID + 7), service.get(DISH_ID + 8)));
     }
-    @Test
+
+    @Test(expected = NotFoundException.class)
     public void testDeleteNotFound() throws Exception {
         Boolean excepted = service.delete(DISH_ID - 1);
-        Assert.assertFalse(excepted);
+//        Assert.assertFalse(excepted);
     }
 
 /*    @Test

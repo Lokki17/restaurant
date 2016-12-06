@@ -1,5 +1,6 @@
 package ru.restaurant.web;
 
+import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.filter.CharacterEncodingFilter;
+import ru.restaurant.repository.JpaUtil;
 import ru.restaurant.service.UserService;
 
 import javax.annotation.PostConstruct;
@@ -28,6 +30,9 @@ import static org.springframework.security.test.web.servlet.setup.SecurityMockMv
 @Ignore
 abstract public class AbstractControllerTest {
     private static final CharacterEncodingFilter CHARACTER_ENCODING_FILTER = new CharacterEncodingFilter();
+
+/*    @Autowired
+    private JpaUtil jpaUtil;*/
 
     static {
         CHARACTER_ENCODING_FILTER.setEncoding("UTF-8");
@@ -50,4 +55,10 @@ abstract public class AbstractControllerTest {
                 .apply(springSecurity())
                 .build();
     }
+
+/*    @Before
+    public void setUp() {
+        userService.evictCache();
+        jpaUtil.clear2ndLevelHibernateCache();
+    }*/
 }

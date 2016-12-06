@@ -23,5 +23,7 @@ public interface UserService {
 
     boolean deleteRole(Integer id, Role role);
 
+    void evictCache();
+
 //    boolean checkUser(String name);
 }

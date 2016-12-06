@@ -30,7 +30,6 @@ public class JpaRestaurantRepositoryImpl implements RestaurantRepository {
         } else {
             return em.merge(restaurant);
         }
-
     }
 
     @Override
@@ -57,10 +56,10 @@ public class JpaRestaurantRepositoryImpl implements RestaurantRepository {
         return em.createNamedQuery(Restaurant.GET_ALL, Restaurant.class).getResultList();
     }
 
-    @Override
+/*    @Override
     public Restaurant checkUser(Integer restaurantId) {
         Restaurant savedRestaurant = get(restaurantId);
         Assert.notNull(savedRestaurant, "can't find restaurant");
         return savedRestaurant;
-    }
+    }*/
 }

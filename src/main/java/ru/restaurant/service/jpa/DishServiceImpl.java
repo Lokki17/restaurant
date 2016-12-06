@@ -29,7 +29,10 @@ public class DishServiceImpl implements DishService {
 
     @Override
     public boolean delete(int id) {
-        return dishRepository.delete(id);
+        Boolean result = dishRepository.delete(id);
+        if (result){
+            return true;
+        } else throw new NotFoundException("Can't find request dish");
     }
 
     @Override

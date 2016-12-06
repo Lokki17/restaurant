@@ -52,6 +52,8 @@
         </property>
     </bean>
 
+    <bean class="ru.restaurant.repository.JpaUtil"/>
+
     <tx:annotation-driven/>
 
     <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">

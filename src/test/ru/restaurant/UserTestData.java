@@ -20,7 +20,9 @@ public class UserTestData {
     public static final int ADMIN_ID = START_SEQ + 2;
 
     public static final User USER = new User(USER_ID, "User1", "password", Role.ROLE_USER);
+    public static final User USER_FOR_TEST = new User(USER_ID, "User1", "password", Role.ROLE_USER);
     public static final User ADMIN_USER = new User(ADMIN_USER_ID, "User2", "password", Role.ROLE_USER, Role.ROLE_ADMIN);
+    public static final User ADMIN_USER_FOR_TEST = new User(ADMIN_USER_ID, "User2", "password", Role.ROLE_USER, Role.ROLE_ADMIN);
     public static final User ADMIN = new User(ADMIN_ID, "admin", "admin", Role.ROLE_ADMIN);
 
     public static final Set<Role> roleUser = new HashSet<>(Collections.singletonList(Role.ROLE_USER));
