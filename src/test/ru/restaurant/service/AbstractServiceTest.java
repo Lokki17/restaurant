@@ -15,6 +15,6 @@ import org.springframework.transaction.annotation.Transactional;
 })
 @RunWith(SpringRunner.class)
 @Sql(scripts = "classpath:db/populateDB.sql", config = @SqlConfig(encoding = "UTF-8"))
-@Transactional
+//@Transactional
 abstract public class AbstractServiceTest {
 }

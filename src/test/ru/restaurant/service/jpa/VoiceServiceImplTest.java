@@ -2,6 +2,7 @@ package ru.restaurant.service.jpa;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 import ru.restaurant.RestaurantTestData;
 import ru.restaurant.UserTestData;
@@ -10,6 +11,8 @@ import ru.restaurant.model.Restaurant;
 import ru.restaurant.model.Voice;
 import ru.restaurant.service.AbstractServiceTest;
 import ru.restaurant.service.VoiceService;
+import ru.restaurant.to.VoiceTo;
+import ru.restaurant.util.VoiceUtil;
 import ru.restaurant.util.exception.NotFoundException;
 
 import java.util.Arrays;
@@ -62,11 +65,11 @@ public class VoiceServiceImplTest extends AbstractServiceTest{
     }
 
     @Test
+    @Transactional
     public void testSave() throws Exception {
         Voice created = getCreated();
         Voice actual = service.save(created, ADMIN_ID);
-        VoiceTestData.MATCHER.assertEquals(created, actual);
-        UserTestData.MATCHER.assertEquals(created.getUser(), actual.getUser());
-        RestaurantTestData.MATCHER.assertEquals(created.getRestaurant(), actual.getRestaurant());
+        created.setId(actual.getId());
+        VoiceTestData.MATCHER_TO.assertEquals(new VoiceTo(created), new VoiceTo(actual));
     }
 }
