@@ -63,7 +63,9 @@ public class DishServiceImpl implements DishService {
 
     private void setRestaurant(Dish dish, Integer restaurantId) {
         Restaurant restaurant = restaurantRepository.get(restaurantId);
-        Assert.notNull(restaurant, "Not found Restaurant");
+        if (restaurant == null){
+            throw new NotFoundException("Not found Restaurant");
+        }
         dish.setRestaurant(restaurant);
     }
 

@@ -5,24 +5,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
-import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import ru.restaurant.model.Restaurant;
-import ru.restaurant.model.User;
 import ru.restaurant.model.Voice;
 import ru.restaurant.service.RestaurantService;
 import ru.restaurant.service.UserService;
 import ru.restaurant.service.VoiceService;
 import ru.restaurant.to.VoiceTo;
 import ru.restaurant.util.VoiceUtil;
-import ru.restaurant.util.exception.NotFoundException;
 import ru.restaurant.web.AuthorizedUser;
 
 import javax.validation.Valid;
 import java.net.URI;
 import java.util.Collection;
 import java.util.Map;
+
+import static ru.restaurant.util.VoiceUtil.checkRestaurant;
 
 @RestController
 @RequestMapping(VoiceRestController.VOICE_URL)

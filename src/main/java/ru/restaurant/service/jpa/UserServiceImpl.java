@@ -34,7 +34,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    public boolean delete(int id) throws NotFoundException {
+    public boolean delete(int id) {
         Boolean result = userRepository.delete(id);
         if (result){
             return true;
@@ -59,7 +59,8 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     public boolean setRole(Integer id, Role role) {
         User result = userRepository.get(id);
-        Assert.notNull(result, "can't find request user");
+        checkUser(result, "can't find request user");
+//        Assert.notNull(result, "can't find request user");
         User savedUser;
         if(result.getRoles().add(role)){
             savedUser = userRepository.save(result);
@@ -70,7 +71,8 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     public boolean deleteRole(Integer id, Role role) {
         User result = userRepository.get(id);
-        Assert.notNull(result, "can't find request user");
+        checkUser(result, "can't find request user");
+//        Assert.notNull(result, "can't find request user");
         User savedUser;
         if (result.getRoles().remove(role)){
             savedUser = userRepository.save(result);

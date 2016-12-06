@@ -11,8 +11,6 @@ public class DishUtil {
     }
 
     public static Map<Restaurant, Set<Dish>> dishesWithRestaurants(Collection<Dish> dishes) {
-
-
         Map<Restaurant, Set<Dish>> result = new TreeMap<>();
         for (Dish dish : dishes) {
             if (!result.containsKey(dish.getRestaurant())) {

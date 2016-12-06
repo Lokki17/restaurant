@@ -2,7 +2,6 @@ package ru.restaurant.service.jpa;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.Assert;
 import ru.restaurant.model.Restaurant;
 import ru.restaurant.model.User;
 import ru.restaurant.model.Voice;
@@ -54,7 +53,7 @@ public class VoiceServiceImpl implements VoiceService {
     }
 
 
-    @Override //TODO проверить!!!
+    @Override
     public Voice save(Voice voice, int userId) {
         LocalDateTime dateTimeNow = LocalDateTime.now();
         TimeUtil.checkLaunchTime(dateTimeNow.toLocalTime());
@@ -72,16 +71,16 @@ public class VoiceServiceImpl implements VoiceService {
     }
 
     private void setUser(Voice voice, Integer userId) {
-        VoiceUtil.checkId(voice);
+        VoiceUtil.checkRestaurant(voice);
         User savedUser = userRepository.get(userId);
-        Assert.notNull(savedUser, "User not found");
+//        Assert.notNull(savedUser, "User not found");
         voice.setUser(savedUser);
     }
 
     private void setRestaurant(Voice voice){
-        VoiceUtil.checkId(voice);
+        VoiceUtil.checkRestaurant(voice);
         Restaurant restaurant = restaurantRepository.get(voice.getRestaurant().getName());
-        Assert.notNull(restaurant, "Restaurant not found");
+//        Assert.notNull(restaurant, "Restaurant not found");
         voice.setRestaurant(restaurant);
     }
 
