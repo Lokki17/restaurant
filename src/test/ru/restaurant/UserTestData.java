@@ -59,4 +59,8 @@ public class UserTestData {
     public static User getCreated() {
         return new User("UserCreated", "password", Role.ROLE_USER);
     }
+
+    public static User getCreatedRoot() {
+        return new User("UserCreatedRoot", "password", Role.ROLE_USER);
+    }
 }
