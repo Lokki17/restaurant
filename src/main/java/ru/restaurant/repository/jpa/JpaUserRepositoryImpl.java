@@ -40,10 +40,10 @@ public class JpaUserRepositoryImpl implements UserRepository {
 
     @Override
     public User get(int id) {
-        List<User> result = em.createNamedQuery(User.GET, User.class).setParameter("userId", id).getResultList();
-        if (!result.isEmpty()) {
+        return userFromResultList(em.createNamedQuery(User.GET, User.class).setParameter("userId", id).getResultList());
+/*        if (!result.isEmpty()) {
             return result.get(0);
-        } else return null;
+        } else return null;*/
     }
 
     @Override
@@ -53,7 +53,13 @@ public class JpaUserRepositoryImpl implements UserRepository {
 
     @Override
     public User getByName(String name) {
-        List<User> result = em.createNamedQuery(User.GET_BY_NAME, User.class).setParameter("name", name).getResultList();
+        return userFromResultList(em.createNamedQuery(User.GET_BY_NAME, User.class).setParameter("name", name).getResultList());
+/*        if (!result.isEmpty()) {
+            return result.get(0);
+        } else return null;*/
+    }
+
+    private User userFromResultList(List<User> result){
         if (!result.isEmpty()) {
             return result.get(0);
         } else return null;

@@ -22,7 +22,6 @@ public class JpaVoiceRepositoryImpl implements VoiceRepository{
     @Transactional
     public Voice save(Voice voice, LocalDate localDate, int userId) {
         if (!voice.isNew() && get(userId, localDate) == null){
-//        if (!voice.isNew() && get(voice.getId(), userId, localDate) == null){
             return null;
         }
         if (voice.isNew()){
