@@ -11,6 +11,7 @@ import ru.restaurant.util.exception.NotFoundException;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 
 @Service
 public class RestaurantServiceImpl implements RestaurantService {
@@ -27,8 +28,8 @@ public class RestaurantServiceImpl implements RestaurantService {
     }
 
     @Override
-    public Collection<Restaurant> getAll() {
-        Collection<Restaurant> result = restaurantRepository.getAll();
+    public List<Restaurant> getAll() {
+        List<Restaurant> result = restaurantRepository.getAll();
         if (!result.isEmpty()) {
             return result;
         } else return Collections.emptyList();

@@ -18,7 +18,7 @@ public class AccessDeniedHandlerImpl extends ExceptionInfoHandler implements Acc
         ObjectMapper objectMapper = new ObjectMapper();
         String s = objectMapper.writeValueAsString(new ErrorInfo(request.getRequestURL(), accessDeniedException));
         response.setContentType("application/json;charset=UTF-8");
-        response.setStatus(HttpServletResponse.SC_NOT_ACCEPTABLE);
+        response.setStatus(HttpServletResponse.SC_FORBIDDEN);
         response.getWriter().write(s);
         response.getWriter().flush();
         response.getWriter().close();

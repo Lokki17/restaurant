@@ -1,5 +1,6 @@
 package ru.restaurant.to;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import ru.restaurant.model.Role;
 import ru.restaurant.model.User;
 
@@ -17,6 +18,12 @@ public class UserToClient {
         this.roles = user.getRoles();
     }
 
+    public UserToClient(@JsonProperty("id") Integer id, @JsonProperty("name") String name, @JsonProperty("roles") Set<Role> roles) {
+        this.id = id;
+        this.name = name;
+        this.roles = roles;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -27,5 +34,14 @@ public class UserToClient {
 
     public Set<Role> getRoles() {
         return roles;
+    }
+
+    @Override
+    public String toString() {
+        return "UserToClient{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", roles=" + roles +
+                '}';
     }
 }

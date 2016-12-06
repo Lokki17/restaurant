@@ -4,6 +4,7 @@ import ru.restaurant.model.Restaurant;
 
 import java.time.LocalDateTime;
 import java.util.Collection;
+import java.util.List;
 
 public interface RestaurantRepository {
     // null if updated meal do not belong to userId
@@ -18,7 +19,7 @@ public interface RestaurantRepository {
     Restaurant get(String restaurantName);
 
     // ORDERED dateTime
-    Collection<Restaurant> getAll();
+    List<Restaurant> getAll();
 
     Restaurant checkUser(Integer restaurantId);
 

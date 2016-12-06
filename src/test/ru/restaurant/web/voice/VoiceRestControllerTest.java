@@ -1,37 +1,24 @@
 package ru.restaurant.web.voice;
 
 import org.junit.Test;
-import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
-import ru.restaurant.RestaurantTestData;
-import ru.restaurant.TestUtil;
-import ru.restaurant.UserTestData;
-import ru.restaurant.VoiceTestData;
 import ru.restaurant.model.Voice;
 import ru.restaurant.service.VoiceService;
-import ru.restaurant.to.UserTo;
 import ru.restaurant.to.VoiceTo;
-import ru.restaurant.util.VoiceUtil;
 import ru.restaurant.web.AbstractControllerTest;
-import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.ResultActions;
 
-import static org.junit.Assert.assertEquals;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import org.springframework.test.web.servlet.ResultActions;
+
 import ru.restaurant.web.json.JsonUtil;
 
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
 
-import static org.junit.Assert.*;
 import static ru.restaurant.TestUtil.userHttpBasic;
 import static ru.restaurant.UserTestData.ADMIN;
 import static ru.restaurant.UserTestData.ADMIN_ID;

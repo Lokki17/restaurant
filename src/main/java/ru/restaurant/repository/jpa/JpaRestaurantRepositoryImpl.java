@@ -53,7 +53,7 @@ public class JpaRestaurantRepositoryImpl implements RestaurantRepository {
     }
 
     @Override
-    public Collection<Restaurant> getAll() {
+    public List<Restaurant> getAll() {
         return em.createNamedQuery(Restaurant.GET_ALL, Restaurant.class).getResultList();
     }
 

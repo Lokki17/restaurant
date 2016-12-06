@@ -1,22 +1,14 @@
 package ru.restaurant.service.jpa;
 
-import org.hibernate.engine.internal.Collections;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.Assert;
-import ru.restaurant.UserTestData;
 import ru.restaurant.model.Role;
 import ru.restaurant.model.User;
 import ru.restaurant.service.AbstractServiceTest;
 import ru.restaurant.service.UserService;
-import ru.restaurant.to.UserToClient;
-import ru.restaurant.util.UserUtil;
+import ru.restaurant.util.exception.NotFoundException;
 
 import java.util.Arrays;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
 
 import static org.junit.Assert.*;
 import static ru.restaurant.UserTestData.*;
@@ -37,10 +29,10 @@ public class UserServiceImplTest extends AbstractServiceTest {
         MATCHER.assertCollectionEquals(Arrays.asList(ADMIN_USER, ADMIN), service.getAll());
     }
 
-    @Test
+    @Test(expected = NotFoundException.class)
     public void testDeleteNotFound() throws Exception {
         Boolean deleted = service.delete(USER_ID - 1);
-        Assert.isTrue(!deleted);
+        assertFalse(deleted);
     }
 
     @Test
@@ -76,7 +68,7 @@ public class UserServiceImplTest extends AbstractServiceTest {
         MATCHER.assertEquals(ADMIN_USER, service.get(ADMIN_USER_ID));
         ADMIN_USER.getRoles().add(Role.ROLE_ADMIN);
         ADMIN_USER.getRoles().add(Role.ROLE_USER);
-        //Why @Transactional dont work?
+        //Why @Transactional don't work?
     }
 
 }

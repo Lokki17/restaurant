@@ -28,13 +28,16 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     public User get(int id) throws NotFoundException {
         User result = userRepository.get(id);
-        Assert.notNull(result, "can't find request user");
+        checkUser(result, "can't find request user");
         return result;
     }
 
     @Override
     public boolean delete(int id) throws NotFoundException {
-        return userRepository.delete(id);
+        Boolean result = userRepository.delete(id);
+        if (result){
+            return true;
+        } else throw new NotFoundException("Can't find request user");
     }
 
     @Override
@@ -43,7 +46,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    public User update(User user) throws NotFoundException {
+    public User update(User user) {
         return checkUser(userRepository.save(prepareToSave(user)), "Can't find request user");
     }
 
@@ -98,7 +101,9 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     private User checkUser(User result, String message){
-        Assert.notNull(result, message);
+        if (result == null){
+            throw new NotFoundException(message);
+        }
         return result;
     }
 }

@@ -4,12 +4,13 @@ import ru.restaurant.model.Restaurant;
 import ru.restaurant.util.exception.NotFoundException;
 
 import java.util.Collection;
+import java.util.List;
 
 public interface RestaurantService {
 
     boolean delete(int id) throws NotFoundException;
 
-    Collection<Restaurant> getAll();
+    List<Restaurant> getAll();
 
     Restaurant get(Integer restaurantId);
 

@@ -8,14 +8,15 @@ import ru.restaurant.to.UserToClient;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 public class UserUtil {
 
     private UserUtil() {
     }
 
-    public static Collection<UserToClient> toClient(Collection<User> users){
-        Collection<UserToClient> result = new ArrayList<>();
+    public static List<UserToClient> toClient(Collection<User> users){
+        List<UserToClient> result = new ArrayList<>();
         users.stream().forEach(user -> result.add(new UserToClient(user)));
         return result;
     }

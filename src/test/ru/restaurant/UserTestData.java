@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import ru.restaurant.matcher.ModelMatcher;
 import ru.restaurant.model.Role;
 import ru.restaurant.model.User;
+import ru.restaurant.to.UserToClient;
 import ru.restaurant.util.PasswordUtil;
 
 import java.util.Objects;
@@ -31,6 +32,12 @@ public class UserTestData {
                     )
     );
 
+    public static final ModelMatcher<UserToClient> MATCHER_TO_CLIENT = ModelMatcher.of(UserToClient.class,
+            ((expected, actual) -> expected == actual ||
+                    Objects.equals(expected.getId(), actual.getId())
+                            && Objects.equals(expected.getName(), actual.getName())
+                            && Objects.equals(expected.getRoles(), actual.getRoles())));
+
     private static boolean comparePassword(String rawOrEncodedPassword, String password) {
         if (PasswordUtil.isEncoded(rawOrEncodedPassword)) {
             return rawOrEncodedPassword.equals(password);
@@ -41,11 +48,11 @@ public class UserTestData {
         return true;
     }
 
-    public static User getUpdated(){
+    public static User getUpdated() {
         return new User(USER_ID, "UserUpdated", "password", Role.ROLE_USER);
     }
 
-    public static User getCreated(){
+    public static User getCreated() {
         return new User("UserCreated", "password", Role.ROLE_USER);
     }
 }
