@@ -3,6 +3,7 @@ package ru.restaurant.model;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
@@ -26,6 +27,7 @@ public class User extends NamedEntity{
 
     @Column(name = "password", nullable = false)
     @NotEmpty
+    @Length(min = 5)
     private String password;
 
     @Enumerated(EnumType.STRING)

@@ -1,6 +1,7 @@
 package ru.restaurant.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -33,7 +34,7 @@ public class Dish extends DatedEntity implements Comparable{
     private BigInteger price;
 
     @Column(name = "name")
-    @NotNull
+    @NotEmpty
     private String name;
 
     public Dish() {
