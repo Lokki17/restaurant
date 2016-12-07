@@ -19,6 +19,7 @@ import ru.restaurant.web.AuthorizedUser;
 import java.util.Collection;
 import java.util.Set;
 
+import static ru.restaurant.util.EntityUtil.checkForNull;
 import static ru.restaurant.util.UserUtil.prepareToSave;
 
 @Service("userService")
@@ -61,9 +62,8 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     public boolean setRole(Integer id, Role role) {
         User result = userRepository.get(id);
         checkUser(result, "can't find request user");
-        User savedUser;
         if (result.getRoles().add(role)) {
-            savedUser = userRepository.save(result);
+            User savedUser = userRepository.save(result);
             return savedUser != null;
         } else return false;
     }
@@ -72,9 +72,8 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     public boolean deleteRole(Integer id, Role role) {
         User result = userRepository.get(id);
         checkUser(result, "can't find request user");
-        User savedUser;
         if (result.getRoles().remove(role)) {
-            savedUser = userRepository.save(result);
+            User savedUser = userRepository.save(result);
             return savedUser != null;
         } else return false;
     }
@@ -87,7 +86,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     private User checkUser(User result, String message) {
-        EntityUtil.checkForNull(result, message);
+        checkForNull(result, message);
         return result;
     }
 
