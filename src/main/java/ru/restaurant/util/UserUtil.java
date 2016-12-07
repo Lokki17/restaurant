@@ -37,10 +37,4 @@ public class UserUtil {
             throw new AccessDeniedException("You can't get admin role");
         }
     }
-
-    public static void checkForNull(User user){
-        if (user == null){
-            throw new NotFoundException("Can't find request user");
-        }
-    }
 }

@@ -20,19 +20,12 @@ public class VoiceUtil {
 
     public static void checkRestaurant(Voice voice){
         Objects.requireNonNull(voice.getRestaurant());
-        Objects.requireNonNull(voice.getRestaurant().getId());
+        Objects.requireNonNull(voice.getRestaurant().getName());
     }
 
     public static Collection<VoiceTo> toToCollection(Collection<Voice> voices){
         Collection<VoiceTo> result = new LinkedList<>();
         voices.stream().forEach(voice -> result.add(new VoiceTo(voice)));
-        return result;
-    }
-
-    public Voice checkVoice(Voice result, String message) {
-        if (result == null){
-            throw new NotFoundException(message);
-        }
         return result;
     }
 }
