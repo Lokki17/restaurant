@@ -7,11 +7,14 @@ import ru.restaurant.model.Restaurant;
 import ru.restaurant.repository.RestaurantRepository;
 import ru.restaurant.repository.UserRepository;
 import ru.restaurant.service.RestaurantService;
+import ru.restaurant.util.EntityUtil;
 import ru.restaurant.util.exception.NotFoundException;
 
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+
+import static ru.restaurant.util.EntityUtil.checkForNull;
 
 @Service
 public class RestaurantServiceImpl implements RestaurantService {
@@ -59,9 +62,7 @@ public class RestaurantServiceImpl implements RestaurantService {
     }
 
     private Restaurant checkRestaurant(Restaurant result, String message){
-        if (result == null){
-            throw new NotFoundException(message);
-        }
+        checkForNull(result, message);
         return result;
     }
 }

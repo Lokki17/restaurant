@@ -3,6 +3,7 @@ package ru.restaurant.util;
 import ru.restaurant.util.exception.WrongTimeException;
 
 import java.time.LocalTime;
+import java.util.Properties;
 
 public class TimeUtil {
 
@@ -11,6 +12,8 @@ public class TimeUtil {
 
     public static final LocalTime STOP_TIME = LocalTime.of(21, 0);
     public static final LocalTime LUNCH_TIME = LocalTime.of(22, 0);
+
+
 
     public static void checkTime(LocalTime localTime) {
         if (localTime.isAfter(STOP_TIME)) {

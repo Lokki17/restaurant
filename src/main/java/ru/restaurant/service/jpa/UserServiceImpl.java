@@ -12,6 +12,7 @@ import ru.restaurant.model.User;
 import ru.restaurant.repository.UserRepository;
 import ru.restaurant.service.UserService;
 
+import ru.restaurant.util.EntityUtil;
 import ru.restaurant.util.exception.NotFoundException;
 import ru.restaurant.web.AuthorizedUser;
 
@@ -36,7 +37,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     public boolean delete(int id) {
         Boolean result = userRepository.delete(id);
-        if (result){
+        if (result) {
             return true;
         } else throw new NotFoundException("Can't find request user");
     }
@@ -60,9 +61,8 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     public boolean setRole(Integer id, Role role) {
         User result = userRepository.get(id);
         checkUser(result, "can't find request user");
-//        Assert.notNull(result, "can't find request user");
         User savedUser;
-        if(result.getRoles().add(role)){
+        if (result.getRoles().add(role)) {
             savedUser = userRepository.save(result);
             return savedUser != null;
         } else return false;
@@ -72,9 +72,8 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     public boolean deleteRole(Integer id, Role role) {
         User result = userRepository.get(id);
         checkUser(result, "can't find request user");
-//        Assert.notNull(result, "can't find request user");
         User savedUser;
-        if (result.getRoles().remove(role)){
+        if (result.getRoles().remove(role)) {
             savedUser = userRepository.save(result);
             return savedUser != null;
         } else return false;
@@ -83,16 +82,12 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.getByName(username);
-        if (user == null) {
-            throw new UsernameNotFoundException("User " + username + " is not found");
-        }
+        checkUser(user, "User " + username + " is not found");
         return new AuthorizedUser(user);
     }
 
-    private User checkUser(User result, String message){
-        if (result == null){
-            throw new NotFoundException(message);
-        }
+    private User checkUser(User result, String message) {
+        EntityUtil.checkForNull(result, message);
         return result;
     }
 

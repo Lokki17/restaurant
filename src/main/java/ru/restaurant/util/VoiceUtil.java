@@ -2,6 +2,7 @@ package ru.restaurant.util;
 
 import ru.restaurant.model.*;
 import ru.restaurant.to.VoiceTo;
+import ru.restaurant.util.exception.NotFoundException;
 
 import java.util.*;
 
@@ -25,6 +26,13 @@ public class VoiceUtil {
     public static Collection<VoiceTo> toToCollection(Collection<Voice> voices){
         Collection<VoiceTo> result = new LinkedList<>();
         voices.stream().forEach(voice -> result.add(new VoiceTo(voice)));
+        return result;
+    }
+
+    public Voice checkVoice(Voice result, String message) {
+        if (result == null){
+            throw new NotFoundException(message);
+        }
         return result;
     }
 }

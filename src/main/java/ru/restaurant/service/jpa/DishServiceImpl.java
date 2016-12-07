@@ -10,10 +10,13 @@ import ru.restaurant.repository.DishRepository;
 import ru.restaurant.repository.RestaurantRepository;
 import ru.restaurant.service.DishService;
 import ru.restaurant.util.DishUtil;
+import ru.restaurant.util.EntityUtil;
 import ru.restaurant.util.exception.NotFoundException;
 
 import java.time.LocalDate;
 import java.util.*;
+
+import static ru.restaurant.util.EntityUtil.*;
 
 @Service
 public class DishServiceImpl implements DishService {
@@ -63,16 +66,12 @@ public class DishServiceImpl implements DishService {
 
     private void setRestaurant(Dish dish, Integer restaurantId) {
         Restaurant restaurant = restaurantRepository.get(restaurantId);
-        if (restaurant == null){
-            throw new NotFoundException("Not found Restaurant");
-        }
+        checkForNull(restaurant, "Not found Restaurant");
         dish.setRestaurant(restaurant);
     }
 
     private Dish checkDish(Dish result, String message){
-        if (result == null){
-            throw new NotFoundException(message);
-        }
+        checkForNull(result, message);
         return result;
     }
 }

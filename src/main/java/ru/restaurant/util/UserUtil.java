@@ -5,6 +5,7 @@ import org.springframework.util.Assert;
 import ru.restaurant.model.Role;
 import ru.restaurant.model.User;
 import ru.restaurant.to.UserToClient;
+import ru.restaurant.util.exception.NotFoundException;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -34,6 +35,12 @@ public class UserUtil {
         Assert.notNull(user.getRoles(), "Set of roles is empty");
         if (user.getRoles().contains(Role.ROLE_ADMIN)){
             throw new AccessDeniedException("You can't get admin role");
+        }
+    }
+
+    public static void checkForNull(User user){
+        if (user == null){
+            throw new NotFoundException("Can't find request user");
         }
     }
 }

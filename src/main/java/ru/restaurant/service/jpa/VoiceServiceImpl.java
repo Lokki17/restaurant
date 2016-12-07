@@ -9,13 +9,18 @@ import ru.restaurant.repository.RestaurantRepository;
 import ru.restaurant.repository.UserRepository;
 import ru.restaurant.repository.VoiceRepository;
 import ru.restaurant.service.VoiceService;
+import ru.restaurant.util.EntityUtil;
 import ru.restaurant.util.TimeUtil;
+import ru.restaurant.util.UserUtil;
 import ru.restaurant.util.VoiceUtil;
 import ru.restaurant.util.exception.NotFoundException;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.*;
+
+import static ru.restaurant.util.EntityUtil.checkForNull;
+import static ru.restaurant.util.VoiceUtil.checkRestaurant;
 
 @Service
 public class VoiceServiceImpl implements VoiceService {
@@ -31,7 +36,9 @@ public class VoiceServiceImpl implements VoiceService {
 
     @Override
     public Voice get(int userId) {
-        return checkVoice(voiceRepository.get(userId, LocalDate.now()), "Can't find your today voice");
+        Voice result = voiceRepository.get(userId, LocalDate.now());
+        checkForNull(result, "Can't find your today voice");
+        return result;
     }
 
     @Override
@@ -71,23 +78,16 @@ public class VoiceServiceImpl implements VoiceService {
     }
 
     private void setUser(Voice voice, Integer userId) {
-        VoiceUtil.checkRestaurant(voice);
+        checkRestaurant(voice);
         User savedUser = userRepository.get(userId);
-//        Assert.notNull(savedUser, "User not found");
+        checkForNull(savedUser, "Can't find user");
         voice.setUser(savedUser);
     }
 
     private void setRestaurant(Voice voice){
-        VoiceUtil.checkRestaurant(voice);
+        checkRestaurant(voice);
         Restaurant restaurant = restaurantRepository.get(voice.getRestaurant().getName());
-//        Assert.notNull(restaurant, "Restaurant not found");
+        checkForNull(restaurant, "Can't find restaurant");
         voice.setRestaurant(restaurant);
-    }
-
-    private Voice checkVoice(Voice result, String message) {
-        if (result == null){
-            throw new NotFoundException(message);
-        }
-        return result;
     }
 }
