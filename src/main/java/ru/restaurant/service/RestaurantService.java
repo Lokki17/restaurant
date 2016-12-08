@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface RestaurantService {
 
-    boolean delete(int id) throws NotFoundException;
+    boolean delete(int id);
 
     List<Restaurant> getAll();
 

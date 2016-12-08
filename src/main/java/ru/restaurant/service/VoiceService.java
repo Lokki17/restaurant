@@ -8,11 +8,11 @@ import java.util.Collection;
 import java.util.Map;
 
 public interface VoiceService {
-    Voice get(int userId) throws NotFoundException;
+    Voice get(int userId);
 
     Collection<Voice> getAll();
 
-    boolean delete(int id, int userId) throws NotFoundException;
+    boolean delete(int id, int userId);
 
     Map<Restaurant, Integer> getAllOnDate();
 

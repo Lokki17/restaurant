@@ -9,11 +9,11 @@ import java.util.Collection;
 public interface UserService {
     User get(int id) throws NotFoundException;
 
-    boolean delete(int id) throws NotFoundException;
+    boolean delete(int id);
 
     Collection<User> getAll();
 
-    User update(User user) throws NotFoundException;
+    User update(User user);
 
 
     User save(User user);

@@ -10,11 +10,11 @@ import java.util.Set;
 
 public interface DishService {
 
-    boolean delete(int id) throws NotFoundException;
+    boolean delete(int id);
 
     Map<Restaurant, Set<Dish>> getAllOnDate(LocalDate dateTime);
 
-    Dish update(Dish dish, int restaurantId) throws NotFoundException;
+    Dish update(Dish dish, int restaurantId);
 
     Dish save(Dish dish, int restaurantId);
 
