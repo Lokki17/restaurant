@@ -4,6 +4,7 @@ import ru.restaurant.model.Dish;
 import ru.restaurant.model.Restaurant;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class DishUtil {
 
