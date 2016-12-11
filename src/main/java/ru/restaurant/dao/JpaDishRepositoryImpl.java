@@ -1,9 +1,8 @@
-package ru.restaurant.repository.jpa;
+package ru.restaurant.dao;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import ru.restaurant.model.Dish;
-import ru.restaurant.repository.DishRepository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

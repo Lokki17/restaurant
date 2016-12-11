@@ -1,12 +1,9 @@
-package ru.restaurant.repository;
+package ru.restaurant.dao;
 
-import org.springframework.data.jpa.repository.EntityGraph;
 import ru.restaurant.model.Dish;
 import ru.restaurant.util.exception.WrongTimeException;
 
-import javax.persistence.NamedEntityGraph;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.Collection;
 
 public interface DishRepository {

@@ -1,20 +1,19 @@
 package ru.restaurant.service;
 
 import ru.restaurant.model.Restaurant;
-import ru.restaurant.model.Voice;
-import ru.restaurant.util.exception.NotFoundException;
+import ru.restaurant.model.Vote;
 
 import java.util.Collection;
 import java.util.Map;
 
 public interface VoiceService {
-    Voice get(int userId);
+    Vote get(int userId);
 
-    Collection<Voice> getAll();
+    Collection<Vote> getAll();
 
     boolean delete(int id, int userId);
 
     Map<Restaurant, Integer> getAllOnDate();
 
-    Voice save(Voice voice, int userId);
+    Vote save(Vote vote, int userId);
 }

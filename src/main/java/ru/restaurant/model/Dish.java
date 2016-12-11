@@ -2,6 +2,7 @@ package ru.restaurant.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.validator.constraints.NotEmpty;
+import ru.restaurant.util.EntityUtil;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -17,7 +18,7 @@ import java.time.LocalDate;
 //@NamedEntityGraph(name = Dish.GRAPH, attributeNodes = {@NamedAttributeNode("restaurant")})
 @Entity
 @Table(name = "dishes")
-public class Dish extends DatedEntity implements Comparable{
+public class Dish extends DatedEntity implements Comparable {
 //    public static final String GRAPH = "Dishes.restaurant";
 
     public static final String GET_ALL = "Dish.getAll";
@@ -40,7 +41,7 @@ public class Dish extends DatedEntity implements Comparable{
     public Dish() {
     }
 
-    public Dish(Integer id, LocalDate date, String name, BigInteger price, Restaurant restaurant ) {
+    public Dish(Integer id, LocalDate date, String name, BigInteger price, Restaurant restaurant) {
         this.id = id;
         this.date = date;
         this.name = name;
@@ -48,7 +49,7 @@ public class Dish extends DatedEntity implements Comparable{
         this.restaurant = restaurant;
     }
 
-    public Dish(LocalDate date, String name, BigInteger price, Restaurant restaurant ) {
+    public Dish(LocalDate date, String name, BigInteger price, Restaurant restaurant) {
         this.id = null;
         this.date = date;
         this.name = name;
@@ -56,7 +57,7 @@ public class Dish extends DatedEntity implements Comparable{
         this.restaurant = restaurant;
     }
 
-    public boolean isNew(){
+    public boolean isNew() {
         return id == null;
     }
 
@@ -96,8 +97,12 @@ public class Dish extends DatedEntity implements Comparable{
 
     @Override
     public int compareTo(Object o) {
+        if (this == o) {
+            return 0;
+        }
+        EntityUtil.checkForNull((BaseEntity) o, "Nothing to compare");
         Dish that = (Dish) o;
-        if (!this.name.equals(that.name)){
+        if (!this.name.equals(that.name)) {
             return this.name.compareTo(that.name);
         } else {
             return this.id.compareTo(that.getId());

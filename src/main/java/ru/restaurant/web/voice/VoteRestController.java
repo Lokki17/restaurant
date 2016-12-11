@@ -8,7 +8,7 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import ru.restaurant.model.Restaurant;
-import ru.restaurant.model.Voice;
+import ru.restaurant.model.Vote;
 import ru.restaurant.service.RestaurantService;
 import ru.restaurant.service.UserService;
 import ru.restaurant.service.VoiceService;
@@ -21,11 +21,9 @@ import java.net.URI;
 import java.util.Collection;
 import java.util.Map;
 
-import static ru.restaurant.util.VoiceUtil.checkRestaurant;
-
 @RestController
-@RequestMapping(VoiceRestController.VOICE_URL)
-public class VoiceRestController {
+@RequestMapping(VoteRestController.VOICE_URL)
+public class VoteRestController {
     public static final String VOICE_URL = "/voices";
 
     @Autowired
@@ -50,8 +48,8 @@ public class VoiceRestController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<VoiceTo> create(@Valid @RequestBody Voice voice) {
-        VoiceTo created = new VoiceTo(service.save(voice, AuthorizedUser.getId()));
+    public ResponseEntity<VoiceTo> create(@Valid @RequestBody Vote vote) {
+        VoiceTo created = new VoiceTo(service.save(vote, AuthorizedUser.getId()));
         URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path("/voices" + created.getId())
                 .buildAndExpand(created.getId()).toUri();
@@ -66,8 +64,8 @@ public class VoiceRestController {
     }
 
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public VoiceTo update(@Valid @RequestBody Voice voice, @PathVariable("id") int id) {
-        voice.setId(id);
-        return new VoiceTo(service.save(voice, AuthorizedUser.getId()));
+    public VoiceTo update(@Valid @RequestBody Vote vote, @PathVariable("id") int id) {
+        vote.setId(id);
+        return new VoiceTo(service.save(vote, AuthorizedUser.getId()));
     }
 }

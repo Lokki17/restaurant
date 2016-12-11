@@ -6,37 +6,35 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 import ru.restaurant.RestaurantTestData;
 import ru.restaurant.UserTestData;
-import ru.restaurant.VoiceTestData;
+import ru.restaurant.VoteTestData;
 import ru.restaurant.model.Restaurant;
-import ru.restaurant.model.Voice;
+import ru.restaurant.model.Vote;
 import ru.restaurant.service.AbstractServiceTest;
 import ru.restaurant.service.VoiceService;
 import ru.restaurant.to.VoiceTo;
-import ru.restaurant.util.VoiceUtil;
 import ru.restaurant.util.exception.NotFoundException;
 
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Map;
 
-import static org.junit.Assert.*;
 import static ru.restaurant.RestaurantTestData.*;
 import static ru.restaurant.UserTestData.*;
-import static ru.restaurant.VoiceTestData.*;
-import static ru.restaurant.VoiceTestData.MATCHER;
-import static ru.restaurant.VoiceTestData.getCreated;
+import static ru.restaurant.VoteTestData.*;
+import static ru.restaurant.VoteTestData.MATCHER;
+import static ru.restaurant.VoteTestData.getCreated;
 
-public class VoiceServiceImplTest extends AbstractServiceTest{
+public class VoteServiceImplTest extends AbstractServiceTest{
 
     @Autowired
     VoiceService service;
 
     @Test
     public void testGet() throws Exception {
-        Voice saved = service.get(ADMIN_ID);
-        VoiceTestData.MATCHER.assertEquals(VOICE_1, saved);
-        UserTestData.MATCHER.assertEquals(VOICE_1.getUser(), saved.getUser());
-        RestaurantTestData.MATCHER.assertEquals(VOICE_1.getRestaurant(), saved.getRestaurant());
+        Vote saved = service.get(ADMIN_ID);
+        VoteTestData.MATCHER.assertEquals(VOTE_1, saved);
+        UserTestData.MATCHER.assertEquals(VOTE_1.getUser(), saved.getUser());
+        RestaurantTestData.MATCHER.assertEquals(VOTE_1.getRestaurant(), saved.getRestaurant());
     }
 
     @Test(expected = NotFoundException.class)
@@ -46,9 +44,9 @@ public class VoiceServiceImplTest extends AbstractServiceTest{
 
     @Test
     public void testGetAll() throws Exception {
-        Collection<Voice> all = service.getAll();
+        Collection<Vote> all = service.getAll();
         Assert.isTrue(all.size() == 3);
-        MATCHER.assertCollectionEquals(Arrays.asList(VOICE_1, VOICE_2, VOICE_3), all);
+        MATCHER.assertCollectionEquals(Arrays.asList(VOTE_1, VOTE_2, VOTE_3), all);
     }
 
     @Test
@@ -67,9 +65,9 @@ public class VoiceServiceImplTest extends AbstractServiceTest{
     @Test
     @Transactional
     public void testSave() throws Exception {
-        Voice created = getCreated();
-        Voice actual = service.save(created, ADMIN_ID);
+        Vote created = getCreated();
+        Vote actual = service.save(created, ADMIN_ID);
         created.setId(actual.getId());
-        VoiceTestData.MATCHER_TO.assertEquals(new VoiceTo(created), new VoiceTo(actual));
+        VoteTestData.MATCHER_TO.assertEquals(new VoiceTo(created), new VoiceTo(actual));
     }
 }

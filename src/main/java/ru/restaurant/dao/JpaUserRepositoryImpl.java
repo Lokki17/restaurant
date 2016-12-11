@@ -1,10 +1,8 @@
-package ru.restaurant.repository.jpa;
+package ru.restaurant.dao;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.Assert;
 import ru.restaurant.model.User;
-import ru.restaurant.repository.UserRepository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

@@ -1,16 +1,13 @@
-package ru.restaurant.service.jpa;
+package ru.restaurant.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.Assert;
 import ru.restaurant.model.Dish;
 import ru.restaurant.model.Restaurant;
-import ru.restaurant.repository.DishRepository;
-import ru.restaurant.repository.RestaurantRepository;
-import ru.restaurant.service.DishService;
+import ru.restaurant.dao.DishRepository;
+import ru.restaurant.dao.RestaurantRepository;
 import ru.restaurant.util.DishUtil;
-import ru.restaurant.util.EntityUtil;
 import ru.restaurant.util.exception.NotFoundException;
 
 import java.time.LocalDate;

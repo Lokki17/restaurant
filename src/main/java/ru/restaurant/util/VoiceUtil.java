@@ -2,7 +2,6 @@ package ru.restaurant.util;
 
 import ru.restaurant.model.*;
 import ru.restaurant.to.VoiceTo;
-import ru.restaurant.util.exception.NotFoundException;
 
 import java.util.*;
 
@@ -11,21 +10,21 @@ public class VoiceUtil {
     private VoiceUtil() {
     }
 
-    public static Map<Restaurant, Integer> getRestaurantVoiceDistribution(Collection<Voice> voices) {
+    public static Map<Restaurant, Integer> getRestaurantVoiceDistribution(Collection<Vote> votes) {
         Map<Restaurant, Integer> destr = new TreeMap<>();
-        voices.stream()
+        votes.stream()
                 .forEach(voice -> destr.merge(voice.getRestaurant(), 1, (a, b) -> a + b));
         return destr;
     }
 
-    public static void checkRestaurant(Voice voice){
-        Objects.requireNonNull(voice.getRestaurant());
-        Objects.requireNonNull(voice.getRestaurant().getName());
+    public static void checkRestaurant(Vote vote){
+        Objects.requireNonNull(vote.getRestaurant());
+        Objects.requireNonNull(vote.getRestaurant().getName());
     }
 
-    public static Collection<VoiceTo> toToCollection(Collection<Voice> voices){
+    public static Collection<VoiceTo> toToCollection(Collection<Vote> votes){
         Collection<VoiceTo> result = new LinkedList<>();
-        voices.stream().forEach(voice -> result.add(new VoiceTo(voice)));
+        votes.stream().forEach(voice -> result.add(new VoiceTo(voice)));
         return result;
     }
 }

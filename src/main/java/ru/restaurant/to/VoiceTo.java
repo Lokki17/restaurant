@@ -1,7 +1,7 @@
 package ru.restaurant.to;
 
 import ru.restaurant.model.Restaurant;
-import ru.restaurant.model.Voice;
+import ru.restaurant.model.Vote;
 
 import java.time.LocalDate;
 
@@ -20,12 +20,12 @@ public class VoiceTo {
     public VoiceTo() {
     }
 
-    public VoiceTo(Voice voice) {
-        this.id = voice.getId();
-        this.restaurant = voice.getRestaurant();
-        this.userName = voice.getUser().getName();
-        this.userId = voice.getUser().getId();
-        this.date = voice.getDate();
+    public VoiceTo(Vote vote) {
+        this.id = vote.getId();
+        this.restaurant = vote.getRestaurant();
+        this.userName = vote.getUser().getName();
+        this.userId = vote.getUser().getId();
+        this.date = vote.getDate();
     }
 
     public Integer getId() {

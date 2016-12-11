@@ -1,7 +1,7 @@
 package ru.restaurant.web.voice;
 
 import org.junit.Test;
-import ru.restaurant.model.Voice;
+import ru.restaurant.model.Vote;
 import ru.restaurant.service.VoiceService;
 import ru.restaurant.to.VoiceTo;
 import ru.restaurant.web.AbstractControllerTest;
@@ -23,11 +23,11 @@ import static ru.restaurant.TestUtil.userHttpBasic;
 import static ru.restaurant.UserTestData.ADMIN;
 import static ru.restaurant.UserTestData.ADMIN_ID;
 import static ru.restaurant.UserTestData.USER;
-import static ru.restaurant.VoiceTestData.*;
+import static ru.restaurant.VoteTestData.*;
 
-public class VoiceRestControllerTest extends AbstractControllerTest {
+public class VoteRestControllerTest extends AbstractControllerTest {
 
-    private static final String VOICE_URL = VoiceRestController.VOICE_URL + "/";
+    private static final String VOICE_URL = VoteRestController.VOICE_URL + "/";
 
     @Autowired
     VoiceService service;
@@ -48,12 +48,12 @@ public class VoiceRestControllerTest extends AbstractControllerTest {
                 .andExpect(status().isOk())
                 .andDo(print())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON));
-        MATCHER.assertCollectionEquals(Arrays.asList(VOICE_1, VOICE_2, VOICE_3), service.getAll());
+        MATCHER.assertCollectionEquals(Arrays.asList(VOTE_1, VOTE_2, VOTE_3), service.getAll());
     }
 
     @Test
     public void testCreate() throws Exception {
-        Voice created = getCreated();
+        Vote created = getCreated();
         VoiceTo createdTo = new VoiceTo(created);
         ResultActions action = mockMvc.perform(post(VOICE_URL)
                 .contentType(MediaType.APPLICATION_JSON)
@@ -71,7 +71,7 @@ public class VoiceRestControllerTest extends AbstractControllerTest {
         mockMvc.perform(delete(VOICE_URL + VOICE_ID)
                 .with(userHttpBasic(ADMIN)))
                 .andExpect(status().isOk());
-        MATCHER.assertCollectionEquals(Arrays.asList(VOICE_2, VOICE_3), service.getAll());
+        MATCHER.assertCollectionEquals(Arrays.asList(VOTE_2, VOTE_3), service.getAll());
     }
 
     @Test
@@ -89,7 +89,7 @@ public class VoiceRestControllerTest extends AbstractControllerTest {
 
     @Test
     public void testUpdate() throws Exception {
-        Voice updated = getUpdated();
+        Vote updated = getUpdated();
         VoiceTo updatedTo = new VoiceTo(updated);
 
         mockMvc.perform(put(VOICE_URL + VOICE_ID)
@@ -97,7 +97,7 @@ public class VoiceRestControllerTest extends AbstractControllerTest {
                 .content(JsonUtil.writeValue(updated))
                 .with(userHttpBasic(ADMIN)))
                 .andExpect(status().isOk());
-        Voice saved = service.get(ADMIN_ID);
+        Vote saved = service.get(ADMIN_ID);
         MATCHER_TO.assertEquals(updatedTo, new VoiceTo(saved));
     }
 }

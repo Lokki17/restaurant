@@ -1,9 +1,7 @@
-package ru.restaurant.repository;
+package ru.restaurant.dao;
 
 import ru.restaurant.model.Restaurant;
 
-import java.time.LocalDateTime;
-import java.util.Collection;
 import java.util.List;
 
 public interface RestaurantRepository {

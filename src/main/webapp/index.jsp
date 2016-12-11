@@ -30,13 +30,13 @@
     <li> "/{id}" (method Put) - update dish with id (json body required). Only for users with Role "ROLE_ADMIN"</li>
     <li> "/{id}" (method Delete) - delete dish with id. Only for users with Role "ROLE_ADMIN"</li>
 </ul>
-<p> mapping "/voices" - (method Post) - register new user (json body required). Only for unauthenticated users</p>
+<p> mapping "/votes" - (method Post) - register new user (json body required). Only for unauthenticated users</p>
 <ul>
-    <li> "/" (method Get) - get restaurant list with voices count. For any authenticated user</li>
-    <li> "/" (method Post) - create new voice (json body required). Only for users with Role "ROLE_USER"</li>
-    <li> "/{id}" (method Get) - get voice with id. Only for users with Role "ROLE_ADMIN"</li>
-    <li> "/{id}" (method Put) - update voice with id (json body required). Only for users with Role "ROLE_ADMIN"</li>
-    <li> "/{id}" (method Delete) - delete voice with id. Only for users with Role "ROLE_ADMIN"</li>
+    <li> "/" (method Get) - get restaurant list with votes count. For any authenticated user</li>
+    <li> "/" (method Post) - create new vote (json body required). Only for users with Role "ROLE_USER"</li>
+    <li> "/{id}" (method Get) - get vote with id. Only for users with Role "ROLE_ADMIN"</li>
+    <li> "/{id}" (method Put) - update vote with id (json body required). Only for users with Role "ROLE_ADMIN"</li>
+    <li> "/{id}" (method Delete) - delete vote with id. Only for users with Role "ROLE_ADMIN"</li>
 </ul>
 <p> mapping "/users" (All points only for users with Role "ROLE_ADMIN")</p>
 <ul>

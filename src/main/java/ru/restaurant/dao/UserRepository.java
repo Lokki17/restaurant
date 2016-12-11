@@ -1,4 +1,4 @@
-package ru.restaurant.repository;
+package ru.restaurant.dao;
 
 import ru.restaurant.model.User;
 

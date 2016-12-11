@@ -1,19 +1,15 @@
-package ru.restaurant.service.jpa;
+package ru.restaurant.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.restaurant.model.Restaurant;
 import ru.restaurant.model.User;
-import ru.restaurant.model.Voice;
-import ru.restaurant.repository.RestaurantRepository;
-import ru.restaurant.repository.UserRepository;
-import ru.restaurant.repository.VoiceRepository;
-import ru.restaurant.service.VoiceService;
-import ru.restaurant.util.EntityUtil;
+import ru.restaurant.model.Vote;
+import ru.restaurant.dao.RestaurantRepository;
+import ru.restaurant.dao.UserRepository;
+import ru.restaurant.dao.VoiceRepository;
 import ru.restaurant.util.TimeUtil;
-import ru.restaurant.util.UserUtil;
 import ru.restaurant.util.VoiceUtil;
-import ru.restaurant.util.exception.NotFoundException;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -35,14 +31,14 @@ public class VoiceServiceImpl implements VoiceService {
     RestaurantRepository restaurantRepository;
 
     @Override
-    public Voice get(int userId) {
-        Voice result = voiceRepository.get(userId, LocalDate.now());
-        checkForNull(result, "Can't find your today voice");
+    public Vote get(int userId) {
+        Vote result = voiceRepository.get(userId, LocalDate.now());
+        checkForNull(result, "Can't find your today vote");
         return result;
     }
 
     @Override
-    public Collection<Voice> getAll() {
+    public Collection<Vote> getAll() {
         return voiceRepository.getAll();
     }
 
@@ -53,7 +49,7 @@ public class VoiceServiceImpl implements VoiceService {
 
     @Override
     public Map<Restaurant, Integer> getAllOnDate() {
-        Collection<Voice> result = voiceRepository.getAllOnDate(LocalDate.now());
+        Collection<Vote> result = voiceRepository.getAllOnDate(LocalDate.now());
         if (!result.isEmpty()) {
             return VoiceUtil.getRestaurantVoiceDistribution(result);
         } else return Collections.emptyMap();
@@ -61,33 +57,33 @@ public class VoiceServiceImpl implements VoiceService {
 
 
     @Override
-    public Voice save(Voice voice, int userId) {
+    public Vote save(Vote vote, int userId) {
         LocalDateTime dateTimeNow = LocalDateTime.now();
         TimeUtil.checkLaunchTime(dateTimeNow.toLocalTime());
-        Voice savedVoice = voiceRepository.get(userId, dateTimeNow.toLocalDate());
-        if (savedVoice != null) {
+        Vote savedVote = voiceRepository.get(userId, dateTimeNow.toLocalDate());
+        if (savedVote != null) {
             TimeUtil.checkTime(dateTimeNow.toLocalTime());
-            voice.setId(savedVoice.getId());
+            vote.setId(savedVote.getId());
         } else {
-            voice.setId(null);
+            vote.setId(null);
         }
-        voice.setDate(dateTimeNow.toLocalDate());
-        setRestaurant(voice);
-        setUser(voice, userId);
-        return voiceRepository.save(voice, dateTimeNow.toLocalDate(), userId);
+        vote.setDate(dateTimeNow.toLocalDate());
+        setRestaurant(vote);
+        setUser(vote, userId);
+        return voiceRepository.save(vote, dateTimeNow.toLocalDate(), userId);
     }
 
-    private void setUser(Voice voice, Integer userId) {
-        checkRestaurant(voice);
+    private void setUser(Vote vote, Integer userId) {
+        checkRestaurant(vote);
         User savedUser = userRepository.get(userId);
         checkForNull(savedUser, "Can't find user");
-        voice.setUser(savedUser);
+        vote.setUser(savedUser);
     }
 
-    private void setRestaurant(Voice voice){
-        checkRestaurant(voice);
-        Restaurant restaurant = restaurantRepository.get(voice.getRestaurant().getName());
+    private void setRestaurant(Vote vote){
+        checkRestaurant(vote);
+        Restaurant restaurant = restaurantRepository.get(vote.getRestaurant().getName());
         checkForNull(restaurant, "Can't find restaurant");
-        voice.setRestaurant(restaurant);
+        vote.setRestaurant(restaurant);
     }
 }
