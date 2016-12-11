@@ -20,7 +20,7 @@ public class RestaurantRestController {
     public static final String RESTAURANT_URL = "/restaurants";
 
     @Autowired
-    RestaurantService service;
+    private RestaurantService service;
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public Collection<Restaurant> getAll() {

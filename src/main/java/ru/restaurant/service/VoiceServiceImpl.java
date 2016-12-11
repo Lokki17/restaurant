@@ -22,13 +22,13 @@ import static ru.restaurant.util.VoiceUtil.checkRestaurant;
 public class VoiceServiceImpl implements VoiceService {
 
     @Autowired
-    VoiceRepository voiceRepository;
+    private VoiceRepository voiceRepository;
 
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
     @Autowired
-    RestaurantRepository restaurantRepository;
+    private RestaurantRepository restaurantRepository;
 
     @Override
     public Vote get(int userId) {

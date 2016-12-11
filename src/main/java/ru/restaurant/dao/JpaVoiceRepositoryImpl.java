@@ -15,7 +15,7 @@ import java.util.List;
 public class JpaVoiceRepositoryImpl implements VoiceRepository{
 
     @PersistenceContext
-    EntityManager em;
+    private EntityManager em;
 
     @Override
     @Transactional

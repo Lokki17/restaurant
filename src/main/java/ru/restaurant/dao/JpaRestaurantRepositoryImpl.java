@@ -12,7 +12,7 @@ import java.util.List;
 @Transactional(readOnly = true)
 public class JpaRestaurantRepositoryImpl implements RestaurantRepository {
     @PersistenceContext
-    EntityManager em;
+    private EntityManager em;
 
     @Override
     @Transactional

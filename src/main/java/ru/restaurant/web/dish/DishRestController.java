@@ -24,10 +24,10 @@ public class DishRestController {
     public static final String DISH_URL = "/dishes";
 
     @Autowired
-    DishService service;
+    private DishService service;
 
     @Autowired
-    RestaurantService restaurantService;
+    private RestaurantService restaurantService;
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public Map<Restaurant, Set<Dish>> getAll() {

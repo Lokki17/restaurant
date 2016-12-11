@@ -24,7 +24,7 @@ public class UserRestController {
     public static final String USER_URL = "/users";
 
     @Autowired
-    UserService service;
+    private UserService service;
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public Collection<UserToClient> getAll() {

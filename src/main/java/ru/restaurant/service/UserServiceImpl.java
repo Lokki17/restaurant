@@ -22,7 +22,7 @@ import static ru.restaurant.util.UserUtil.prepareToSave;
 public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
     @Override
     public User get(int id) throws NotFoundException {

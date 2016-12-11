@@ -14,7 +14,7 @@ import java.util.Collection;
 public class JpaDishRepositoryImpl implements DishRepository {
 
     @PersistenceContext
-    EntityManager em;
+    private EntityManager em;
 
     @Override
     @Transactional

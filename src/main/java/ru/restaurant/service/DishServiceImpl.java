@@ -19,10 +19,10 @@ import static ru.restaurant.util.EntityUtil.*;
 public class DishServiceImpl implements DishService {
 
     @Autowired
-    DishRepository dishRepository;
+    private DishRepository dishRepository;
 
     @Autowired
-    RestaurantRepository restaurantRepository;
+    private RestaurantRepository restaurantRepository;
 
     @Override
     public boolean delete(int id) {

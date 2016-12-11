@@ -27,13 +27,13 @@ public class VoteRestController {
     public static final String VOICE_URL = "/voices";
 
     @Autowired
-    VoiceService service;
+    private VoiceService service;
 
     @Autowired
-    RestaurantService restaurantService;
+    private RestaurantService restaurantService;
 
     @Autowired
-    UserService userService;
+    private UserService userService;
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public Map<Restaurant, Integer> getAll() {

@@ -12,12 +12,13 @@ import java.io.IOException;
 public class AuthenticationFailedEntryPoint implements AuthenticationEntryPoint {
     @Override
     public void commence(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, AuthenticationException e) throws IOException, ServletException {
-        ObjectMapper objectMapper = new ObjectMapper();
+        ExceptionUtil.handle(httpServletRequest, httpServletResponse, e, HttpServletResponse.SC_UNAUTHORIZED);
+        /*        ObjectMapper objectMapper = new ObjectMapper();
         String s = objectMapper.writeValueAsString(new ErrorInfo(httpServletRequest.getRequestURL(), e));
         httpServletResponse.setContentType("application/json;charset=UTF-8");
         httpServletResponse.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
         httpServletResponse.getWriter().write(s);
-        httpServletResponse.getWriter().flush();
-        httpServletResponse.getWriter().close();
+//        httpServletResponse.getWriter().flush();
+        httpServletResponse.getWriter().close();*/
     }
 }

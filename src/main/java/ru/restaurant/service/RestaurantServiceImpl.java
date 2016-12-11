@@ -16,10 +16,10 @@ import static ru.restaurant.util.EntityUtil.checkForNull;
 public class RestaurantServiceImpl implements RestaurantService {
 
     @Autowired
-    RestaurantRepository restaurantRepository;
+    private RestaurantRepository restaurantRepository;
 
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
     @Override
     public boolean delete(int id) {
