@@ -15,5 +15,5 @@ public interface VoteService {
 
     Map<Restaurant, Integer> getAllOnDate();
 
-    Vote save(Vote vote, int userId);
+    Vote save(Vote vote, int userId, int restaurantId);
 }

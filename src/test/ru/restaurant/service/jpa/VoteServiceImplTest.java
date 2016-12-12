@@ -66,7 +66,7 @@ public class VoteServiceImplTest extends AbstractServiceTest{
     @Transactional
     public void testSave() throws Exception {
         Vote created = getCreated();
-        Vote actual = service.save(created, ADMIN_ID);
+        Vote actual = service.save(created, ADMIN_ID, RESTAURANT_ID + 1);
         created.setId(actual.getId());
         VoteTestData.MATCHER_TO.assertEquals(new VoteTo(created), new VoteTo(actual));
     }

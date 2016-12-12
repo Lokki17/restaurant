@@ -22,8 +22,9 @@ import java.util.Collection;
 import java.util.Map;
 
 @RestController
-@RequestMapping(VoteRestController.VOTE_URL)
+@RequestMapping(VoteRestController.RESTAURANT_URL)
 public class VoteRestController {
+    public static final String RESTAURANT_URL = "/restaurants";
     public static final String VOTE_URL = "/votes";
 
     @Autowired
@@ -35,37 +36,37 @@ public class VoteRestController {
     @Autowired
     private UserService userService;
 
-    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "votes", produces = MediaType.APPLICATION_JSON_VALUE)
     public Map<Restaurant, Integer> getAll() {
         return service.getAllOnDate();
     }
 
     //only for testing
-    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "votes/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     @Secured("ROLE_ADMIN")
     public Collection<VoteTo> get() {
         return VoteUtil.toToCollection(service.getAll());
     }
 
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<VoteTo> create(@Valid @RequestBody Vote vote) {
-        VoteTo created = new VoteTo(service.save(vote, AuthorizedUser.getId()));
+    @PostMapping(value = "/{restaurantId}/votes", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<VoteTo> create(@Valid @RequestBody Vote vote, @PathVariable("restaurantId") Integer restaurantId) {
+        VoteTo created = new VoteTo(service.save(vote, AuthorizedUser.getId(), restaurantId));
         URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
-                .path("/votes" + created.getId())
+                .path("/restaurants/" + restaurantId + "/votes/" + created.getId())
                 .buildAndExpand(created.getId()).toUri();
 
         return ResponseEntity.created(uriOfNewResource).body(created);
     }
 
-    @DeleteMapping(value = "/{id}")
+/*    @DeleteMapping(value = "/{id}")
     @Secured("ROLE_ADMIN")
     public boolean delete(@PathVariable("id") Integer id) {
         return service.delete(id, AuthorizedUser.getId());
-    }
+    }*/
 
-    @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public VoteTo update(@Valid @RequestBody Vote vote, @PathVariable("id") int id) {
+    @PutMapping(value = "/{restaurantId}/votes/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public VoteTo update(@Valid @RequestBody Vote vote, @PathVariable("id") int id, @PathVariable("restaurantId") Integer restaurantId) {
         vote.setId(id);
-        return new VoteTo(service.save(vote, AuthorizedUser.getId()));
+        return new VoteTo(service.save(vote, AuthorizedUser.getId(), restaurantId));
     }
 }

@@ -57,7 +57,7 @@ public class VoteServiceImpl implements VoteService {
 
 
     @Override
-    public Vote save(Vote vote, int userId) {
+    public Vote save(Vote vote, int userId, int restaurantId) {
         LocalDateTime dateTimeNow = LocalDateTime.now();
         TimeUtil.checkLaunchTime(dateTimeNow.toLocalTime());
         Vote savedVote = voiceRepository.get(userId, dateTimeNow.toLocalDate());
@@ -68,7 +68,7 @@ public class VoteServiceImpl implements VoteService {
             vote.setId(null);
         }
         vote.setDate(dateTimeNow.toLocalDate());
-        setRestaurant(vote);
+        setRestaurant(vote, restaurantId);
         setUser(vote, userId);
         voiceRepository.save(vote, dateTimeNow.toLocalDate(), userId);
         return vote;
@@ -81,9 +81,9 @@ public class VoteServiceImpl implements VoteService {
         vote.setUser(savedUser);
     }
 
-    private void setRestaurant(Vote vote){
+    private void setRestaurant(Vote vote, int restaurantId){
         checkRestaurant(vote);
-        Restaurant restaurant = restaurantRepository.get(vote.getRestaurant().getName());
+        Restaurant restaurant = restaurantRepository.get(restaurantId);
         checkForNull(restaurant, "Can't find restaurant");
         vote.setRestaurant(restaurant);
     }

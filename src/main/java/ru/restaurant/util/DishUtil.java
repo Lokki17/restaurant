@@ -11,7 +11,7 @@ public class DishUtil {
     private DishUtil() {
     }
 
-    public static Map<Restaurant, Set<Dish>> dishesWithRestaurants(Collection<Dish> dishes) {
+/*    public static Map<Restaurant, Set<Dish>> dishesWithRestaurants(Collection<Dish> dishes) {
         Map<Restaurant, Set<Dish>> result = new TreeMap<>();
         for (Dish dish : dishes) {
             if (!result.containsKey(dish.getRestaurant())) {
@@ -20,5 +20,5 @@ public class DishUtil {
             result.get(dish.getRestaurant()).add(dish);
         }
         return result;
-    }
+    }*/
 }

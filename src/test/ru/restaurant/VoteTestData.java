@@ -9,6 +9,7 @@ import java.util.Objects;
 
 import static ru.restaurant.RestaurantTestData.RESTAURANT_1;
 import static ru.restaurant.RestaurantTestData.RESTAURANT_2;
+import static ru.restaurant.RestaurantTestData.RESTAURANT_4;
 import static ru.restaurant.UserTestData.*;
 import static ru.restaurant.model.BaseEntity.START_SEQ;
 
@@ -38,6 +39,6 @@ public class VoteTestData {
     }
 
     public static Vote getCreated(){
-        return new Vote(LocalDate.now(), RESTAURANT_2, ADMIN);
+        return new Vote(LocalDate.now(), RESTAURANT_4, ADMIN_USER_FOR_TEST);
     }
 }
