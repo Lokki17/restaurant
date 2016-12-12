@@ -33,11 +33,13 @@ public class DishServiceImpl implements DishService {
     }
 
     @Override
-    public Map<Restaurant, Set<Dish>> getAllOnDate(LocalDate date) {
+//    public Map<Restaurant, Set<Dish>> getAllOnDate(LocalDate date) {
+    public Collection<Dish> getAllOnDate(LocalDate date) {
         Collection<Dish> result = dishRepository.getAll(date);
         if (!result.isEmpty()) {
-            return DishUtil.dishesWithRestaurants(result);
-        } else return Collections.emptyMap();
+            return result;
+//            return DishUtil.dishesWithRestaurants(result);
+        } else return Collections.emptyList();
 
     }
 
@@ -45,7 +47,9 @@ public class DishServiceImpl implements DishService {
     public Dish update(Dish dish, int restaurantId) {
         setRestaurant(dish, restaurantId);
         dish.setDate(LocalDate.now());
-        return checkDish(dishRepository.save(dish), "Dish didn't update");
+        checkDish(dishRepository.save(dish), "Dish didn't update");
+//        setRestaurant(dish, restaurantId);
+        return dish;
     }
 
     @Override
@@ -53,7 +57,8 @@ public class DishServiceImpl implements DishService {
     public Dish save(Dish dish, int restaurantId) {
         setRestaurant(dish, restaurantId);
         dish.setDate(LocalDate.now());
-        return checkDish(dishRepository.save(dish), "Dish didn't save");
+        checkDish(dishRepository.save(dish), "Dish didn't save");
+        return dish;
     }
 
     @Override

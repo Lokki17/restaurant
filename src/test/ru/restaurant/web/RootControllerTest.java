@@ -23,7 +23,7 @@ import static ru.restaurant.UserTestData.*;
 public class RootControllerTest extends AbstractControllerTest {
 
     @Autowired
-    UserService service;
+    private UserService service;
 
     @Test
     public void testRoot() throws Exception {

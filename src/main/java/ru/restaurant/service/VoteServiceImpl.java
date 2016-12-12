@@ -19,7 +19,7 @@ import static ru.restaurant.util.EntityUtil.checkForNull;
 import static ru.restaurant.util.VoiceUtil.checkRestaurant;
 
 @Service
-public class VoiceServiceImpl implements VoiceService {
+public class VoteServiceImpl implements VoteService {
 
     @Autowired
     private VoiceRepository voiceRepository;
@@ -70,7 +70,8 @@ public class VoiceServiceImpl implements VoiceService {
         vote.setDate(dateTimeNow.toLocalDate());
         setRestaurant(vote);
         setUser(vote, userId);
-        return voiceRepository.save(vote, dateTimeNow.toLocalDate(), userId);
+        voiceRepository.save(vote, dateTimeNow.toLocalDate(), userId);
+        return vote;
     }
 
     private void setUser(Vote vote, Integer userId) {

@@ -16,7 +16,7 @@ import static ru.restaurant.UserTestData.*;
 public class UserServiceImplTest extends AbstractServiceTest {
 
     @Autowired
-    UserService service;
+    private UserService service;
 
     @Test
     public void testGet() throws Exception {

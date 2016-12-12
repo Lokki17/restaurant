@@ -15,6 +15,7 @@ import ru.restaurant.web.AuthorizedUser;
 import javax.validation.Valid;
 import java.net.URI;
 import java.time.LocalDate;
+import java.util.Collection;
 import java.util.Map;
 import java.util.Set;
 
@@ -30,7 +31,8 @@ public class DishRestController {
     private RestaurantService restaurantService;
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public Map<Restaurant, Set<Dish>> getAll() {
+    public Collection<Dish> getAll() {
+//    public Map<Restaurant, Set<Dish>> getAll() {
         return service.getAllOnDate(LocalDate.now());
     }
 

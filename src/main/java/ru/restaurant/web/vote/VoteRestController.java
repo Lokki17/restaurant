@@ -1,4 +1,4 @@
-package ru.restaurant.web.voice;
+package ru.restaurant.web.vote;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +11,7 @@ import ru.restaurant.model.Restaurant;
 import ru.restaurant.model.Vote;
 import ru.restaurant.service.RestaurantService;
 import ru.restaurant.service.UserService;
-import ru.restaurant.service.VoiceService;
+import ru.restaurant.service.VoteService;
 import ru.restaurant.to.VoiceTo;
 import ru.restaurant.util.VoiceUtil;
 import ru.restaurant.web.AuthorizedUser;
@@ -22,12 +22,12 @@ import java.util.Collection;
 import java.util.Map;
 
 @RestController
-@RequestMapping(VoteRestController.VOICE_URL)
+@RequestMapping(VoteRestController.VOTE_URL)
 public class VoteRestController {
-    public static final String VOICE_URL = "/voices";
+    public static final String VOTE_URL = "/votes";
 
     @Autowired
-    private VoiceService service;
+    private VoteService service;
 
     @Autowired
     private RestaurantService restaurantService;

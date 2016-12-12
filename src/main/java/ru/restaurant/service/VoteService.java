@@ -6,7 +6,7 @@ import ru.restaurant.model.Vote;
 import java.util.Collection;
 import java.util.Map;
 
-public interface VoiceService {
+public interface VoteService {
     Vote get(int userId);
 
     Collection<Vote> getAll();

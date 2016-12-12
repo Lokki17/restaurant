@@ -30,7 +30,7 @@ public class DishRestControllerTest extends AbstractControllerTest {
     private static final String DISH_URL = DishRestController.DISH_URL + "/";
 
     @Autowired
-    DishService service;
+    private DishService service;
 
 /*    @Test
     public void testGetAll() throws Exception {

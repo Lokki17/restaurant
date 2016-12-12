@@ -33,7 +33,7 @@ public class UserRestControllerTest extends AbstractControllerTest {
     private static final String USER_URL = UserRestController.USER_URL + "/";
 
     @Autowired
-    UserService service;
+    private UserService service;
 
     @Test
     public void testGetAll() throws Exception {

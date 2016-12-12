@@ -10,7 +10,7 @@ import ru.restaurant.VoteTestData;
 import ru.restaurant.model.Restaurant;
 import ru.restaurant.model.Vote;
 import ru.restaurant.service.AbstractServiceTest;
-import ru.restaurant.service.VoiceService;
+import ru.restaurant.service.VoteService;
 import ru.restaurant.to.VoiceTo;
 import ru.restaurant.util.exception.NotFoundException;
 
@@ -27,7 +27,7 @@ import static ru.restaurant.VoteTestData.getCreated;
 public class VoteServiceImplTest extends AbstractServiceTest{
 
     @Autowired
-    VoiceService service;
+    private VoteService service;
 
     @Test
     public void testGet() throws Exception {

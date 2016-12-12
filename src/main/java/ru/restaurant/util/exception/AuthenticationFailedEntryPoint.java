@@ -11,7 +11,9 @@ import java.io.IOException;
 
 public class AuthenticationFailedEntryPoint implements AuthenticationEntryPoint {
     @Override
-    public void commence(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, AuthenticationException e) throws IOException, ServletException {
+    public void commence(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse,
+                         AuthenticationException e) throws IOException, ServletException {
+
         ExceptionUtil.handle(httpServletRequest, httpServletResponse, e, HttpServletResponse.SC_UNAUTHORIZED);
         /*        ObjectMapper objectMapper = new ObjectMapper();
         String s = objectMapper.writeValueAsString(new ErrorInfo(httpServletRequest.getRequestURL(), e));

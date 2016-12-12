@@ -1,8 +1,8 @@
-package ru.restaurant.web.voice;
+package ru.restaurant.web.vote;
 
 import org.junit.Test;
 import ru.restaurant.model.Vote;
-import ru.restaurant.service.VoiceService;
+import ru.restaurant.service.VoteService;
 import ru.restaurant.to.VoiceTo;
 import ru.restaurant.web.AbstractControllerTest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,14 +27,14 @@ import static ru.restaurant.VoteTestData.*;
 
 public class VoteRestControllerTest extends AbstractControllerTest {
 
-    private static final String VOICE_URL = VoteRestController.VOICE_URL + "/";
+    private static final String VOTE_URL = VoteRestController.VOTE_URL + "/";
 
     @Autowired
-    VoiceService service;
+    private VoteService service;
 
     @Test
     public void testGetAll() throws Exception {
-        mockMvc.perform(get(VOICE_URL)
+        mockMvc.perform(get(VOTE_URL)
                 .with(userHttpBasic(ADMIN)))
                 .andExpect(status().isOk())
                 .andDo(print())
@@ -43,7 +43,7 @@ public class VoteRestControllerTest extends AbstractControllerTest {
 
     @Test
     public void testGet() throws Exception {
-        mockMvc.perform(get(VOICE_URL + ADMIN)
+        mockMvc.perform(get(VOTE_URL + ADMIN)
                 .with(userHttpBasic(ADMIN)))
                 .andExpect(status().isOk())
                 .andDo(print())
@@ -55,7 +55,7 @@ public class VoteRestControllerTest extends AbstractControllerTest {
     public void testCreate() throws Exception {
         Vote created = getCreated();
         VoiceTo createdTo = new VoiceTo(created);
-        ResultActions action = mockMvc.perform(post(VOICE_URL)
+        ResultActions action = mockMvc.perform(post(VOTE_URL)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(JsonUtil.writeValue(created))
                 .with(userHttpBasic(ADMIN)));
@@ -68,7 +68,7 @@ public class VoteRestControllerTest extends AbstractControllerTest {
 
     @Test
     public void testDelete() throws Exception {
-        mockMvc.perform(delete(VOICE_URL + VOICE_ID)
+        mockMvc.perform(delete(VOTE_URL + VOICE_ID)
                 .with(userHttpBasic(ADMIN)))
                 .andExpect(status().isOk());
         MATCHER.assertCollectionEquals(Arrays.asList(VOTE_2, VOTE_3), service.getAll());
@@ -76,13 +76,13 @@ public class VoteRestControllerTest extends AbstractControllerTest {
 
     @Test
     public void testDeleteUnauth() throws Exception {
-        mockMvc.perform(delete(VOICE_URL + VOICE_ID))
+        mockMvc.perform(delete(VOTE_URL + VOICE_ID))
                 .andExpect(status().isUnauthorized());
     }
 
     @Test
     public void testDeleteWithoutRight() throws Exception {
-        mockMvc.perform(delete(VOICE_URL + VOICE_ID)
+        mockMvc.perform(delete(VOTE_URL + VOICE_ID)
                 .with(userHttpBasic(USER)))
                 .andExpect(status().isForbidden());
     }
@@ -92,7 +92,7 @@ public class VoteRestControllerTest extends AbstractControllerTest {
         Vote updated = getUpdated();
         VoiceTo updatedTo = new VoiceTo(updated);
 
-        mockMvc.perform(put(VOICE_URL + VOICE_ID)
+        mockMvc.perform(put(VOTE_URL + VOICE_ID)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(JsonUtil.writeValue(updated))
                 .with(userHttpBasic(ADMIN)))

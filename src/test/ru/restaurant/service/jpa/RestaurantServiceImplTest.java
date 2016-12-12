@@ -15,7 +15,7 @@ import static ru.restaurant.RestaurantTestData.*;
 public class RestaurantServiceImplTest extends AbstractServiceTest {
 
     @Autowired
-    RestaurantService service;
+    private RestaurantService service;
 
     @Test
     public void testDelete() throws Exception {

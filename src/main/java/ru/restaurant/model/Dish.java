@@ -1,7 +1,9 @@
 package ru.restaurant.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.util.Assert;
 import ru.restaurant.util.EntityUtil;
 
 import javax.persistence.*;
@@ -13,11 +15,13 @@ import java.time.LocalDate;
 @NamedQueries({
         @NamedQuery(name = Dish.GET_ALL, query = "SELECT d FROM Dish d LEFT JOIN FETCH d.restaurant WHERE d.date=:date ORDER BY d.restaurant.name, d.name"),
         @NamedQuery(name = Dish.DELETE, query = "DELETE FROM Dish d WHERE d.id=:dishId"),
-        @NamedQuery(name = Dish.GET, query = "SELECT d FROM Dish d WHERE d.id=:dishId")
+        @NamedQuery(name = Dish.GET, query = "SELECT d FROM Dish d LEFT JOIN FETCH d.restaurant WHERE d.id=:dishId")
 })
 //@NamedEntityGraph(name = Dish.GRAPH, attributeNodes = {@NamedAttributeNode("restaurant")})
 @Entity
 @Table(name = "dishes")
+//@JsonIgnoreProperties({"restaurant"})
+//@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Dish extends DatedEntity implements Comparable {
 //    public static final String GRAPH = "Dishes.restaurant";
 
@@ -27,7 +31,7 @@ public class Dish extends DatedEntity implements Comparable {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "restaurant_id", nullable = false)
-    @JsonIgnore
+//    @JsonIgnore
     private Restaurant restaurant;
 
     @Column(name = "price")
@@ -100,8 +104,10 @@ public class Dish extends DatedEntity implements Comparable {
         if (this == o) {
             return 0;
         }
-        EntityUtil.checkForNull((BaseEntity) o, "Nothing to compare");
         Dish that = (Dish) o;
+        Assert.notNull(this.getId(), "It's new dish");
+        Assert.notNull(that.getId(), "It's new dish");
+//        EntityUtil.checkForNull(o, "Nothing to compare");
         if (!this.name.equals(that.name)) {
             return this.name.compareTo(that.name);
         } else {

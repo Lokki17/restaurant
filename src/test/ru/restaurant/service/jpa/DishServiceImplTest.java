@@ -16,7 +16,7 @@ import static ru.restaurant.UserTestData.USER_ID;
 public class DishServiceImplTest extends AbstractServiceTest {
 
     @Autowired
-    DishService service;
+    private DishService service;
 
     @Test
     public void testDelete() throws Exception {

@@ -34,7 +34,7 @@ public class RestaurantRestControllerTest extends AbstractControllerTest {
     private static final String REST_URL = RestaurantRestController.RESTAURANT_URL + "/";
 
     @Autowired
-    RestaurantService service;
+    private RestaurantService service;
 
     @Test
     public void testGetAll() throws Exception {
