@@ -9,14 +9,14 @@ import ru.restaurant.dao.RestaurantRepository;
 import ru.restaurant.dao.UserRepository;
 import ru.restaurant.dao.VoiceRepository;
 import ru.restaurant.util.TimeUtil;
-import ru.restaurant.util.VoiceUtil;
+import ru.restaurant.util.VoteUtil;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.*;
 
 import static ru.restaurant.util.EntityUtil.checkForNull;
-import static ru.restaurant.util.VoiceUtil.checkRestaurant;
+import static ru.restaurant.util.VoteUtil.checkRestaurant;
 
 @Service
 public class VoteServiceImpl implements VoteService {
@@ -51,7 +51,7 @@ public class VoteServiceImpl implements VoteService {
     public Map<Restaurant, Integer> getAllOnDate() {
         Collection<Vote> result = voiceRepository.getAllOnDate(LocalDate.now());
         if (!result.isEmpty()) {
-            return VoiceUtil.getRestaurantVoiceDistribution(result);
+            return VoteUtil.getRestaurantVoiceDistribution(result);
         } else return Collections.emptyMap();
     }
 

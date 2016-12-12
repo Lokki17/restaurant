@@ -5,7 +5,7 @@ import ru.restaurant.model.Vote;
 
 import java.time.LocalDate;
 
-public class VoiceTo {
+public class VoteTo {
 
     private Integer id;
 
@@ -17,10 +17,10 @@ public class VoiceTo {
 
     private LocalDate date;
 
-    public VoiceTo() {
+    public VoteTo() {
     }
 
-    public VoiceTo(Vote vote) {
+    public VoteTo(Vote vote) {
         this.id = vote.getId();
         this.restaurant = vote.getRestaurant();
         this.userName = vote.getUser().getName();
@@ -70,7 +70,7 @@ public class VoiceTo {
 
     @Override
     public String toString() {
-        return "VoiceTo{" +
+        return "VoteTo{" +
                 "id=" + id +
                 ", restaurant=" + restaurant +
                 ", userName='" + userName + '\'' +

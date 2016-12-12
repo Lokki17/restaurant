@@ -11,7 +11,7 @@ import ru.restaurant.model.Restaurant;
 import ru.restaurant.model.Vote;
 import ru.restaurant.service.AbstractServiceTest;
 import ru.restaurant.service.VoteService;
-import ru.restaurant.to.VoiceTo;
+import ru.restaurant.to.VoteTo;
 import ru.restaurant.util.exception.NotFoundException;
 
 import java.util.Arrays;
@@ -68,6 +68,6 @@ public class VoteServiceImplTest extends AbstractServiceTest{
         Vote created = getCreated();
         Vote actual = service.save(created, ADMIN_ID);
         created.setId(actual.getId());
-        VoteTestData.MATCHER_TO.assertEquals(new VoiceTo(created), new VoiceTo(actual));
+        VoteTestData.MATCHER_TO.assertEquals(new VoteTo(created), new VoteTo(actual));
     }
 }

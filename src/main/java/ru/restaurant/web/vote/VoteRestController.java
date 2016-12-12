@@ -12,8 +12,8 @@ import ru.restaurant.model.Vote;
 import ru.restaurant.service.RestaurantService;
 import ru.restaurant.service.UserService;
 import ru.restaurant.service.VoteService;
-import ru.restaurant.to.VoiceTo;
-import ru.restaurant.util.VoiceUtil;
+import ru.restaurant.to.VoteTo;
+import ru.restaurant.util.VoteUtil;
 import ru.restaurant.web.AuthorizedUser;
 
 import javax.validation.Valid;
@@ -43,15 +43,15 @@ public class VoteRestController {
     //only for testing
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     @Secured("ROLE_ADMIN")
-    public Collection<VoiceTo> get() {
-        return VoiceUtil.toToCollection(service.getAll());
+    public Collection<VoteTo> get() {
+        return VoteUtil.toToCollection(service.getAll());
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<VoiceTo> create(@Valid @RequestBody Vote vote) {
-        VoiceTo created = new VoiceTo(service.save(vote, AuthorizedUser.getId()));
+    public ResponseEntity<VoteTo> create(@Valid @RequestBody Vote vote) {
+        VoteTo created = new VoteTo(service.save(vote, AuthorizedUser.getId()));
         URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
-                .path("/voices" + created.getId())
+                .path("/votes" + created.getId())
                 .buildAndExpand(created.getId()).toUri();
 
         return ResponseEntity.created(uriOfNewResource).body(created);
@@ -64,8 +64,8 @@ public class VoteRestController {
     }
 
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public VoiceTo update(@Valid @RequestBody Vote vote, @PathVariable("id") int id) {
+    public VoteTo update(@Valid @RequestBody Vote vote, @PathVariable("id") int id) {
         vote.setId(id);
-        return new VoiceTo(service.save(vote, AuthorizedUser.getId()));
+        return new VoteTo(service.save(vote, AuthorizedUser.getId()));
     }
 }

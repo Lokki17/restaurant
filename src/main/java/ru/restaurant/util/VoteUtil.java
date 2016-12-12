@@ -1,13 +1,13 @@
 package ru.restaurant.util;
 
 import ru.restaurant.model.*;
-import ru.restaurant.to.VoiceTo;
+import ru.restaurant.to.VoteTo;
 
 import java.util.*;
 
-public class VoiceUtil {
+public class VoteUtil {
 
-    private VoiceUtil() {
+    private VoteUtil() {
     }
 
     public static Map<Restaurant, Integer> getRestaurantVoiceDistribution(Collection<Vote> votes) {
@@ -22,9 +22,9 @@ public class VoiceUtil {
         Objects.requireNonNull(vote.getRestaurant().getName());
     }
 
-    public static Collection<VoiceTo> toToCollection(Collection<Vote> votes){
-        Collection<VoiceTo> result = new LinkedList<>();
-        votes.stream().forEach(voice -> result.add(new VoiceTo(voice)));
+    public static Collection<VoteTo> toToCollection(Collection<Vote> votes){
+        Collection<VoteTo> result = new LinkedList<>();
+        votes.stream().forEach(voice -> result.add(new VoteTo(voice)));
         return result;
     }
 }

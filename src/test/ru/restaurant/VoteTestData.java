@@ -2,7 +2,7 @@ package ru.restaurant;
 
 import ru.restaurant.matcher.ModelMatcher;
 import ru.restaurant.model.Vote;
-import ru.restaurant.to.VoiceTo;
+import ru.restaurant.to.VoteTo;
 
 import java.time.LocalDate;
 import java.util.Objects;
@@ -25,7 +25,7 @@ public class VoteTestData {
                     Objects.equals(expected.getId(), actual.getId())
                             && Objects.equals(expected.getDate(), actual.getDate()));
 
-    public static final ModelMatcher<VoiceTo> MATCHER_TO = ModelMatcher.of(VoiceTo.class,
+    public static final ModelMatcher<VoteTo> MATCHER_TO = ModelMatcher.of(VoteTo.class,
             ((expected, actual) -> expected == actual ||
             Objects.equals(expected.getId(), actual.getId() )
             && Objects.equals(expected.getRestaurant().getName(), actual.getRestaurant().getName())

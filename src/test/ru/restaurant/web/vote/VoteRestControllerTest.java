@@ -3,7 +3,7 @@ package ru.restaurant.web.vote;
 import org.junit.Test;
 import ru.restaurant.model.Vote;
 import ru.restaurant.service.VoteService;
-import ru.restaurant.to.VoiceTo;
+import ru.restaurant.to.VoteTo;
 import ru.restaurant.web.AbstractControllerTest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -54,13 +54,13 @@ public class VoteRestControllerTest extends AbstractControllerTest {
     @Test
     public void testCreate() throws Exception {
         Vote created = getCreated();
-        VoiceTo createdTo = new VoiceTo(created);
+        VoteTo createdTo = new VoteTo(created);
         ResultActions action = mockMvc.perform(post(VOTE_URL)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(JsonUtil.writeValue(created))
                 .with(userHttpBasic(ADMIN)));
 
-        VoiceTo returned = MATCHER_TO.fromJsonAction(action);
+        VoteTo returned = MATCHER_TO.fromJsonAction(action);
         createdTo.setId(returned.getId());
 
         MATCHER_TO.assertEquals(createdTo, returned);
@@ -90,7 +90,7 @@ public class VoteRestControllerTest extends AbstractControllerTest {
     @Test
     public void testUpdate() throws Exception {
         Vote updated = getUpdated();
-        VoiceTo updatedTo = new VoiceTo(updated);
+        VoteTo updatedTo = new VoteTo(updated);
 
         mockMvc.perform(put(VOTE_URL + VOICE_ID)
                 .contentType(MediaType.APPLICATION_JSON)
@@ -98,6 +98,6 @@ public class VoteRestControllerTest extends AbstractControllerTest {
                 .with(userHttpBasic(ADMIN)))
                 .andExpect(status().isOk());
         Vote saved = service.get(ADMIN_ID);
-        MATCHER_TO.assertEquals(updatedTo, new VoiceTo(saved));
+        MATCHER_TO.assertEquals(updatedTo, new VoteTo(saved));
     }
 }

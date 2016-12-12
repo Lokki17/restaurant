@@ -56,7 +56,6 @@ public class DishRestController {
 
     @PutMapping(value = "/{restaurantId}/dishes/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
     @Secured("ROLE_ADMIN")
-//    public Dish update(@Valid @RequestBody Dish dish, @PathVariable("restaurantId") Integer restaurantId) {
     public Dish update(@Valid @RequestBody Dish dish, @PathVariable("id") Integer id, @PathVariable("restaurantId") Integer restaurantId) {
         dish.setId(id);
         return service.update(dish, restaurantId);
