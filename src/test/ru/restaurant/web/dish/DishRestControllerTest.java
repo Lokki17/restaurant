@@ -21,13 +21,15 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static ru.restaurant.DishTestData.*;
+import static ru.restaurant.RestaurantTestData.RESTAURANT_ID;
 import static ru.restaurant.TestUtil.userHttpBasic;
 import static ru.restaurant.UserTestData.ADMIN;
 import static ru.restaurant.UserTestData.USER;
 
 public class DishRestControllerTest extends AbstractControllerTest {
 
-    private static final String DISH_URL = DishRestController.DISH_URL + "/";
+    private static final String RESTAURANT_URL = DishRestController.RESTAURANT_URL + "/";
+    private static final String DISH_URL = DishRestController.DISH_URL+ "/";
 
     @Autowired
     private DishService service;
@@ -44,9 +46,9 @@ public class DishRestControllerTest extends AbstractControllerTest {
     @Test
     public void testCreate() throws Exception {
         Dish expected = getCreated();
-        ResultActions action = mockMvc.perform(post(DISH_URL)
+        ResultActions action = mockMvc.perform(post(RESTAURANT_URL + RESTAURANT_ID + DISH_URL )
                 .contentType(MediaType.APPLICATION_JSON)
-                .param("id", "100003")
+//                .param("id", "100003")
                 .with(userHttpBasic(ADMIN))
                 .content(JsonUtil.writeValue(expected))).andExpect(status().isCreated());
 
@@ -63,7 +65,7 @@ public class DishRestControllerTest extends AbstractControllerTest {
 
     @Test
     public void testDelete() throws Exception {
-        mockMvc.perform(delete(DISH_URL + DISH_ID)
+        mockMvc.perform(delete(RESTAURANT_URL + DISH_URL + DISH_ID)
                 .with(userHttpBasic(UserTestData.ADMIN))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andDo(print())
@@ -76,7 +78,7 @@ public class DishRestControllerTest extends AbstractControllerTest {
 
     @Test
     public void testDeleteNotFound() throws Exception {
-        mockMvc.perform(delete(DISH_URL + 1)
+        mockMvc.perform(delete(RESTAURANT_URL + 1)
                 .with(TestUtil.userHttpBasic(ADMIN))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNotFound())
@@ -85,13 +87,13 @@ public class DishRestControllerTest extends AbstractControllerTest {
 
     @Test
     public void testDeleteUnauth() throws Exception {
-        mockMvc.perform(delete(DISH_URL + DISH_ID))
+        mockMvc.perform(delete(RESTAURANT_URL + DISH_ID))
                 .andExpect(status().isUnauthorized());
     }
 
     @Test
     public void testDeleteForbidden() throws Exception {
-        mockMvc.perform(delete(DISH_URL + DISH_ID)
+        mockMvc.perform(delete(RESTAURANT_URL + DISH_ID)
                 .with(userHttpBasic(USER)))
                 .andExpect(status().isForbidden());
     }
@@ -99,12 +101,12 @@ public class DishRestControllerTest extends AbstractControllerTest {
     @Test
     public void testUpdate() throws Exception {
         Dish updated = getUpdated();
-        mockMvc.perform(put(DISH_URL + DISH_ID)
+        mockMvc.perform(put(RESTAURANT_URL + RESTAURANT_ID + DISH_URL + DISH_ID)
                 .contentType(MediaType.APPLICATION_JSON)
                 .with(userHttpBasic(ADMIN))
-                .content(JsonUtil.writeValue(updated))
-                .param("restaurantId", "100003"))
-                .andExpect(status().isOk());
+                .content(JsonUtil.writeValue(updated)));
+//                .param("restaurantId", "100003")
+//                .andExpect(status().isOk());
 
         MATCHER.assertEquals(updated, service.get(DISH_ID));
     }
