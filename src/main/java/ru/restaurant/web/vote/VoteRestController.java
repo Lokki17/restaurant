@@ -36,13 +36,13 @@ public class VoteRestController {
     @Autowired
     private UserService userService;
 
-    @GetMapping(value = "votes", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/votes", produces = MediaType.APPLICATION_JSON_VALUE)
     public Map<Restaurant, Integer> getAll() {
         return service.getAllOnDate();
     }
 
     //only for testing
-    @GetMapping(value = "votes/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/votes/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     @Secured("ROLE_ADMIN")
     public Collection<VoteTo> get() {
         return VoteUtil.toToCollection(service.getAll());
